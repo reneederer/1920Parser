@@ -1,0 +1,63 @@
+.fo off
+.pa
++-----------------+------------------------------------+---------------+
+I                 I                                    I               I
+I                 I                                    I               I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I               I
+I                 I   Schnittstelle : Host --> PC      I               I
+I                 I                                    I     IOVK60    I
++-----------------+------------------------------------+---------------+
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 9  Sen I
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :26.08.03I
+I  0911-9300-335  I                                    I WINK: 25.02.15I
++-----------------+------------------------------------+---------------+
+Dateiname: PH326560 OPUS
+
+Satzlaenge:        Bytes
+:h6.IOVK60 Schnittstelle Host->PC
+.sp 2
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOVK60
+.pi /Bereich/IOVK60
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+    ****                                   Schnittstellenbereich
+    03    IO60-AREA                        Host --> PC
+     05   IO60-TRANID       C   4          Transaktionscode (VK60)     K
+     05   IO60-FUNKID       C   2          Funktionscode               K
+     05   IO60-EBENE        N   1          Lagerebene (immer Wert 1)   K
+    ***
+05   IO60-DATEN-AREA2                 STRUKTUR FUER WANNENDATEN   K
+    ***
+     10   IO60-WANNE2                      WANNENDATEN                 K
+      15  IO60-L1RRN2       N   5          RE. SATZNR. L1-SATZ (AUTO)  K
+      15  IO60-STPL2        N   2          PLATZNUMMER AUF DATAMOBIL   K
+      15  IO60-TOUR2                       TOURNUMMER (STD/MIN/BHF)    K
+       20 IO60-SSMM2        X   4          STD/MIN
+       20 IO60-BHF2         X   2          BHF
+      15  IO60-STATION2     C  20          STATIONSCODE                K
+      15  IO60-GEW1-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW2-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW3-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW4-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW5-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW6-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW7-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW8-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW9-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW10-2      N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW11-2      N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW12-2      N   5          GEWICHT DER WANNE           K
+      15  IO60-IDF2         N   7          IDF-NUMMER                  K
+      15  IO60-SONDER2
+       17 IO60-FREIA2       C   1          RESERVIERT
+       17 IO60-NTOUR2       C   3          NAECHSTE TOUR
+       17 IO60-FREIB2       C   1          RESERVIERT
+       17 IO60-LTOUR2       C   3          LETZTE   TOUR
+       17 IO60-FREIC2       C   3          RESERVIERT
+       17 IO60-WTYP2        C   1          WANNENTYP(0=KLEIN,1=GROSS)
+       17 IO60-SONDKZ2      C   1          SONDERKZ.(1,2,3 DOKO)
+      15  IO60-TTEXT2       C  81          TEXT FUER TOURENSCHEIN
+

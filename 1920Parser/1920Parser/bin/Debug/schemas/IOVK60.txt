@@ -1,0 +1,235 @@
+.fo off
+.pa
++-----------------+------------------------------------+---------------+
+I                 I                                    I               I
+I                 I                                    I               I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I               I
+I                 I   Schnittstelle : Host --> PC      I               I
+I                 I                                    I     IOVK60    I
++-----------------+------------------------------------+---------------+
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 9  Sen I
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :26.08.03I
+I  0911-9300-335  I                                    I WINK: 25.02.15I
++-----------------+------------------------------------+---------------+
+Dateiname: PH326560 OPUS
+
+Satzlaenge:        Bytes
+:h6.IOVK60 Schnittstelle Host->PC
+.sp 2
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOVK60
+.pi /Bereich/IOVK60
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+    ****                                   Schnittstellenbereich
+    03    IO60-AREA                        Host --> PC
+     05   IO60-TRANID       C   4          Transaktionscode (VK60)     K
+     05   IO60-FUNKID       C   2          Funktionscode               K
+     05   IO60-EBENE        N   1          Lagerebene (immer Wert 1)   K
+    ***
+     05   IO60-DATEN-AREA                  Struktur fuer Wannendaten
+    ***
+     10   IO60-WANNE                   4   Wannendaten
+      15  IO60-L1RRN        N   5          Re. Satznr. L1-Satz (Auto)
+      15  IO60-STPL         N   2          Platznummer auf Datamobil
+      15  IO60-TOUR         N   4          Tournummer
+      15  IO60-STATION      C  20          Stationscode
+      15  IO60-GEW          N   5          Gewicht der Wanne
+      15  IO60-APOS         N   2          Anzahl Positionen
+      15  IO60-IDF          N   8          IDF-Nummer
+      15  IO60-AZEIT        N   4          Aufnahmezeit (HHMM)
+      15  IO60-UZEIT        N   4          Uebertragungszeit (HHMM)
+      15  IO60-LFOLGE       N   2          Lieferreihenfolge
+      15  IO60-WTYP         C   1          Wannentyp
+      15  IO60-BPACK        N   2          Station des Beipacks
+      15  IO60-SONDKZ       C   1          Sonderkennzeichen
+      15  IO60-TTEXT        C  81          Text fuer Tourenschein
+      15  IO60-anzbp        N   5          Anzahl Beipacks
+      15  IO60-FILLER       C  31          Filler
+      15  IO60-POSTAB                 40   Tabelle der Positionen
+       20 IO60-KANAL        N   4          Kanalnummer
+       20 IO60-MENGE        N   3          Menge
+     10   IO60-REST         C  85          REST
+    ***
+    R05   IO60-DATEN-AREA1                 Struktur fuer Wannendaten   K
+    ***
+     10   IO60-WANNE1                  3   Wannendaten                 K
+      15  IO60-L1RRN1       N   5          Re. Satznr. L1-Satz (Auto)  K
+      15  IO60-STPL1        N   2          Platznummer auf Datamobil   K
+      15  IO60-TOUR1        N   6          Tournummer (Std/Min/BHF)    K
+      15  IO60-STATION1     C  20          Stationscode                K
+      15  IO60-GEW1         N   5          Gewicht der Wanne           K
+      15  IO60-GEW2         N   5          Gewicht der Wanne           K
+      15  IO60-GEW3         N   5          Gewicht der Wanne           K
+      15  IO60-GEW4         N   5          Gewicht der Wanne           K
+      15  IO60-GEW5         N   5          Gewicht der Wanne           K
+      15  IO60-GEW6         N   5          Gewicht der Wanne           K
+      15  IO60-GEW7         N   5          Gewicht der Wanne           K
+      15  IO60-GEW8         N   5          Gewicht der Wanne           K
+      15  IO60-GEW9         N   5          Gewicht der Wanne           K
+      15  IO60-GEW10        N   5          Gewicht der Wanne           K
+      15  IO60-GEW11        N   5          Gewicht der Wanne           K
+      15  IO60-GEW12        N   5          Gewicht der Wanne           K
+      15  IO60-IDF1         N   7          IDF-Nummer                  K
+      15  IO60-AZEIT1       N   4          Aufnahmezeit (HHMM)
+      15  IO60-UZEIT1       N   4          Uebertragungszeit (HHMM)
+      15  IO60-LFOLGE1      N   3          Lieferreihenfolge
+      15  IO60-WTYP1        C   1          Wannentyp(0=klein,1=gross)  K
+      15  IO60-SONDKZ1      C   1          Sonderkz.(D = Doppelkontr.) K
+      15  IO60-TTEXT1       C  81          Text fuer Tourenschein
+     R15  IO60-AMEDIS
+       20 IO60-SKANR        C   7          Sonderauftagsnummer Amedis  K
+       20 IO60-KOPFTEXT     C  15          Kopftext                    K
+       20 IO60-KENNZ        C   2          Kennzeichen BTM oder Verb.  K
+       20 IO60-AREST        C  57
+     R15  IO60-AMEDIS2
+       20 IO60-SKANR2       C   8          SONDERAUFTAGSNUMMER AMEDIS  K
+       20 IO60-KOPFTEXT2    C  15          KOPFTEXT                    K
+       20 IO60-KOPFTEXT2B   C  30          KOPFTEXT                    K
+       20 IO60-K-VB         C   2          KENNZEICHEN VERBUND         K
+       20 IO60-AREST        C  26
+     R15  IO60-RTB
+       20 IO60-RTB-RENR     N   7          RECHNUNGSNUMMER
+       20 IO60-RTB-REDAT    C  10          RECHNUNGSDATUM
+       20 IO60-RTB-GEWICHT  N  12          GEWICHT
+       20 IO60-RTB-SEQ      N   3          LADEFOLGE
+       20 IO60-RTB-INFO4    C   4          INFO
+       20 IO60-RTB-REST     C  45          LADEFOLGE
+     R15  IO60-HERNE
+       20 IO60-HE-KOPFTEXT  C  40          KOPFTEXT 40
+       20 IO60-HE-REFNR     C  09          REFNR FUER BARCODE
+     R15  IO60-TRANSMED
+       20 IO60-FILLER       C  60          DIVERSE WERTE
+       20 IO60-TR-BARCODE   C  20          TRANSMEDBARCODE
+       20 IO60-FILLER       C   1
+      15  IO60-ANZBP1       N   5          Anzahl Beipacks
+      15  IO60-ANZPOS1      N   5          Anzahl Positionen
+      15  IO60-KANR5        N   5          KANR 5-STELLIG
+      15  IO60-REKZ1        C   2          Kz. f. Rech./Wannennr.Auftr K
+      15  IO60-KAUF1        N   4          Kundenauftragsnummer        K
+      15  IO60-ANZWAN1      N   2          Anzahl Wannen im Auftrag    K
+      15  IO60-OBEL1        C   1          Kz. ohne Beleg (peem eilig) K
+      15  IO60-AART1        C   2          Auftragsart                 K
+      15  IO60-eilig        N   1          normal 0 oder eilig 1(Knapp)K
+      15  IO60-IPUNKT       N   1          I-Punkt Nummer Herne        K
+      15  IO60-BELEGLOS     C   1          Wanne ohne Beleg Herne      K
+      15  IO60-fillera      C   3          frei                        K
+      15  IO60-RAUMBED      N   2          Raumbedingung           F12 K
+     ***                                   01=KK,03=BTM,04=Gift,11=K08
+      15  IO60-DECTOUR      N   3          DECTOUR                 F12 K
+      15  IO60-UNNR         C   4          UNNR oder LQ                K
+      15  IO60-FILLER1      C   2          Filler                      K
+      15  IO60-POSTAB1                40   Tabelle der Positionen
+       20 IO60-KANAL1       N   7          Kanalnummer (KNAPP=PZN)     K
+       20 IO60-MENGE1       N   3          Menge                       K
+     10   IO60-REST1        C   2          REST                        K
+    ***
+    R05   IO60-DATEN-AREA2                 STRUKTUR FUER WANNENDATEN   K
+    ***
+     10   IO60-WANNE2                      WANNENDATEN                 K
+      15  IO60-L1RRN2       N   5          RE. SATZNR. L1-SATZ (AUTO)  K
+      15  IO60-STPL2        N   2          PLATZNUMMER AUF DATAMOBIL   K
+      15  IO60-TOUR2                       TOURNUMMER (STD/MIN/BHF)    K
+       20 IO60-SSMM2        X   4          STD/MIN
+       20 IO60-BHF2         X   2          BHF
+      15  IO60-STATION2     C  20          STATIONSCODE                K
+      15  IO60-GEW1-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW2-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW3-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW4-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW5-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW6-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW7-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW8-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW9-2       N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW10-2      N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW11-2      N   5          GEWICHT DER WANNE           K
+      15  IO60-GEW12-2      N   5          GEWICHT DER WANNE           K
+      15  IO60-IDF2         N   7          IDF-NUMMER                  K
+      15  IO60-SONDER2
+       17 IO60-FREIA2       C   1          RESERVIERT
+       17 IO60-NTOUR2       C   3          NAECHSTE TOUR
+       17 IO60-FREIB2       C   1          RESERVIERT
+       17 IO60-LTOUR2       C   3          LETZTE   TOUR
+       17 IO60-FREIC2       C   3          RESERVIERT
+       17 IO60-WTYP2        C   1          WANNENTYP(0=KLEIN,1=GROSS)
+       17 IO60-SONDKZ2      C   1          SONDERKZ.(1,2,3 DOKO)
+      15  IO60-TTEXT2       C  81          TEXT FUER TOURENSCHEIN
+     R15  IO60-RTB
+       20 IO60-RTB-RENR2    N   7          RECHNUNGSNUMMER
+       20 IO60-RTB-REDAT2   C  10          RECHNUNGSDATUM
+       20 IO60-RTB-GEWICHT2 N  12          GEWICHT
+       20 IO60-RTB-SEQ2     N   3          LADEFOLGE
+       20 IO60-RTB-INFO42   C   4          INFO
+       20 IO60-RTB-FAHRTEXT C  45          FAHRERTEXT
+     R15  IO60-AMEDIS22
+       20 IO60-SKANR22      C   8          SONDERAUFTAGSNUMMER AMEDIS  K
+       20 IO60-KOPFTEXT22   C  15          KOPFTEXT                    K
+       20 IO60-KOPFTEXT22B  C  30          KOPFTEXT                    K
+       20 IO60-K-VB2        C   2          KENNZEICHEN VERBUND         K
+       20 IO60-AREST2       C  26
+      15  IO60-STOPPST2     N   6          STOPPSTELLE
+      15  IO60-VERSKZ2      C   1          VERSAND -KZ
+      15  IO60-FLAGS2       C   8          FLAGS
+      15  IO60-REKZ2        C   2          KZ. F. RECH.BEILAGE         K
+      15  IO60-KAUF2        N   4          KUNDENAUFTRAGSNUMMER        K
+      15  IO60-ANZWAN2      N   2          ANZAHL WANNEN IM AUFTRAG    K
+      15  IO60-BELEGLOS2    C   1          KZ. OHNE BELEG (PEEM EILIG) K
+      15  IO60-AART2        C   2          AUFTRAGSART                 K
+      15  IO60-EILIG2       N   1          NORMAL 0 ODER EILIG 1(KNAPP)K
+      15  IO60-IPUNKT2      N   1          I-PUNKT NUMMER              K
+      15  IO60-FREID2       C   4          FREI
+      15  IO60-RAUMBED2     N   2          RAUMBEDINGUNG           F12 K
+     ***                                   01=KK,03=BTM,04=Gift,11=K08
+      15  IO60-DECTOUR2     N   3          DECTOUR                 F12 K
+      15  IO60-UNNR2        C   4          UNNR ODER LQ                K
+      15  IO60-URFIL2       C   2          FILIALNUMMER VERBUND        K
+      15  IO60-POSTAB2                40   TABELLE DER POSITIONEN
+       20 IO60-PZN2         X   20         PHARMAZENTRALNUMMER         K
+       20 IO60-MENGE2       N   5          SOLLSTUECKZAHL              K
+      15  IO60-NOTZ-A1      C  16          NOTZIELE AUTOMAT 1          K
+      15  IO60-NOTZ-A2      C  16          NOTZIELE AUTOMAT 1          K
+      15  IO60-NOTZ-A3      C  16          NOTZIELE AUTOMAT 1          K
+      15  IO60-RENR2        N   6          RECHNUNGSNUMMER             K
+      15  IO60-TRANSPORTEUR
+       20 IO60-TR-GEWICHT   N   6          GEWICHT LIEFERUNG IN KG 4,2
+       20 IO60-TR-MAXKOLLI  N   3          MAXIMALANZAHL KOLLIS
+       20 IO60-TR-NAME      C  10          NAME DES TRANSPORTEURS
+       20 IO60-TR-TOUR      C   4          TOUR DES TRANSPORTEURS
+       20 IO60-TR-DEP       C   2          DEPARTMENT
+       20 IO60-TR-BTYP      C   5          BARCODE TYP
+       20 IO60-TR-BARCODE   C  32          BARCODE
+       20 IO60-TR-LFD       N   3          LAUFENDE NUMMER DES KOLLIS
+      R15  IO60-TRANSMED2
+        20 IO60-TR-BARCODE2  C  20          TRANSMEND BARCODE
+        20 IO60-KAUF52       N   5          KUNDENAUFTRAGSNUMMER 5 ST.
+        20 IO60-FILLER       C  40          FREI
+      15  IO60-REST2A       C  10          REST                        K
+      15  IO60-REST2B       C  537         REST                        K
+.bx
+   R05    IO60-FEHLER-AREA                 Struktur fuer Fehlermeldung
+     10   IO60-FEHLMELD     C   80         Meldungstext
+     10   IO60-RESTF        C  1833        REST
+    ***
+.bx
+    ***                                    Laenge des IO60 - bereiches
+    02v   IO60-length       H              <+1920>
+    ***                                    Anzahl Tabellenplaetze
+    02v   IO60-MAX          h              <+27>
+    ***                                    Anzahl Tabellenplaetze
+    02v   IO60-MAX1         h              <+65>
+.bx off
+.cm ENDE-FELDER
+Copy-Book der Anwenderfelder in Commarea des GMO-Online-Rahmens
+.sp
+.tr * *
+Typ:
+C = Alpha-Feld  P = num. Feld gepackt     N = num. Feld ungepackt
+X = Hex-Feld    H = Binaerfeld (Halbwort) V = Binaerfeld (Vollwort)
+Laenge:
+Die Laengenparameter bedeuten: Gesamtlaenge, davon Dezimalstellen
+.fo on
+.kp off
+.cm Angelegt am 07.12.92 13:39:23 von 05PHSCHO

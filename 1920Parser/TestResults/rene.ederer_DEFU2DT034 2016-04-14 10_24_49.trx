@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="eeff2ba9-bb04-4f57-83fa-007c42cd303c" name="rene.ederer@DEFU2DT034 2016-04-14 10:24:49" runUser="PHOENIX\rene.ederer" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="5fdf143e-7b2a-4acc-8b36-ff5a8a147335">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="rene.ederer_DEFU2DT034 2016-04-14 10_24_49">
+      <DeploymentItem filename="C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920Parser\bin\Debug\1920Parser.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2016-04-14T10:24:49.3581238+02:00" queuing="2016-04-14T10:24:50.2542134+02:00" start="2016-04-14T10:24:50.3972277+02:00" finish="2016-04-14T10:24:53.8565736+02:00" />
+  <ResultSummary outcome="Failed">
+    <Counters total="12" executed="12" passed="10" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="parseTest5" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="6be285e0-bb79-d050-8355-3cb953a60702">
+      <Execution id="35382d00-f9aa-4abb-8d96-fd5130c392cb" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="parseTest5" />
+    </UnitTest>
+    <UnitTest name="parseTest1" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="fc035e30-09db-b3c2-2668-8fad0063e4b8">
+      <Execution id="036847d5-06c5-4b4b-9379-9a15a364c176" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="parseTest1" />
+    </UnitTest>
+    <UnitTest name="GroupNodesWithEqualValuesAndEqualChildrenAreEqualTest" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="a279bd52-9691-0fb2-df5c-f4ab461b51ab">
+      <Execution id="c4ac7a89-0b19-43b5-87fe-9b9fcea1f0e6" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.GroupNodeTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GroupNodesWithEqualValuesAndEqualChildrenAreEqualTest" />
+    </UnitTest>
+    <UnitTest name="parseTest4" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="229263ac-20fb-933f-adcf-6c3ef6ff642a">
+      <Execution id="1d736569-1ad3-4416-93ff-5389c9cd1633" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="parseTest4" />
+    </UnitTest>
+    <UnitTest name="GroupNodesWithEqualValuesAndDifferentChildrenAreNotEqualTest" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="7fc7de51-49a8-e734-c1ee-8be35e8a0ac9">
+      <Execution id="0b552966-c277-4ecc-a6de-d964250a15e8" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.GroupNodeTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GroupNodesWithEqualValuesAndDifferentChildrenAreNotEqualTest" />
+    </UnitTest>
+    <UnitTest name="SchemaConstructorTest" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="281bc8cd-88d6-3995-3009-5042d9bd82cc">
+      <Execution id="10721c13-1e0a-4bec-867a-52667e5716ea" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="SchemaConstructorTest" />
+    </UnitTest>
+    <UnitTest name="parseTest3" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="24b77d83-1bd8-2cb9-dde3-e4b84ea83c59">
+      <Execution id="c66d5273-96aa-462a-96c3-55d3eced3a1b" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="parseTest3" />
+    </UnitTest>
+    <UnitTest name="parseTest6" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="54791b1f-78c0-039f-9fa1-9569e5ca54ad">
+      <Execution id="2ee79359-2b34-43fa-9be9-f51a6278f16b" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="parseTest6" />
+    </UnitTest>
+    <UnitTest name="ValueNodesWithDifferentAttributeValuesAreNotEqual" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="6e6bd8bb-cdbf-56b8-7471-fafb933a866a">
+      <Execution id="c360c735-5ccb-4fcf-835d-890af894f906" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.ValueNodeTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ValueNodesWithDifferentAttributeValuesAreNotEqual" />
+    </UnitTest>
+    <UnitTest name="GrouptAssignValueTest" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="065b8fc4-d81f-c482-fcc4-3e7983908bcc">
+      <Execution id="46427cf4-5e28-470b-959b-28c90fa899e3" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.GroupNodeTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GrouptAssignValueTest" />
+    </UnitTest>
+    <UnitTest name="parseTest2" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="00148ed8-920f-ad73-9df0-d7607b5c27c6">
+      <Execution id="0c573c47-06f4-4005-8f4a-efad96bc184a" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.SchemaTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="parseTest2" />
+    </UnitTest>
+    <UnitTest name="ValueNodesWithSamAeattributeValuesAreEqual" storage="c:\users\rene.ederer\desktop\abschlussprojekt\trunk\1920parser\1920parsertest\bin\debug\1920parsertest.dll" id="1e2a12f1-a0d8-d597-c9a5-5e66af3ed8c6">
+      <Execution id="2e010bc2-0307-474f-868d-7b7f824547a6" />
+      <TestMethod codeBase="C:/Users/rene.ederer/Desktop/abschlussprojekt/trunk/1920Parser/1920ParserTest/bin/Debug/1920ParserTest.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="_1920ParserTest.ValueNodeTest, 1920ParserTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ValueNodesWithSamAeattributeValuesAreEqual" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="00148ed8-920f-ad73-9df0-d7607b5c27c6" executionId="0c573c47-06f4-4005-8f4a-efad96bc184a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="065b8fc4-d81f-c482-fcc4-3e7983908bcc" executionId="46427cf4-5e28-470b-959b-28c90fa899e3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1e2a12f1-a0d8-d597-c9a5-5e66af3ed8c6" executionId="2e010bc2-0307-474f-868d-7b7f824547a6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="229263ac-20fb-933f-adcf-6c3ef6ff642a" executionId="1d736569-1ad3-4416-93ff-5389c9cd1633" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="24b77d83-1bd8-2cb9-dde3-e4b84ea83c59" executionId="c66d5273-96aa-462a-96c3-55d3eced3a1b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="281bc8cd-88d6-3995-3009-5042d9bd82cc" executionId="10721c13-1e0a-4bec-867a-52667e5716ea" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="54791b1f-78c0-039f-9fa1-9569e5ca54ad" executionId="2ee79359-2b34-43fa-9be9-f51a6278f16b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6be285e0-bb79-d050-8355-3cb953a60702" executionId="35382d00-f9aa-4abb-8d96-fd5130c392cb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6e6bd8bb-cdbf-56b8-7471-fafb933a866a" executionId="c360c735-5ccb-4fcf-835d-890af894f906" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7fc7de51-49a8-e734-c1ee-8be35e8a0ac9" executionId="0b552966-c277-4ecc-a6de-d964250a15e8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a279bd52-9691-0fb2-df5c-f4ab461b51ab" executionId="c4ac7a89-0b19-43b5-87fe-9b9fcea1f0e6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fc035e30-09db-b3c2-2668-8fad0063e4b8" executionId="036847d5-06c5-4b4b-9379-9a15a364c176" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="0c573c47-06f4-4005-8f4a-efad96bc184a" testId="00148ed8-920f-ad73-9df0-d7607b5c27c6" testName="parseTest2" computerName="DEFU2DT034" duration="00:00:00.0182365" startTime="2016-04-14T10:24:50.5532433+02:00" endTime="2016-04-14T10:24:51.0152895+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c573c47-06f4-4005-8f4a-efad96bc184a">
+    </UnitTestResult>
+    <UnitTestResult executionId="46427cf4-5e28-470b-959b-28c90fa899e3" testId="065b8fc4-d81f-c482-fcc4-3e7983908bcc" testName="GrouptAssignValueTest" computerName="DEFU2DT034" duration="00:00:02.5488442" startTime="2016-04-14T10:24:51.0242904+02:00" endTime="2016-04-14T10:24:53.5775457+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="46427cf4-5e28-470b-959b-28c90fa899e3">
+    </UnitTestResult>
+    <UnitTestResult executionId="2e010bc2-0307-474f-868d-7b7f824547a6" testId="1e2a12f1-a0d8-d597-c9a5-5e66af3ed8c6" testName="ValueNodesWithSamAeattributeValuesAreEqual" computerName="DEFU2DT034" duration="00:00:00.0003750" startTime="2016-04-14T10:24:53.5915471+02:00" endTime="2016-04-14T10:24:53.5965476+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2e010bc2-0307-474f-868d-7b7f824547a6">
+    </UnitTestResult>
+    <UnitTestResult executionId="1d736569-1ad3-4416-93ff-5389c9cd1633" testId="229263ac-20fb-933f-adcf-6c3ef6ff642a" testName="parseTest4" computerName="DEFU2DT034" duration="00:00:00.0611796" startTime="2016-04-14T10:24:53.5995479+02:00" endTime="2016-04-14T10:24:53.6645544+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1d736569-1ad3-4416-93ff-5389c9cd1633">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;_1920Parser.GroupNode&gt;. Actual:&lt;_1920Parser.GroupNode&gt;. </Message>
+          <StackTrace>   bei _1920ParserTest.SchemaTest.parseTest4() in C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\SchemaTest.cs:Zeile 163.
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="c66d5273-96aa-462a-96c3-55d3eced3a1b" testId="24b77d83-1bd8-2cb9-dde3-e4b84ea83c59" testName="parseTest3" computerName="DEFU2DT034" duration="00:00:00.0003532" startTime="2016-04-14T10:24:53.6685548+02:00" endTime="2016-04-14T10:24:53.6725552+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c66d5273-96aa-462a-96c3-55d3eced3a1b">
+    </UnitTestResult>
+    <UnitTestResult executionId="10721c13-1e0a-4bec-867a-52667e5716ea" testId="281bc8cd-88d6-3995-3009-5042d9bd82cc" testName="SchemaConstructorTest" computerName="DEFU2DT034" duration="00:00:00.0001847" startTime="2016-04-14T10:24:53.6795559+02:00" endTime="2016-04-14T10:24:53.6825562+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="10721c13-1e0a-4bec-867a-52667e5716ea">
+    </UnitTestResult>
+    <UnitTestResult executionId="2ee79359-2b34-43fa-9be9-f51a6278f16b" testId="54791b1f-78c0-039f-9fa1-9569e5ca54ad" testName="parseTest6" computerName="DEFU2DT034" duration="00:00:00.0188350" startTime="2016-04-14T10:24:53.6855565+02:00" endTime="2016-04-14T10:24:53.7075587+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ee79359-2b34-43fa-9be9-f51a6278f16b">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.AreEqual failed. Expected:&lt;_1920Parser.GroupNode&gt;. Actual:&lt;_1920Parser.GroupNode&gt;. </Message>
+          <StackTrace>   bei _1920ParserTest.SchemaTest.parseTest6() in C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\SchemaTest.cs:Zeile 219.
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="35382d00-f9aa-4abb-8d96-fd5130c392cb" testId="6be285e0-bb79-d050-8355-3cb953a60702" testName="parseTest5" computerName="DEFU2DT034" duration="00:00:00.0003168" startTime="2016-04-14T10:24:53.7115591+02:00" endTime="2016-04-14T10:24:53.7145594+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35382d00-f9aa-4abb-8d96-fd5130c392cb">
+    </UnitTestResult>
+    <UnitTestResult executionId="c360c735-5ccb-4fcf-835d-890af894f906" testId="6e6bd8bb-cdbf-56b8-7471-fafb933a866a" testName="ValueNodesWithDifferentAttributeValuesAreNotEqual" computerName="DEFU2DT034" duration="00:00:00.0002509" startTime="2016-04-14T10:24:53.7185598+02:00" endTime="2016-04-14T10:24:53.7225602+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c360c735-5ccb-4fcf-835d-890af894f906">
+    </UnitTestResult>
+    <UnitTestResult executionId="0b552966-c277-4ecc-a6de-d964250a15e8" testId="7fc7de51-49a8-e734-c1ee-8be35e8a0ac9" testName="GroupNodesWithEqualValuesAndDifferentChildrenAreNotEqualTest" computerName="DEFU2DT034" duration="00:00:00.0003237" startTime="2016-04-14T10:24:53.7265606+02:00" endTime="2016-04-14T10:24:53.7295609+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0b552966-c277-4ecc-a6de-d964250a15e8">
+    </UnitTestResult>
+    <UnitTestResult executionId="c4ac7a89-0b19-43b5-87fe-9b9fcea1f0e6" testId="a279bd52-9691-0fb2-df5c-f4ab461b51ab" testName="GroupNodesWithEqualValuesAndEqualChildrenAreEqualTest" computerName="DEFU2DT034" duration="00:00:00.0003207" startTime="2016-04-14T10:24:53.7335613+02:00" endTime="2016-04-14T10:24:53.7375617+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c4ac7a89-0b19-43b5-87fe-9b9fcea1f0e6">
+    </UnitTestResult>
+    <UnitTestResult executionId="036847d5-06c5-4b4b-9379-9a15a364c176" testId="fc035e30-09db-b3c2-2668-8fad0063e4b8" testName="parseTest1" computerName="DEFU2DT034" duration="00:00:00.0002933" startTime="2016-04-14T10:24:53.7605640+02:00" endTime="2016-04-14T10:24:53.7635643+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="036847d5-06c5-4b4b-9379-9a15a364c176">
+    </UnitTestResult>
+  </Results>
+</TestRun>

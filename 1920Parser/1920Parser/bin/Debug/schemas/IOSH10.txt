@@ -1,0 +1,178 @@
+.fo off
+.pa
++-----------------+------------------------------------+---------------+
+I                 I                                    I               I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I Kommissionier-I
+I                 I   Schnittstelle KOMMI: Host --> PC I           ung I
+I                 I           Stammdaten               I     IOSH10    I
++-----------------+------------------------------------+---------------+
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 5  Sen I
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :15.04.97I
+I  0911-3000-347  I                                    I               I
++-----------------+------------------------------------+---------------+
+Dateiname: PH340010 OPUS
+
+:h6.IOSH10 Schnittstelle Host->PC (Stammdaten)
+.sp 2
+Satzlaenge:        Bytes
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOSH10
+.pi /Bereich/IOSH10
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+    ****                                   Schnittstellenbereich
+    03    IO10-AREA                        Stamm Host --> PC
+     05   IO10-TRANID       C   4          Transaktionscode (SH10)     K
+     05   IO10-FUNKID       C   2          Funktionscode               K
+    ***
+     05   IO10-K-DATEN                     Datenteil
+     10   IO10-KU-DATEN               14   Kundenstammdaten
+      15  IO10-KU-SART      C   1          Satzart <K>
+      15  IO10-KU-ART       C   1          Art der Aenderung
+      88V IO10-KU-NEU                      <'N'> Neuanlage
+      88V IO10-KU-AEN                      <'A'> Aenderung
+      88V IO10-KU-LOE                      <'L'> Loeschung
+      15  IO10-KU-IDF       N   8          IDF-Nummer
+      15  IO10-KU-NAME      C  30          Kundenname
+      15  IO10-KU-PLZ       N   5          Postleitzahl
+      15  IO10-KU-ORT       C  30          Ort
+      15  IO10-KU-STR       C  30          Strasse
+      15  IO10-KU-TEL       C  15          Telefonnummer
+      15  IO10-KU-REST      C   9          Rest - Reserve
+     10   IO10-K-REST       C  108         REST
+    ***
+    R05   IO10-K-DATEN1                    Datenteil1                  K
+     10   IO10-KU-DATEN1              12   Kundenstammdaten            K
+      15  IO10-KU-SART1     C   1          Satzart <K>                 K
+      15  IO10-KU-ART1      C   1          Art der Aenderung           K
+      88V IO10-KU-NEU1                     <'N'> Neuanlage             K
+      88V IO10-KU-AEN1                     <'A'> Aenderung             K
+      88V IO10-KU-LOE1                     <'L'> Loeschung             K
+      15  IO10-KU-IDF1      N   8          IDF-Nummer (1.St.= 0)       K
+      15  IO10-KU-NAME1     C  30          Kundenname(Apothekername)   K
+      15  IO10-KU-NAME2     C  30          Kundenname 2(Apothekenname) K
+      15  IO10-KU-PLZ1      N   5          Postleitzahl                K
+      15  IO10-KU-ORT1      C  30          Ort                         K
+      15  IO10-KU-STR1      C  30          Strasse                     K
+      15  IO10-KU-TEL1      C  15          Telefonnummer               K
+      15  IO10-KU-REST1     C   4          Rest - Reserve              K
+     10   IO10-K-REST1      C  66          REST                        K
+    ***
+    R05   IO10-A-DATEN                     Artikelstammdaten
+     10   IO10-AR-DATEN               26   Artikelstammdaten
+      15  IO10-AR-SART      C   1          Satzart <A>
+      15  IO10-AR-ART       C   1          Art der Aenderung
+      88V IO10-AR-NEU                      <'N'> Neuanlage
+      88V IO10-AR-AEN                      <'A'> Aenderung
+      88V IO10-AR-LOE                      <'L'> Loeschung
+      15  IO10-AR-PZN       C   8          PZN
+      15  IO10-AR-EINH      C  10          Einheit
+      15  IO10-AR-ABEZ      C  30          Artikelbezeichnung
+      15  IO10-AR-CODE
+      20  IO10-AR-NULL      N   1          Immer null
+      20  IO10-AR-STATIO    N   2          Station
+      20  IO10-AR-BLOCK     N   2          Block
+                                           St. 1 und 2 des Lagerorts
+      20  IO10-AR-METER     N   1          Meter = Regal
+                                           St. 4 des Lagerorts
+      15  IO10-AR-KANAL     N   4          Kanalangabe
+      15  IO10-AR-KGRE      N   3          Kommigrenze
+      15  IO10-AR-REST      C   8          Rest-Reserve
+     10   IO10-A-REST       C  68          REST
+    ***
+    R05   IO10-A-DATEN1                    Artikelstammdaten           K
+     10   IO10-AR-DATEN1              26   Artikelstammdaten           K
+      15  IO10-AR-SART1     C   1          Satzart <A>                 K
+      15  IO10-AR-ART1      C   1          Art der Aenderung           K
+      88V IO10-AR-NEU                      <'N'> Neuanlage             K
+      88V IO10-AR-AEN                      <'A'> Aenderung             K
+      88V IO10-AR-LOE                      <'L'> Loeschung             K
+      15  IO10-AR-PZN1      C   8          PZN (1.St. = 0)             K
+      15  IO10-AR-EINH1                    EINHEIT                     K
+      20  IO10-AR-BEST1     N  10          BESTAND BEI AR-ART1 = B
+      15  IO10-AR-ABEZ1     C  30          Artikelbezeichnung          K
+      15  IO10-AR-CODE1
+      20  IO10-AR-NULL1     N   1          Immer null
+      20  IO10-AR-STATIO1   N   2          Station
+      20  IO10-AR-BLOCK1    N   2          Block
+                                           St. 1 und 2 des Lagerorts
+      20  IO10-AR-METER1    N   1          Meter = Regal
+                                           St. 4 des Lagerorts
+      15  IO10-AR-KANAL1    N   8          Kanalangabe (Lagerort)      K
+      15  IO10-AR-KGRE1     N   3          Kommigrenze                 K
+      15  IO10-AR-LGE       N   3          Laenge des Artikels         K
+      15  IO10-AR-AGESCH    N   1          Auswurfsgeschw. (1 - 8)     K
+      15  IO10-AR-SOKO      C   1          Schacht sonderkontrolle     K
+      15  IO10-AR-REST1     C   1          Rest-Reserve                K
+     10   IO10-A-REST1      C  16          REST                        K
+    ***
+    ***
+    R05   IO10-A-DATEN2                    ARTIKELSTAMMDATEN           K
+     10   IO10-AR-DATEN2              22   ARTIKELSTAMMDATEN           K
+      15  IO10-AR-SART2     C   1          SATZART <A>                 K
+      15  IO10-AR-ART2      C   1          ART DER AENDERUNG           K
+      88V IO10-AR-NEU2                     <'N'> NEUANLAGE             K
+      88V IO10-AR-AEN2                     <'A'> AENDERUNG             K
+      88V IO10-AR-LOE2                     <'L'> LOESCHUNG             K
+      15  IO10-AR-PZN2      C  20          PZN (1.ST. = 0)             K
+      15  IO10-AR-EINH2                    EINHEIT                     K
+      20  IO10-AR-BEST2     N  10          BESTAND BEI AR-ART1 = B
+      15  IO10-AR-ABEZ2     C  30          ARTIKELBEZEICHNUNG          K
+      15  IO10-AR-CODE2
+      20  IO10-AR-NULL2     N   1          IMMER NULL
+      20  IO10-AR-STATIO2   N   2          STATION
+      20  IO10-AR-BLOCK2    N   2          BLOCK
+                                           St. 1 und 2 des Lagerorts
+      20  IO10-AR-METER2    N   1          METER = REGAL
+                                           St. 4 des Lagerorts
+     R15  IO10-AR-CODE2R
+      20  IO10-AR-NULL2R    N   1          IMMER NULL
+      20  IO10-AR-STATIO2R  N   2          STATION
+      20  IO10-AR-GEWICHT2  N   3          GEWICHT KNAPP HANAU
+                                           St. 1 und 2 des Lagerorts
+      15  IO10-AR-KANAL2    N   8          KANALANGABE (LAGERORT)      K
+      15  IO10-AR-KGRE2     N   3          KOMMIGRENZE                 K
+      15  IO10-AR-LGE2      N   3          LAENGE DES ARTIKELS         K
+      15  IO10-AR-AGESCH2   N   1          AUSWURFSGESCHW. (1 - 8)     K
+      15  IO10-AR-SOKO2     C   1          SCHACHT SONDERKONTROLLE     K
+      15  IO10-AR-REST2     C   1          REST-RESERVE                K
+     10   IO10-AR-REST3     C  44          REST
+    ***
+    R05   IO10-T-DATEN                     Tourenstammdaten
+     10   IO10-TO-DATEN               21   Tourenstammdaten
+      15  IO10-TO-SART      C   1          Satzart <T>
+      15  IO10-TO-ART       C   1          Art der Aenderung
+      88V IO10-TO-NEU                      <'N'> Neuanlage
+      88V IO10-TO-AEN                      <'A'> Aenderung
+      88V IO10-TO-LOE                      <'L'> Loeschung
+      15  IO10-TO-TOUR      N   4          Tournummer
+      15  IO10-TO-AZEIT     N   4          Abfahrtszeit
+      15  IO10-TO-BHF       N   2          Versandbahnhof
+      15  IO10-TO-BEZ       C  30          Tourbezeichnung
+      15  IO10-TO-REF       C  30          Tourreferenz
+      15  IO10-TO-REST      C  16          Rest-Reserve
+     10   IO10-T-REST       C  66          REST
+.bx
+   R05    IO10-FEHLER-AREA                 Struktur fuer Fehlermeldung
+     10   IO10-FEHLMELD     C   80         Meldungstext
+     10   IO10-REST         C  1834        REST
+    ***
+    ***                                    Laenge des io10 - bereiches
+    02v   IO10-LENGTH       H              <+1920>
+    ***                                    Anzahl Tabellenplaetze
+    02v   IO10-KOMAX        H              <+40>
+.bx off
+.cm ENDE-FELDER
+Copy-Book der Anwenderfelder in Commarea des GMO-Online-Rahmens
+.sp
+.tr * *
+Typ:
+C = Alpha-Feld  P = num. Feld gepackt     N = num. Feld ungepackt
+X = Hex-Feld    H = Binaerfeld (Halbwort) V = Binaerfeld (Vollwort)
+Laenge:
+Die Laengenparameter bedeuten: Gesamtlaenge, davon Dezimalstellen
+.fo on
+.kp off
+.cm Angelegt am 25.11.92 10:55:11 von 05PHSCHO

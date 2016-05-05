@@ -1,0 +1,18 @@
+Klein- /Großbuchstaben ignorieren
+Auf die Stufennummer muss mindestens ein Leerzeichen folgen, sonst ignorieren (Beispiel 88v)
+die ersten 4 Bytes im Datenstrom sind immer Transaktionscode
+Kommentar darf mit einer Zahl beginnen (Beispiel IOVK94)
+Redefines steht direkt vor der Stufennummer
+Zwischen Gruppennummer und Kommentar sind mindestens 2 Leerzeichen
+
+Sufennummer ist immer größer als 0
+Typ ist C, N oder P; H und V werden ignoriert
+Laenge besteht entweder 
+	aus einem Integer
+	oder aus zwei durch Komma getrennte Integer, dann gibt der erste die Länge an
+
+
+Datenströme sind immer 1920 Bytes lang
+Nicht alle Schemas enthalten Angaben zur Satzlänge(IOVK91)
+Kommentar darf freigelassen werden
+

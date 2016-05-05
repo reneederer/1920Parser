@@ -1,0 +1,101 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Implementierungsphase} 
+\label{sec:Implementierungsphase}
+
+\subsection{Implementierung der Datenstrukturen}
+\label{sec:ImplementierungDatenstrukturen}
+Um die hierarchische Struktur der Schemadateien im Programm abzubilden, wird eine rekursive Baumstruktur implementiert. Der Baum enthält Knoten, ein Knoten kann auf andere Knoten verweisen.
+
+
+Schemazeilen, die in der Ausgabe angezeigt werden sollen, können folgende Angaben enthalten:
+\begin{itemize}
+\item ein R, das angibt, dass dieser Knoten redefiniert
+\item zweiziffrige Stufennummer
+\item Variablenname
+\item Typangabe
+\item Anzahl der verwendeten Bytes
+\item Anzahl, wie oft sich dieser Knoten wiederholt (Array).
+\end{itemize}
+Sufennummer und Variablenname sind Pflichtangaben und definierendes Charakteristikum für Node-Zeilen, die anderen Angaben können auch leer sein.
+
+Schema-Items definieren entweder ValueNodes oder GroupNodes.
+ValueNodes haben immer eine Angabe zum Variablentyp und eine Längenangabe zur Anzahl der Bytes aus dem Datenstrom, der ihnen zugewiesen wird.
+GroupNodes haben dagegen nie einen Typ und nie eine Länge. Stattdessen können sie Kind-Knoten haben. Kind-Knoten haben immer eine größere Stufennummer als ihre Elternknoten und können GroupNodes oder ValueNodes sein.
+
+Im Programm wird die hierarchische Gliederung der Schema-Variablen als rekursive Baumstruktur repräsentiert. Dazu wurde eine abstrakte Klasse AbstractNode definiert von denen die Klassen ValueNode und GroupNode erben. GroupNode verweist auf seine Kind-Knoten mit einer Liste vom Typ AbstractNode. GroupNode kann daher wiederum GroupNodes und ValueNodes als Kinder haben.
+
+\subsection{Implementierung der Benutzeroberfläche}
+\label{sec:ImplementierungBenutzeroberflaeche}
+Die \ac{GUI} muss dem Benutzer Funktionalität bereitstellen, damit er Schema und Datenstrom angeben kann und sie muss den zergliederten Datenstrom anzeigen können.
+Um diese Funktionalitäten zu bieten werden 3 Textboxen angezeigt, jeweils mit einem Label, das die Bedeutung beschreibt. Auf ein Menü wird verzichtet.
+
+Die Angaben in den Schemadateien sind eingerückt, zum Beispiel stehen Kommentare immer untereinander. Damit die Angaben in der Benutzerfläche auch untereinander stehen, musste für das Schema-Textfeld ein Monospace-Font verwendet (Courier new). Auch die Textfelder für Datenstrom und Ergebnis erhielten diesen Font, der Einheitlich wegen.
+\paragraph{Beispiel}
+Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
+
+
+\subsection{Implementierung der Geschäftslogik}
+\label{sec:ImplementierungGeschaeftslogik}
+
+\subsubsection{Grundschema der rekursive Methoden von AbstractNode/GroupNode}
+AbstractNode definiert eine Reihe von abstrakten Methoden, die von GroupNode und ValueNode überschrieben werden. Das Grundschema aller dieser Methoden ist stets das gleiche: 
+
+GroupNode ruft für jedes seiner Kinder rekursiv die gleiche Methode auf. Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert, dieser wird an den Aufrufer zurückgegeben.
+
+Eine ValueNode hat keine Kindknoten und kann direkt einen Wert zurückgeben.
+Rekursionen enden bei ValueNodes und bei GroupNodes ohne Kindern.
+
+\subsubsection{Parsen des Schemas in eine Baumstruktur}
+Für die Erstellung der Baumstruktur sind sowohl die Reihenfolge der Schema-Variablen, als auch ihre Stufennummern von Bedeutung.
+Es wird ein künstlicher Wurzelknoten erstellt, damit Knoten auf der obersten Hierarchie-Stufe auch Geschwister haben können. Der Wurzelknoten bekommt die Stufennummer 0.
+
+
+Der Algorithmus zum Parsen des Schemas durchläuft jede Zeile des Schemas und erstellt aus ihr eine Group- oder ValueNode (abhängig davon ob die Zeile Angaben zu Typ und Länge hat oder nicht).
+
+
+Es gibt drei Möglichkeiten, wie ein Knoten zu StackTop in Beziehung steht:
+\begin{itemize}
+\item er hat eine größere Stufennummer, dann ist er ein Kind von StackTop.
+\item er hat die gleiche Stufennummer, dann ist er ein Geschwister von StackTop.
+\item er hat eine kleinere Stufennummer, dann ist er kein Kind von StackTop, der richtige Elternknoten muss erst noch gefunden werden.
+\end{itemize}
+Im Fall 1 wird der Knoten auf den Stack gepusht, er könnte Kindknoten haben.
+
+Fall 2 und 3 können gleich behandelt werden. Dass der Knoten kein Kindknoten von StackTop ist, bedeutet, dass StackTop keine weiteren Kinder hat. Alle seine Kindknoten wurden ihm schon hinzugefügt. StackTop wird vom Stack gepoppt und dem neuen StackTop als Kind hinzugefügt. Der Ablauf in diesem Absatz wird wiederholt, solange bis der richtige Elternknoten gefunden wurde.
+
+
+Würden Kindknoten ihren Eltern sofort hinzugefügt ergäben sich Probleme, ein Beispiel:
+00 Familienbande
+    01 Opa
+        03 Papa
+            05 Sohn
+            05 Tochter
+        03 Mama
+    01 Oma
+
+Wenn man Papa als Kind Opa hinzufügt, müsste man irgendwie sowohl den Baum unterhalb von Papa weiterverarbeiten, als auch die Geschwisterknoten von Opa. Wenn man bedenkt, dass GroupNodes beliebig tief verschachtelt werden können und dass alle Knoten eine Wiederhol-Anzahl haben können, wird klar, dass das Problem komplex ist. Zum Einsatz kam ein Stack und dessen heilbringende, reihenfolge-vertauschende Gloria. Alle Elemente landen auf dem Stack. Erst, wenn eine Sub-Familie fertig erstellt ist, wird ein Knoten zu seinem Elternknoten hinzugefügt. Zum Beispiel würde Papa erst Sohn und Tochter hinzugefügt, erst dann würde Papa zu Opa hinzugefügt. Dadurch sind Unterbäume fertiggestellt und man landet automatisch beim richtigen Elter.
+        
+
+\subsubsection{Zuweisen der Werte aus dem Datenstrom}
+Die Methode zum Zuweisen eines Wertes an einen Knoten hat den Prototypen 
+
+int AssignValue(string data).
+
+Die Methode erwartet den Datenstrom als string und gibt die Anzahl der verbrauchten Bytes zurück. Das aufrufende Objekt (normalerweise eine GroupNode) bekommt dadurch Informationen, wie viele Bytes des Datenstroms benutzt wurden. So kann der Anfang des Datenstroms für jedes Kind passend verschoben werden (und bei Redefines auch wieder zurückverschoben werden).
+
+ValueNodes und GroupNodes machen beim Aufruf Folgendes:
+
+ValueNodes weisen ihrem Value-Attribut die benötigte Anzahl Buchstaben aus data zu und geben diese Anzahl zurück.
+
+
+GroupNodes rufen für alle ihre Kinder nacheinander AssignValue(data) auf. Jedes Kind gibt die Anzahl der verwendeten Bytes zurück. GroupNodes merken sich diese Anzahl und können dadurch für jedes Kind den Anfang des Datenstroms um diese Anzahl verschieben. GroupNode gibt die Summe der verwendeten Bytes aller seiner Kinder zurück.
+
+\paragraph{Beispiel}
+Die Klasse \texttt{Com\-par\-ed\-Na\-tu\-ral\-Mo\-dule\-In\-for\-ma\-tion} findet sich im \Anhang{app:CNMI}.  
+
+
+\Zwischenstand{Implementierungsphase}{Implementierung}
+
+
+
+

@@ -1,0 +1,65 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Entwurfsphase} 
+\label{sec:Entwurfsphase}
+
+\subsection{Zielplattform}
+\label{sec:Zielplattform}
+Das Programm soll auf den Entwicklerrechnern der Phoenix laufen. Intel i5 Prozessoren mit 4 GB Arbeitsspeicher.
+Auf den Entwicklerrechnern laufen 32 Bit Version von Windows 7. Phoenix programmiert in COBOL, C++ und C\#. COBOL fiel für ein Windows-Tool aus. Die Wahl fiel auf C\# (Garbage Collection, moderner GUI-Designer).
+
+
+\subsection{Architekturdesign}
+\label{sec:Architekturdesign}
+GUI und Anwendungslogik wurden getrennt.
+
+
+\subsection{Entwurf der Benutzeroberfläche}
+\label{sec:Benutzeroberflaeche} 
+\begin{itemize}
+	\item Entscheidung für die gewählte Benutzeroberfläche (\zB GUI, Webinterface).
+	\item Beschreibung des visuellen Entwurfs der konkreten Oberfläche (\zB Mockups, Menüführung).
+	\item \Ggfs Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
+\end{itemize}
+
+\paragraph{Beispiel}
+Beispielentwürfe finden sich im \Anhang{app:Entwuerfe}.
+
+
+
+\subsection{Geschäftslogik}
+\label{sec:Geschaeftslogik}
+Zunächst wird das Schema in eine Baumstruktur überführt.
+
+
+
+\paragraph{Beispiel}
+Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen untereinander darstellt kann im \Anhang{app:Klassendiagramm} eingesehen werden.
+
+\Abbildung{Modulimport} zeigt den grundsätzlichen Programmablauf beim Einlesen eines Moduls als \ac{EPK}.
+\begin{figure}[htb]
+\centering
+\includegraphicsKeepAspectRatio{modulimport.pdf}{0.9}
+\caption{Prozess des Einlesens eines Moduls}
+\label{fig:Modulimport}
+\end{figure}
+
+
+\subsection{Maßnahmen zur Qualitätssicherung}
+\label{sec:Qualitaetssicherung}
+\begin{itemize}
+	\item Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel~\ref{sec:Qualitaetsanforderungen}: \nameref{sec:Qualitaetsanforderungen}) zu sichern (\zB automatische Tests, Anwendertests)?
+	\item \Ggfs Definition von Testfällen und deren Durchführung (durch Programme/Benutzer).
+\end{itemize}
+
+
+\subsection{Pflichtenheft/Datenverarbeitungskonzept}
+\label{sec:Pflichtenheft}
+\begin{itemize}
+	\item Auszüge aus dem Pflichtenheft/Datenverarbeitungskonzept, wenn es im Rahmen des Projekts erstellt wurde.
+\end{itemize}
+
+\paragraph{Beispiel}
+Ein Beispiel für das auf dem Lastenheft (siehe Kapitel~\ref{sec:Lastenheft}: \nameref{sec:Lastenheft}) aufbauende Pflichtenheft ist im \Anhang{app:Pflichtenheft} zu finden.
+
+
+\Zwischenstand{Entwurfsphase}{Entwurf}

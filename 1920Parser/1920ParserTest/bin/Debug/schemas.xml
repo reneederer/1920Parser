@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemas>
+	<schema>
+		<name>VK60</name>
+		<identifiers>
+			<identifier value="VK60" start="1"/>
+			<identifier value="60" start="3"/>
+		</identifiers>
+	</schema>
+	<schema>
+		<name>VK93</name>
+		<identifiers>
+			<identifier value="VK93" start="1"/>
+		</identifiers>
+	</schema>
+	<schema>
+		<name>VK91</name>
+		<identifiers>
+			<identifier value="VK91" start="1"/>
+		</identifiers>
+	</schema>
+	<schema>
+		<name>IOVK92</name>
+		<identifiers>
+			<identifier value="VK92" start="1"/>
+		</identifiers>
+	</schema>
+</schemas>

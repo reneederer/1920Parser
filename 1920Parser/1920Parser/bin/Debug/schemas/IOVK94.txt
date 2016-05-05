@@ -1,0 +1,104 @@
+.fo off
+.pa
++-----------------+------------------------------------+---------------+
+I                 I                                    I               I
+I                 I                                    I  M D E        I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I               I
+I                 I   Schnittstelle : Host --> PC      I               I
+I                 I                                    I     IOVK94    I
++-----------------+------------------------------------+---------------+
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 1 Lehm I
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :18.10.04I
+I  0921-9300-695  I                                    I               I
++-----------------+------------------------------------+---------------+
+Dateiname: PH326594 OPUS
+
+SATZLAENGE:   1920 Bytes ( ZEILE a 185 Bytes * 10 = 1850)
+:h6.IOVK94 Schnittstelle MDE-PC ---> Host
+.sp 2
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOVK94
+.pi /Bereich/IOVK94
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+    ****                                   Schnittstellenbereich
+    03    IO94-AREA                        MDE-PC --> Host
+     05   IO94-TRANID       C   4          Transaktionscode (VK94)
+     05   IO94-FUNKID       C   2          Funktionscode
+     05   IO94-EBENE        N   1          Lagerebene
+    ***
+     05   IO94-DATEN-AREA                  Struktur fuer Wannendaten
+    ***
+     10   ZEILENTABELLE                    ZEILEN-BEREICH
+      12  ZEILEN                      14   ZEILEN IN DER WANNE
+      15  IO94-SA           C   2          Satzart
+      15  IO94-TAKT         N   5          Lagerauftrag
+      15  IO94-Seite        N   2          Seite im Lagerauftrag
+      15  IO94-KOPPOS       N   8          POSITIONSNUMMER(DKKOP)
+     R15  IO94-KOPPOS-X
+      17  IO94-POSNR        N   4          KA POSITION
+      17  IO94-KPOSNR       N   4          DKKOP KOM-POSITION
+      15  IO94-TPOS         N   2          Teil-position i. Kundenauftr.
+      15  IO94-CODE         C   2          Fehler-Code
+    **                                       Vereinbarte Codes
+    **                                     <'00'>  kein Fehler
+    **                                     <'01'>  Kein Barcode Verfuegbar
+    **                                     <'02'>  Mengendifferenz
+    **                                     <'03'>  Folgebehaelter
+    **                                     <'04'>  Falsche Charge
+    **                                     <'05'>  Zusatzkiste
+    **                                     <'06'>  Bruch
+    **                                     <'07'>  Kiste n.leer bei WE-Einlg.
+    **                                     <'08'>  Kiste leer bei WE-Einlag.
+      15  IO94-CHARGE       C  24          Geaenderte Charge
+      15  IO94-VFDATUM      N   8          VERFALLDATUM
+      15  IO94-ISTMGE       N   5          Ist-Menge
+      15  IO94-SOLLMGE      N   5          Soll-Menge
+      15  IO94-LGFNR        C   8          Einlagerort (LGFNR)
+      15  IO94-WNR1         N   8          Wanne 1
+      15  IO94-WNR2         N   8          Wanne 2 (Folge-Wanne)
+      15  IO94-PZN          C  20          Pharmazentral-Nummer
+      15  IO94-TOUR         N   6          Tournummer Abfahrt/Bahnhof
+     R15  IO94-TOUR-R
+       17  IO94-PAGE        N   3          SEITE NEU 3ST.
+       17  IO94-R-TFILL     N   3          FREI
+      15  IO94-KZDP         C   1          Kennzeichen Doppelkontrolle
+      15  IO94-IDF          N   7          IDF/ PREIS(SA03)
+     R15  IO94-BEDIENER     C   7          BEDIENER
+      15  IO94-STATION      C   2          Station
+      15  IO94-SCAN-F3      C   1          0 = Artikel wurde gescannt
+    **                                     1 = F3 kein Barcode
+      15  IO94-ZGVM         N   4          Zugriffe VORMONAT
+      15  IO94-ABVV         N   5          Abverkauf VORMONAT
+      15  IO94-TFILL        C   2          ZEILEN-REST
+     10   FILLER            C  23          FREI
+    ***
+.bx
+    ***
+   R05    IO94-FEHLER-AREA                 Struktur fuer Fehlermeldung
+     10   IO94-FEHLMELD     C   80         Meldungstext
+   R10    IO94-FEHLERMELDR                 Struktur fuer Fehlermeldung
+      15  IO94-FEHLMELD2    C   20         Meldungstext
+      15  IO94-FEHLNR       N    5         L1-Nummer usw.
+      15  filler            C    1
+      15  IO94-FEHLNR2      N    5         L1-Nummer usw.
+      15  FILLER            C   49
+    10    IO94-REST2        C  1833        Rest
+.bx
+    ***
+.bx
+.bx off
+.cm ENDE-FELDER
+Copy-Book der Anwenderfelder in Commarea des GMO-Online-Rahmens
+.sp
+.tr * *
+Typ:
+C = Alpha-Feld  P = num. Feld gepackt     N = num. Feld ungepackt
+X = Hex-Feld    H = Binaerfeld (Halbwort) V = Binaerfeld (Vollwort)
+Laenge:
+Die Laengenparameter bedeuten: Gesamtlaenge, davon Dezimalstellen
+.fo on
+.kp off
+.cm Angelegt am 16.09.03 14:18:01 von 05PHWINK

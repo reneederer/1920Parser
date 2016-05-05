@@ -1,0 +1,104 @@
+.fo off
+.pa
++-----------------+------------------------------------+---------------+
+I                 I                                    I               I
+I                 I                                    I  M D E        I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I               I
+I                 I   Schnittstelle : Host --> PC      I               I
+I                 I                                    I     IOVK93    I
++-----------------+------------------------------------+---------------+
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 1 Lehm I
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :14.09.04I
+I  0921-9300-695  I                                    I               I
++-----------------+------------------------------------+---------------+
+Dateiname: PH326592 OPUS
+
+SATZLAENGE:   1920 BYTES 1 ZEILE HAT 155 BYTES * 12 = 1860
+SATZLAENGE:   1920 BYTES 1 ZEILE HAT 186 BYTES * 10 = 1860
+:h6.IOVK93 Schnittstelle Host->PC
+.sp 2
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOVK93
+.pi /Bereich/IOVK93
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+    ****                                   Schnittstellenbereich
+    03    IO93-AREA                        Host --> PC
+     05   IO93-TRANID       C   4          Transaktionscode (VK93)
+     05   IO93-FUNKID       C   2          Funktionscode
+     05   IO93-EBENE        N   1          Lagerebene
+    ***
+     05   IO93-DATEN-AREA                  Struktur fuer Wannendaten
+    ***
+     10   IO93-TAKTX
+     12   IO93-TAKT         N   5          LAGERAUFTRAG
+     10   IO93-SEITEX
+     12   IO93-SEITE        N   2          SEITE IM LAGERAUFTRAG
+     10   IO93-WNR          N   8          Wannennummer
+     10   IO93-IDF          N   7          IDF
+     10   IO93-EILIG        C   1          Eilig J/N
+     10   ZEILENtabelle                    Zeilentabelle
+      12  ZEILEN                      10   ZEILEN DER WANNE
+      15  IO93-SA           C   2          Satzart
+      15  IO93-KOPOS        N   8          KommiPositionen
+     R15  IO93-KOPOS-X
+      17  IO93-POSNR        N   4          KA Positionsnummer
+      17  IO93-KOP-POSNR    N   4          DKKOP KPosition
+      15  IO93-TPOS         C   2          Teil-position i. Kundenauftr.
+      15  IO93-PZN          C   20         PZN
+      15  IO93-TOUR         N   6          Tourabfahrt/Bahnhof
+      15  IO93-KZCH         C   1          CHargenverfolgung
+      15  IO93-Charge       C   24         Charge
+      15  IO93-VVDAT        N   8          Verfall-Datum
+      15  IO93-Menge        N   5          Menge
+      15  IO93-LGFNR        C   8          Lagerort
+      15  IO93-KZDP         C   1          KZ Doppelkontrolle
+      15  IO93-ZTXT         C   30         Zusatztext
+      15  IO93-AART         C   2          Auftragsart
+      15  IO93-KZINV        C   1          KZ Inventur
+      15  IO93-KZZGS        C   1          KZ Zugesagt
+      15  IO93-DECTOUR      C   4          DECTOUR
+      15  IO93-ZINFO        C   8          Zusatzinfo
+      15  IO93-RMENG        N   5          Restmenge
+      15  IO93-AUFNR        N   5          KUNDENAUFTRAG
+      15  IO93-ZUSID        C   12         POSITIONS-ZUSATZ-ID
+      15  IO93-KUEHL        C   3          KUEHL-KZ
+      15  IO93-UEFLAG       C   1          CHARGENVERW. AM UV AKTIV
+      15  IO93-WEVFLAG      C   1          WE-VERFALL GEGENPRUEFUNG
+      15  IO93-TFIL         C   28         TFILLER
+     10   IO93-RECHNR       C   10         RECHNUNGSNUMMER
+     10   IO93-WTYP         C   2          WANNENTYP
+     10   IO93-PAGEX
+      15  IO93-PAGE         N   3          SEITE IM LAGERAUFTRAG 3ST.
+     10   FILLER            C   15         FREI
+    ***
+.bx
+    ***
+   R05    IO93-FEHLER-AREA                 Struktur fuer Fehlermeldung
+     10   IO93-FEHLMELD     C   80         Meldungstext
+   R10    IO93-FEHLERMELDR                 Struktur fuer Fehlermeldung
+      15  IO93-FEHLMELD2    C   20         Meldungstext
+      15  IO93-FEHLNR       N    5         L1-Nummer usw.
+      15  filler            C    1
+      15  IO93-FEHLNR2      N    5         L1-Nummer usw.
+      15  filler            C    49
+     10   IO93-REST2        C  1833        REST
+.bx
+    ***
+.bx
+.bx
+.bx off
+.cm ENDE-FELDER
+Copy-Book der Anwenderfelder in Commarea des GMO-Online-Rahmens
+.sp
+.tr * *
+Typ:
+C = Alpha-Feld  P = num. Feld gepackt     N = num. Feld ungepackt
+X = Hex-Feld    H = Binaerfeld (Halbwort) V = Binaerfeld (Vollwort)
+Laenge:
+Die Laengenparameter bedeuten: Gesamtlaenge, davon Dezimalstellen
+.fo on
+.kp off
+.cm Angelegt am 16.09.03 14:18:01 von 05PHWINK

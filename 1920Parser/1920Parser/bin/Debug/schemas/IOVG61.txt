@@ -1,0 +1,77 @@
+.fo off
+.pa
+------------------------------------------------------------------------
+I                 I                                    I               I
+I                 I                                    I 2.  Vertrieb  I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I 2.8 Retouren/ I
+I                 I   Anwender COMMAREA fuer Ret./Gut. I     GutschriftI
+I                 I                                    I     PVG610    I
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 2   SenI
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :15.04.97I
+I  0911-3000-288  I                                    I      :        I
+------------------------------------------------------------------------
+Dateiname: PH328610 OPUS
+
+Satzlaenge:  1920  Bytes
+:h6.IOVG61 Retouren/WE-Wannen an Lagersteuerung
+.sp 2
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOVG61
+.pi /Bereich/IOVG61
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+
+    ****                                   Schnittstellenbereich
+    03    IO61-AREA                        Rtouren Host --> lagerrechner
+     05   IO61-TRANID       C   4          Transaktionscode (VG61)     K
+     05   IO61-FUNKID       C   2          Funktionscode               K
+    ***
+     05   IO61-DATEN-AREA                  Struktur fuer Wannendaten
+    ***
+     10   IO61-WANTAB                 36   Tabelle der Wannendaten
+      15  IO61-WNR          N   6          Wannennummer                K
+      15  io61-NEUN         N   1          immer wert 9                K
+      15  IO61-TAKT         N   4          Retourentakt                K
+      15  IO61-SEITE        N   2          Seitennummer                K
+      15  IO61-STCODE       C  20          Zielvektor                  K
+      15  IO61-KZREWE       C   1          Kz. Retoure/WE              K
+      15  IO61-EILIG        C   1          wenn eilig: E, sonst Blank
+      15  IO61-WNR7         N   7          Wannennummer 7 stellig      K
+      15  IO61-TAKT5        N   5          Takt 5-stellig              K
+      15  filler            C   6          reserve                     K
+    10    filler            C   6          Rest
+.bx
+   R05    IO61-FEHLER-AREA                 Struktur fuer Fehlermeldung
+     10   IO61-FEHLMELD     C   80         Meldungstext
+   R10    IO61-FEHLERMELDR                 Struktur fuer Fehlermeldung
+      15  IO61-FEHLMELD2    C   20         Meldungstext
+      15  IO61-FEHLNR       N    5         WNR 1     usw.
+      15  filler            C    1
+      15  IO61-FEHLNR2      N    5         WNR2      usw.
+      15  filler            C    49
+     10   IO61-REST2        C  1834        REST
+    ***
+.bx
+    ***                                    Laenge des IO61 - bereiches
+    02v   IO61-length       H              <+1920>
+    ***                                    Anzahl Tabellenplaetze
+    02v   IO61-MAX          h              <+36>
+    ***                                    Anzahl Tabellenplaetze
+    02v   IO61-MAX1         h              <+65>
+.bx off
+.cm ENDE-FELDER
+Copy-Book der Anwenderfelder in Commarea des GMO-Online-Rahmens
+.sp
+.tr * *
+Typ:
+C = Alpha-Feld  P = num. Feld gepackt     N = num. Feld ungepackt
+X = Hex-Feld    H = Binaerfeld (Halbwort) V = Binaerfeld (Vollwort)
+Laenge:
+Die Laengenparameter bedeuten: Gesamtlaenge, davon Dezimalstellen
+.fo on
+.kp off
+.cm Angelegt am 11.11.96 16:01:09 von 05PHWINK

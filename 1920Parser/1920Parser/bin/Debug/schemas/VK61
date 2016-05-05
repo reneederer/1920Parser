@@ -1,0 +1,79 @@
+.fo off
+.pa
++-----------------+------------------------------------+---------------+
+I                 I                                    I               I
+I                 I                                    I NACHFUELL     I
+I  P H A R M O S  I      Copy-Book-Beschreibung        I               I
+I                 I   Schnittstelle : Host --> PC      I               I
+I                 I                                    I     IOVK92    I
++-----------------+------------------------------------+---------------+
+I  P H A R M O S  I     Froh zu sein bedarf es         I Ausg.: 1 Wink I
+I  8510 Fuerth 2  I          P H A R M O S             I Vom  :16.09.03I
+I  0921-9300-695  I                                    I Wink :29:10.02I
++-----------------+------------------------------------+---------------+
+Dateiname: PH326592 OPUS
+
+Satzlaenge:        Bytes
+:h6.IOVK92 Schnittstelle Host->PC
+.sp 2
+.fo off
+.tr * 40
+.cm FELD-BESCHREIBUNG IOVK92
+.pi /Bereich/IOVK92
+.bx 2   9                 27  31     38  42                        &$ll
+  Stufe   Feldname         Typ Laenge Tab  Kommentar
+.bx
+    ****                                   Schnittstellenbereich
+    03    IO92-AREA                        Host --> PC
+     05   IO92-TRANID       C   4          Transaktionscode (VK92)
+     05   IO92-FUNKID       C   2          Funktionscode
+     05   IO92-EBENE        N   1          Lagerebene
+    ***
+     05   IO92-DATEN-AREA                  Struktur fuer Wannendaten
+    ***
+     10   IO92-TAKT         N   4          Lagerauftrag
+     10   IO92-WANNE        N   2          Wanne im Lagerauftrag
+     10   ZEILENtabelle                    zeilen in der wanne
+      12  ZEILEN                      15   zeilen in der wanne
+      15  IO92-POS          n   3          position im p1
+      15  IO92-pzn          n   7          PZN
+      15  IO92-EAN          N  13          EAN
+      15  IO92-EINHEIT      C   9          Einheit
+      15  IO92-ABEZ         C  30          Artikelbezeichnung
+      15  IO92-DAFO         C   4          Daareichform
+      15  IO92-charge       C  24          Charge
+      15  IO92-VFDAT        N   8          Verfalldatum
+      15  IO92-Menge        N   5          KommiMenge
+      15  IO92-LORT         C   8          Lagerort
+      15  IO92-WTYP         C   1          Wannentyp
+      15  IO92-DOKO         C   1          Doppelkontrolle
+      15  filler            c  13          frei
+     10   IO92-REST         C  17          REST
+    ***
+.bx
+   R05    IO92-FEHLER-AREA                 Struktur fuer Fehlermeldung
+     10   IO92-FEHLMELD     C   80         Meldungstext
+   R10    IO92-FEHLERMELDR                 Struktur fuer Fehlermeldung
+      15  IO92-FEHLMELD2    C   20         Meldungstext
+      15  IO92-FEHLNR       N    5         L1-Nummer usw.
+      15  filler            C    1
+      15  IO92-FEHLNR2      N    5         L1-Nummer usw.
+      15  filler            C    49
+     10   IO92-REST2        C  1833        REST
+    ***
+.bx
+    ***
+.bx
+.bx off
+.cm ENDE-FELDER
+Copy-Book der Anwenderfelder in Commarea des GMO-Online-Rahmens
+.sp
+.tr * *
+Typ:
+C = Alpha-Feld  P = num. Feld gepackt     N = num. Feld ungepackt
+X = Hex-Feld    H = Binaerfeld (Halbwort) V = Binaerfeld (Vollwort)
+Laenge:
+Die Laengenparameter bedeuten: Gesamtlaenge, davon Dezimalstellen
+.fo on
+.kp off
+.cm Angelegt am 16.09.03 14:18:01 von 05PHWINK

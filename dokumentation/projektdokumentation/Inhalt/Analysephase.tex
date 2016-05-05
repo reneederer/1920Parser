@@ -1,0 +1,99 @@
+% !TEX root = ../Projektdokumentation.tex
+\section{Analysephase} 
+\label{sec:Analysephase}
+
+
+\subsection{Ist-Analyse} 
+\label{sec:IstAnalyse}
+
+
+
+\subsection{Wirtschaftlichkeitsanalyse}
+\label{sec:Wirtschaftlichkeitsanalyse}
+Das Projekt verspricht nicht eine deutliche Zeitersparnis für die Warehouse-Programmierer, sondern auch eine verringerte Fehlerquote.
+
+
+\subsubsection{\gqq{Make or Buy}-Entscheidung}
+\label{sec:MakeOrBuyEntscheidung}
+Die Anforderungen sind sehr speziell, es ist daher unwahrscheinlich, dass es ein fertiges Programm gibt, das die Anforderungen erfüllt. Das Produkt wird daher selbst erstellt.
+
+
+\subsubsection{Projektkosten}
+\label{sec:Projektkosten}
+Im Rahmen des Projektes fallen Kosten für Entwicklung und Abnahmetest an.
+
+\paragraph{Beispielrechnung (verkürzt)}
+Die Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen.
+Der Projektersteller ist Umschüler und erhält seinem Ausbildungsbetrieb keine Vergütung.
+
+\begin{eqnarray}
+7,7 \mbox{ h/Tag} \cdot 220 \mbox{ Tage/Jahr} = 1694 \mbox{ h/Jahr}\\
+\eur{0}\mbox{/Monat} \cdot 13,3 \mbox{ Monate/Jahr} = \eur{0} \mbox{/Jahr}\\
+\frac{\eur{0} \mbox{/Jahr}}{1694 \mbox{ h/Jahr}} = \eur{0,00}\mbox{/h}
+\end{eqnarray}
+
+Dadurch ergibt sich also ein Stundenlohn von \eur{0,00}
+Die Durchführungszeit des Projekts beträgt 70 Stunden. Für die Nutzung von Ressourcen\footnote{Räumlichkeiten, Arbeitsplatzrechner etc.} wird 
+ein pauschaler Stundensatz von \eur{12} angenommen. Für die anderen Mitarbeiter wird pauschal ein Stundenlohn von \eur{23} angenommen. 
+Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung} und sie betragen insgesamt \eur{1015,00}.
+\tabelle{Kostenaufstellung}{tab:Kostenaufstellung}{Kostenaufstellung.tex}
+
+
+\subsubsection{Amortisationsdauer}
+\label{sec:Amortisationsdauer}
+\begin{itemize}
+	\item Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
+	\item Wann hat sich das Projekt amortisiert?
+\end{itemize}
+
+\paragraph{Beispielrechnung (verkürzt)}
+Bei einer Zeiteinsparung von 5 Minuten am Tag für jeden der 20 Anwender und 220 Arbeitstagen im Jahr ergibt sich eine gesamte Zeiteinsparung von 
+\begin{eqnarray}
+20 \cdot 220 \mbox{ Tage/Jahr} \cdot 5 \mbox{ min/Tag} = 22000 \mbox{ min/Jahr} \approx 366,67 \mbox{ h/Jahr} 
+\end{eqnarray}
+
+Dadurch ergibt sich eine jährliche Einsparung von 
+\begin{eqnarray}
+366,67 \mbox{h} \cdot \eur{(23 + 12)}{\mbox{/h}} = \eur{12833,45}
+\end{eqnarray}
+
+Die Amortisationszeit beträgt also $\frac{\eur{1015,00}}{\eur{12833,45}\mbox{/Jahr}} \approx 0,08 \mbox{ Jahre} \approx 1 \mbox{ Monat}$.
+
+
+\subsection{Nutzwertanalyse}
+\label{sec:Nutzwertanalyse}
+\begin{itemize}
+	\item Darstellung des nicht-monetären Nutzens (\zB Vorher-/Nachher-Vergleich anhand eines Wirtschaftlichkeitskoeffizienten). 
+\end{itemize}
+
+\paragraph{Beispiel}
+Ein Beispiel für eine Entscheidungsmatrix findet sich in Kapitel~\ref{sec:Architekturdesign}: \nameref{sec:Architekturdesign}.
+
+
+\subsection{Anwendungsfälle}
+\label{sec:Anwendungsfaelle}
+
+
+\paragraph{Beispiel}
+Ein Beispiel für ein Use Case-Diagramm findet sich im \Anhang{app:UseCase}.
+
+
+\subsection{Qualitätsanforderungen}
+\label{sec:Qualitaetsanforderungen}
+\begin{itemize}
+	\item Welche Qualitätsanforderungen werden an die Anwendung gestellt (\zB hinsichtlich Performance, Usability, Effizienz \etc (siehe \citet{ISO9126}))?
+	\item Einer oder mehrere interessante (!) Anwendungsfälle könnten exemplarisch durch ein Aktivitätsdiagramm oder eine \ac{EPK} detailliert beschrieben werden. 
+\end{itemize}
+
+
+\subsection{Lastenheft/Fachkonzept}
+\label{sec:Lastenheft}
+\begin{itemize}
+	\item Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
+	\item Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
+\end{itemize}
+
+\paragraph{Beispiel}
+Ein Beispiel für ein Lastenheft findet sich im \Anhang{app:Lastenheft}. 
+
+\Zwischenstand{Analysephase}{Analyse}

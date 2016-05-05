@@ -1,0 +1,12 @@
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\phoenix.ico
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\phoenixLogo.png
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\1920ParserTest.dll
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\1920ParserTest.pdb
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\1920Parser.exe
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\1920Parser.pdb
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\1920Parser_Accessor.exe
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\1920Parser_Accessor.pdb
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.dll
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.pdb
+C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\schemas1.xml
