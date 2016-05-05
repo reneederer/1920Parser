@@ -38,43 +38,42 @@ Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich
 \label{sec:ImplementierungGeschaeftslogik}
 
 \subsubsection{Grundschema der rekursive Methoden von AbstractNode/GroupNode}
-AbstractNode definiert eine Reihe von abstrakten Methoden, die von GroupNode und ValueNode überschrieben werden. Das Grundschema aller dieser Methoden ist stets das gleiche: 
+AbstractNode definiert eine Reihe abstrakter Methoden. Die Methoden AssignValue(), ToString() und CreateCopyWithIndex() verwendet GroupNode rekursiv. Alle diese Methoden funktionieren nach dem Gleichen Prinzip: 
 
-GroupNode ruft für jedes seiner Kinder rekursiv die gleiche Methode auf. Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert, dieser wird an den Aufrufer zurückgegeben.
+GroupNode ruft für jedes seiner Kinder die gleiche Methode erneut auf. Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert, dieser wird an den Aufrufer zurückgegeben.
 
-Eine ValueNode hat keine Kindknoten und kann direkt einen Wert zurückgeben.
-Rekursionen enden bei ValueNodes und bei GroupNodes ohne Kindern.
+ValueNodes haben keine Kind-Knoten. ValueNodes geben direkt einen Wert zurück.
+Die Rekursionen enden bei ValueNodes und bei GroupNodes ohne Kindern.
 
 \subsubsection{Parsen des Schemas in eine Baumstruktur}
-Für die Erstellung der Baumstruktur sind sowohl die Reihenfolge der Schema-Variablen, als auch ihre Stufennummern von Bedeutung.
-Es wird ein künstlicher Wurzelknoten erstellt, damit Knoten auf der obersten Hierarchie-Stufe auch Geschwister haben können. Der Wurzelknoten bekommt die Stufennummer 0.
+Der Baum bekommt einen künstlichen Wurzelknoten mit der (in Schemadateien nicht verwendeten) Stufennummer 0.
+
+Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit dem Elternknoten oben und dem Wurzelknoten unten.
+
+Der Algorithmus macht folgendes:
+
+Zuerst wird der künstliche Wurzelknoten erstellt und auf den Stack gepusht.
+
+Danach durchläuft der Algorithmus jede Zeile des Schemas und erstellt aus ihr den Knoten x (eine Value- oder GroupNode, abhängig davon, ob die Zeile Angaben zu Typ und Länge hat oder nicht).
 
 
-Der Algorithmus zum Parsen des Schemas durchläuft jede Zeile des Schemas und erstellt aus ihr eine Group- oder ValueNode (abhängig davon ob die Zeile Angaben zu Typ und Länge hat oder nicht).
-
-
-Es gibt drei Möglichkeiten, wie ein Knoten zu StackTop in Beziehung steht:
+Es gibt drei Möglichkeiten, wie x zu stack.Peek() in Beziehung steht:
 \begin{itemize}
-\item er hat eine größere Stufennummer, dann ist er ein Kind von StackTop.
-\item er hat die gleiche Stufennummer, dann ist er ein Geschwister von StackTop.
-\item er hat eine kleinere Stufennummer, dann ist er kein Kind von StackTop, der richtige Elternknoten muss erst noch gefunden werden.
+\item er hat eine größere Stufennummer, dann ist x ein Kindknoten von stack.Peek().
+\item er hat die gleiche Stufennummer, dann ist x ein Geschwisterknoten von stack.Peek().
+\item er hat eine kleinere Stufennummer, dann ist x ein Kind eines Vorfahren von stack.Peek(). Der richtige Elternknoten für x muss erst noch gefunden werden.
 \end{itemize}
-Im Fall 1 wird der Knoten auf den Stack gepusht, er könnte Kindknoten haben.
-
-Fall 2 und 3 können gleich behandelt werden. Dass der Knoten kein Kindknoten von StackTop ist, bedeutet, dass StackTop keine weiteren Kinder hat. Alle seine Kindknoten wurden ihm schon hinzugefügt. StackTop wird vom Stack gepoppt und dem neuen StackTop als Kind hinzugefügt. Der Ablauf in diesem Absatz wird wiederholt, solange bis der richtige Elternknoten gefunden wurde.
+Im Fall 1 wird x für weitere Verarbeitung auf den Stack gepusht.
 
 
-Würden Kindknoten ihren Eltern sofort hinzugefügt ergäben sich Probleme, ein Beispiel:
-00 Familienbande
-    01 Opa
-        03 Papa
-            05 Sohn
-            05 Tochter
-        03 Mama
-    01 Oma
+Fall 2 und 3 können gleich behandelt werden. Dass x kein Kindknoten von stack.Peek() ist, bedeutet, dass stack.Peek() keine weiteren Kinder hat. stack.Peek() wird vom Stack gepoppt und (dem neuen) stack.Peek() als Kind hinzugefügt. Der Ablauf wird solange wiederholt, bis der richtige Elternknoten für x gefunden wurde.
+Danach wird x (genau wie in Fall 1) auf den Stack gepusht.
 
-Wenn man Papa als Kind Opa hinzufügt, müsste man irgendwie sowohl den Baum unterhalb von Papa weiterverarbeiten, als auch die Geschwisterknoten von Opa. Wenn man bedenkt, dass GroupNodes beliebig tief verschachtelt werden können und dass alle Knoten eine Wiederhol-Anzahl haben können, wird klar, dass das Problem komplex ist. Zum Einsatz kam ein Stack und dessen heilbringende, reihenfolge-vertauschende Gloria. Alle Elemente landen auf dem Stack. Erst, wenn eine Sub-Familie fertig erstellt ist, wird ein Knoten zu seinem Elternknoten hinzugefügt. Zum Beispiel würde Papa erst Sohn und Tochter hinzugefügt, erst dann würde Papa zu Opa hinzugefügt. Dadurch sind Unterbäume fertiggestellt und man landet automatisch beim richtigen Elter.
-        
+Der Ablauf geht oben weiter mit dem Lesen der nächsten Zeile.
+
+
+Nachdem alle Zeilen gelesen wurden, werden die auf dem Stack verbliebenen Elemente einander als Kinder hinzugefügt, bis der Stack nur noch den Wurzelknoten enhält. Der Wurzelknoten wird zurückgegeben.
+
 
 \subsubsection{Zuweisen der Werte aus dem Datenstrom}
 Die Methode zum Zuweisen eines Wertes an einen Knoten hat den Prototypen 
