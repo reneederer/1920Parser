@@ -4,8 +4,20 @@
 
 \subsection{Zielplattform}
 \label{sec:Zielplattform}
-Das Programm soll auf den Entwicklerrechnern der Phoenix laufen. Intel i5 Prozessoren mit 4 GB Arbeitsspeicher.
-Auf den Entwicklerrechnern laufen 32 Bit Version von Windows 7. Phoenix programmiert in COBOL, C++ und C\#. COBOL fiel für ein Windows-Tool aus. Die Wahl fiel auf C\# (Garbage Collection, moderner GUI-Designer).
+Das Programm soll auf den Entwicklerrechnern der Phoenix laufen. Diese laufen mit  Intel i5 Prozessoren mit 4 GB Arbeitsspeicher und 32bit Versionen von Windows 7.
+
+
+Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix bisher eingesetzten Sprachen COBOL, C++ und C\# eingegrenzt. COBOL schied als Programmiersprache für ein Windows-Tool aus. Die Wahl fiel auf C\# (Garbage Collection, moderner GUI-Designer, expressiver als C++).
+
+\subsection{Aufbau der Schemadateien}
+\label{sec:AufbauSchemas}
+Eine Zeile eines 1920Schemas enthält entweder eine Variablendeklaration oder Zusatzinformationen zum Schema. Zusatzinformationen sind für 1920Parser nicht relevant und werden ignoriert.
+
+Variablendeklarations-Zeilen haben immer Angaben zu Stufennummer und Variablennamen.
+Eine Variable kann entweder eine Gruppen- oder eine Wertvariable sein.
+Wertvariablen haben Angaben zu Typ (X, N oder P) und eine Längenangabe, wie viele Bytes ihnen zugewiesen werden.
+Gruppenvariablen haben nie einen Typ und nie eine Länge. Sie enthalten weitere Gruppen- oder Wertvariablen als Kinder. Kinder haben immer eine größere Stufennummer als ihre Eltern.
+Sowol Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen (default ist 1); außerdem haben sie eine Redefine-Angabe, ob sie die gleichen Bytes verwenden wie ihr vorhergehender Geschwister\footnote{Geschwister haben die gleichen Stufennummern und die gleiche Elternvariable}.
 
 
 \subsection{Architekturdesign}
@@ -14,25 +26,53 @@ GUI und Anwendungslogik wurden getrennt.
 
 
 \subsection{Entwurf der Benutzeroberfläche}
-\label{sec:Benutzeroberflaeche} 
+\label{sec:Benutzeroberflaeche}
+Nachdem als Programmiersprache C\# feststand, kamen für die Benutzeroberfläche nur  Plattformen aus dem .NET-Framework in Frage. Die Wahl zwischen ASP.NET, WPF und Winforms fiel schließlich auf Winforms. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden (Benutzerverwaltung usw.). WPF bietet mehr Möglichkeiten für Databindings und große Kontrolle über das Design als Winforms, dagegen ist Winforms einfacher. Die Wahl fiel auf Winforms.
+\subsubsection{Erste Iteration: Datenstrom zergliedert anzeigen}
+\label{sec:BenutzeroberflaecheZergliedern}
+
+
+Zunächst wurden einfach drei RichTextBoxes zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede diese TextBoxen bekam eine Überschrift . Da die Schemadateien gewöhnlich formatiert sind (gleiche Stufennummern stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Da das Ergebnis für den Benutzer von größerem Interesse ist als Datenstrom und Schema, bekam es die doppelte Größe.
+
+\subsubsection{Zweite Iteration: Schema speichern}
+\label{BenutzeroberflaecheSpeichern}
+Nachdem der Anwendungsfall "Datenstrom zergliedert anzeigen" erledigt war, wurde ein Bedienkonzept für die Kann-Anwendungsfälle
+\begin{itemize}
+\item Schema speichern
+\item Datenstrom importieren
+\item Variablen ausblenden
+\item Schema automatisch auswählen
+\end{itemize}
+entwickelt. Um die Benutzeroberfläche übersichtlich zu halten, 
+
+Das Phoenix-Icon wurde als Programm-Icon gewählt und das Firmen-Logo rechts in der Menüleiste eingefügt.
+
 \begin{itemize}
 	\item Entscheidung für die gewählte Benutzeroberfläche (\zB GUI, Webinterface).
 	\item Beschreibung des visuellen Entwurfs der konkreten Oberfläche (\zB Mockups, Menüführung).
 	\item \Ggfs Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
 \end{itemize}
 
+
+
 \paragraph{Beispiel}
 Beispielentwürfe finden sich im \Anhang{app:Entwuerfe}.
 
 
+\subsection{XML-Datenmodell}
+Zur automatischen Auswahl eines Schemas wurde ein XML-Schema verwendet. Siehe Anhang.
 
 \subsection{Geschäftslogik}
 \label{sec:Geschaeftslogik}
+Es wird eine Baumstruktur verwendet, um den hierarchischen Aufbau der Schemadateien im Programm zu repräsentieren.
 Zunächst wird das Schema in eine Baumstruktur überführt.
+Danach werden die Werte aus dem Datenstrom zugewiesen.
 
 
 
 \paragraph{Beispiel}
+Der hierarchische Aufbau der Schemavariablen wird im Programm durch eine rekursive Baumstruktur repräsentiert. Dazu wurden die abstrakte Klasse AbstractNode erstellt. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode hat ein Attribut List<AbstractNode>, die auf seine KindKnoten verweist. 
+
 Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen untereinander darstellt kann im \Anhang{app:Klassendiagramm} eingesehen werden.
 
 \Abbildung{Modulimport} zeigt den grundsätzlichen Programmablauf beim Einlesen eines Moduls als \ac{EPK}.
@@ -46,6 +86,7 @@ Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen unt
 
 \subsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
+Es wurde testgetrieben entwickelt.
 \begin{itemize}
 	\item Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel~\ref{sec:Qualitaetsanforderungen}: \nameref{sec:Qualitaetsanforderungen}) zu sichern (\zB automatische Tests, Anwendertests)?
 	\item \Ggfs Definition von Testfällen und deren Durchführung (durch Programme/Benutzer).
