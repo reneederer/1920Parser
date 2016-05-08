@@ -1,11 +1,13 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
+\subsection{Erstellen einer neuen Solution}
+Zunächst wurde in Visual Studio 2010 eine neue C# Solution namens 1920Parser angelegt. Dieser Solution wurde ein TestProjekt für die Unit-Tests hinzugefügt. In \ac{SVN} wurde für 1920Parser ein neues Verzeichnis erstellt mit der von Phoenix vorgegebenen Verzeichnisstruktur (branch, tag, trunk).
+\label{sec:{ErstellungSolution}
 
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
-Um die hierarchische Struktur der Schemadateien im Programm abzubilden, wird eine rekursive Baumstruktur implementiert. Der Baum enthält Knoten, ein Knoten kann auf andere Knoten verweisen.
-
+Schemas gliedern ihre Variablen anhand von Stufennummern hierarchisch. Um die hierarchische Gliederung der Schemadateien im Programm abzubilden, wird eine rekursive Baumstruktur implementiert. Der Baum enthält Knoten, ein Knoten kann auf andere Knoten verweisen.
 
 Schemazeilen, die in der Ausgabe angezeigt werden sollen, können folgende Angaben enthalten:
 \begin{itemize}
@@ -38,6 +40,7 @@ Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich
 \label{sec:ImplementierungGeschaeftslogik}
 
 \subsubsection{Grundschema der rekursive Methoden von AbstractNode/GroupNode}
+
 AbstractNode definiert eine Reihe abstrakter Methoden. Die Methoden AssignValue(), ToString() und CreateCopyWithIndex() verwendet GroupNode rekursiv. Alle diese Methoden funktionieren nach dem Gleichen Prinzip: 
 
 GroupNode ruft für jedes seiner Kinder die gleiche Methode erneut auf. Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert, dieser wird an den Aufrufer zurückgegeben.
@@ -66,7 +69,7 @@ Es gibt drei Möglichkeiten, wie x zu stack.Peek() in Beziehung steht:
 Im Fall 1 wird x für weitere Verarbeitung auf den Stack gepusht.
 
 
-Fall 2 und 3 können gleich behandelt werden. Dass x kein Kindknoten von stack.Peek() ist, bedeutet, dass stack.Peek() keine weiteren Kinder hat. stack.Peek() wird vom Stack gepoppt und (dem neuen) stack.Peek() als Kind hinzugefügt. Der Ablauf wird solange wiederholt, bis der richtige Elternknoten für x gefunden wurde.
+Fall 2 und 3 können gleich behandelt werden. Dass x kein Kindknoten von ioPeek() ist, bedeutet, dass stack.Peek() keine weiteren Kinder hat. stack.Peek() wird vom Stack gepoppt und (dem neuen) stack.Peek() als Kind hinzugefügt. Der Ablauf wird solange wiederholt, bis der richtige Elternknoten für x gefunden wurde.
 Danach wird x (genau wie in Fall 1) auf den Stack gepusht.
 
 Der Ablauf geht oben weiter mit dem Lesen der nächsten Zeile.

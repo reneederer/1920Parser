@@ -162,7 +162,10 @@ namespace _1920Parser
 
         private void schemasxmlEditierenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if(!File.Exists("schemas.xml"))
+            {
+                File.Create("schemas.xml");
+            }
             Process.Start("schemas.xml");
         }
 

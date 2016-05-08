@@ -77,7 +77,7 @@ namespace _1920Parser
 
         public void setSchemaConfig(string configFile)
         {
-            if (!File.Exists(configFile))
+            if (!File.Exists(configFile) || File.ReadAllText(configFile) == "")
             {
                 return;
             }
