@@ -1,37 +1,38 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
+
+test
 \subsection{Erstellen einer neuen Solution}
-Zunächst wurde in Visual Studio 2010 eine neue C# Solution namens 1920Parser angelegt. Dieser Solution wurde ein TestProjekt für die Unit-Tests hinzugefügt. In \ac{SVN} wurde für 1920Parser ein neues Verzeichnis erstellt mit der von Phoenix vorgegebenen Verzeichnisstruktur (branch, tag, trunk).
-\label{sec:{ErstellungSolution}
+\label{sec:ErstellungSolution}
+Die Implementierung begann mit dem Anlegen eines neuen Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) in SVN und dem Erstellen einer neuen Solution in Microsoft Visual Studio 2010. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
 
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
-Schemas gliedern ihre Variablen anhand von Stufennummern hierarchisch. Um die hierarchische Gliederung der Schemadateien im Programm abzubilden, wird eine rekursive Baumstruktur implementiert. Der Baum enthält Knoten, ein Knoten kann auf andere Knoten verweisen.
-
-Schemazeilen, die in der Ausgabe angezeigt werden sollen, können folgende Angaben enthalten:
+Die hierarchische Gliederung der Schemavariablen wird im Programm durch eine rekursive Baumstruktur abgebildet. Schemavariablen können Gruppen- oder Wertevariablen sein, Entsprechend gibt es im Programm die Klassen GroupNode und ValueNode. Die den beiden Klassen gemeinsamen Attribute und Methoden, unter anderem
 \begin{itemize}
-\item ein R, das angibt, dass dieser Knoten redefiniert
-\item zweiziffrige Stufennummer
-\item Variablenname
-\item Typangabe
-\item Anzahl der verwendeten Bytes
-\item Anzahl, wie oft sich dieser Knoten wiederholt (Array).
-\end{itemize}
-Sufennummer und Variablenname sind Pflichtangaben und definierendes Charakteristikum für Node-Zeilen, die anderen Angaben können auch leer sein.
+\item Level
+\item VarName
+\item RepeatCoung
+\item RepeatIndex
+\item Comment
+\item AssignValue()
+\item ToString()
+\end{itemize} wurden in der Oberklasse AbstractNode definiert und von GroupNode und ValueNode geerbt.
+GroupNodes erhielten ein Attribut children vom Typ List<AbstractNode> und können so wiederum auf weitere GroupNodes verweisen (und diese auch wieder). Dadurch kann eine beliebig tief verschachtelbare Baumstruktur repräsentiert werden. 
 
-Schema-Items definieren entweder ValueNodes oder GroupNodes.
-ValueNodes haben immer eine Angabe zum Variablentyp und eine Längenangabe zur Anzahl der Bytes aus dem Datenstrom, der ihnen zugewiesen wird.
-GroupNodes haben dagegen nie einen Typ und nie eine Länge. Stattdessen können sie Kind-Knoten haben. Kind-Knoten haben immer eine größere Stufennummer als ihre Elternknoten und können GroupNodes oder ValueNodes sein.
 
-Im Programm wird die hierarchische Gliederung der Schema-Variablen als rekursive Baumstruktur repräsentiert. Dazu wurde eine abstrakte Klasse AbstractNode definiert von denen die Klassen ValueNode und GroupNode erben. GroupNode verweist auf seine Kind-Knoten mit einer Liste vom Typ AbstractNode. GroupNode kann daher wiederum GroupNodes und ValueNodes als Kinder haben.
+Die Methode, die das Schema parst, soll eine GroupNode zurückgeben. Daher musste die Implementierung mit den Klassen der Baumstruktur (AbstractNode, GroupNode und ValueNode) begonnen werden. Zum Schreiben von Unit-Tests wurde eine Methode zum vergleichen der Ergebnisse benötigt. Dazu wurden die Methoden Equals() und getHashCode() der Klasse object überschrieben. Danach wurde die Baumstruktur gemockt und die Methoden AssignValue() und ToString() implementiert.
+
+Danach wurde die Methode Parse() der Klasse Schema geschrieben. Hier war ein Problem, dass gleichzeitig 
+
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:ImplementierungBenutzeroberflaeche}
 Die \ac{GUI} muss dem Benutzer Funktionalität bereitstellen, damit er Schema und Datenstrom angeben kann und sie muss den zergliederten Datenstrom anzeigen können.
 Um diese Funktionalitäten zu bieten werden 3 Textboxen angezeigt, jeweils mit einem Label, das die Bedeutung beschreibt. Auf ein Menü wird verzichtet.
 
-Die Angaben in den Schemadateien sind eingerückt, zum Beispiel stehen Kommentare immer untereinander. Damit die Angaben in der Benutzerfläche auch untereinander stehen, musste für das Schema-Textfeld ein Monospace-Font verwendet (Courier new). Auch die Textfelder für Datenstrom und Ergebnis erhielten diesen Font, der Einheitlich wegen.
+Die Angaben in den Schemadateien sind formatiert, zum Beispiel stehen Stufennummern oder Kommentare immer genau untereinander. Damit die Angaben in der Benutzerfläche auch untereinander stehen, musste für das Schema-Textfeld ein Monospace-Font verwendet (Courier New). Auch die Textfelder für Datenstrom und Ergebnis erhielten diesen Font, um das Erscheinungsbild einheitlich zu halten.
 \paragraph{Beispiel}
 Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
 
@@ -40,25 +41,23 @@ Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich
 \label{sec:ImplementierungGeschaeftslogik}
 
 \subsubsection{Grundschema der rekursive Methoden von AbstractNode/GroupNode}
+Group- und ValueNode erben von AbstractNode Methoden. Alle diese Methoden funktionieren nach dem gleichen Prinzip:
 
-AbstractNode definiert eine Reihe abstrakter Methoden. Die Methoden AssignValue(), ToString() und CreateCopyWithIndex() verwendet GroupNode rekursiv. Alle diese Methoden funktionieren nach dem Gleichen Prinzip: 
+Ist die AbstractNode eine GroupNode, dann ruft sie für jedes seiner Kinder die gleiche Methode erneut auf (Rekursion). Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert und dieser zurückgegeben.
+Eine ValueNode hat keine Kinder und kann direkt ein Wert zurückgeben. Bei ValueNodes und GroupNodes ohne Kindern enden die Rekursionen.
 
-GroupNode ruft für jedes seiner Kinder die gleiche Methode erneut auf. Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert, dieser wird an den Aufrufer zurückgegeben.
 
-ValueNodes haben keine Kind-Knoten. ValueNodes geben direkt einen Wert zurück.
-Die Rekursionen enden bei ValueNodes und bei GroupNodes ohne Kindern.
 
 \subsubsection{Parsen des Schemas in eine Baumstruktur}
-Der Baum bekommt einen künstlichen Wurzelknoten mit der (in Schemadateien nicht verwendeten) Stufennummer 0.
+Da der Baum zwingend einen Wurzelknoten\footnote{Knoten, der Vorfahr von allen anderen Knoten ist} braucht, Schemas aber nicht zwingend einen haben, erhält der Baum einen künstlichen Wurzelknoten mit der (in Schemadateien nicht verwendeten) Stufennummer 0. Ohne Wurzelknoten würden auf höchster Ebene Geschwister ignoriert, oder es müsste statt mit GroupNode mit List<GroupNode> gearbeitet werden. Beides soll vermieden werden.
 
-Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit dem Elternknoten oben und dem Wurzelknoten unten.
+Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten.
 
 Der Algorithmus macht folgendes:
-
-Zuerst wird der künstliche Wurzelknoten erstellt und auf den Stack gepusht.
-
-Danach durchläuft der Algorithmus jede Zeile des Schemas und erstellt aus ihr den Knoten x (eine Value- oder GroupNode, abhängig davon, ob die Zeile Angaben zu Typ und Länge hat oder nicht).
-
+Der künstliche Wurzelknoten wird erstellt und auf den Stack gepusht.
+Aus den Schemazeilen wird eine List<AbstractNode> erstellt (unverbundene Nodes, das heißt children ist eine leere Liste für alle GroupNodes).
+Im nächsten Schritt werden die unverbundenen Nodes anhand ihrer Stufennummern an der richtige Position im Baum hinzugefügt.
+Dazu wird nacheinander jedes Element x der Node-Liste mit stackTop verglichen.
 
 Es gibt drei Möglichkeiten, wie x zu stack.Peek() in Beziehung steht:
 \begin{itemize}
@@ -66,16 +65,15 @@ Es gibt drei Möglichkeiten, wie x zu stack.Peek() in Beziehung steht:
 \item er hat die gleiche Stufennummer, dann ist x ein Geschwisterknoten von stack.Peek().
 \item er hat eine kleinere Stufennummer, dann ist x ein Kind eines Vorfahren von stack.Peek(). Der richtige Elternknoten für x muss erst noch gefunden werden.
 \end{itemize}
-Im Fall 1 wird x für weitere Verarbeitung auf den Stack gepusht.
 
+Im Fall 1 gibt es vielleicht einen Baum unterhalb von x. x wird auf den Stack gepusht.
 
-Fall 2 und 3 können gleich behandelt werden. Dass x kein Kindknoten von ioPeek() ist, bedeutet, dass stack.Peek() keine weiteren Kinder hat. stack.Peek() wird vom Stack gepoppt und (dem neuen) stack.Peek() als Kind hinzugefügt. Der Ablauf wird solange wiederholt, bis der richtige Elternknoten für x gefunden wurde.
+Fall 2 und 3 können gleich behandelt werden. Dass x kein Kindknoten von stack.Peek() ist, bedeutet, dass stack.Peek() keine weiteren Kinder hat und der Baum unterhalb von stack.Peek() vollständig ist. StackTop wird vom Stack gepoppt und (dem neuen) StackTop repeatCount mal als Kind hinzugefügt. Der Ablauf wird solange wiederholt, bis der richtige Elternknoten für x gefunden wurde.
 Danach wird x (genau wie in Fall 1) auf den Stack gepusht.
 
-Der Ablauf geht oben weiter mit dem Lesen der nächsten Zeile.
+Der Ablauf geht oben weiter mit der Verarbeitung der nächsten Node.
 
-
-Nachdem alle Zeilen gelesen wurden, werden die auf dem Stack verbliebenen Elemente einander als Kinder hinzugefügt, bis der Stack nur noch den Wurzelknoten enhält. Der Wurzelknoten wird zurückgegeben.
+Nachdem alle Nodes der Liste durchgegangen wurden, können noch Nodes auf dem Stack liegen. Genau wie in Fall 2/3 wird StackTop vom Stack gepoppt und dem neuen StackTop als Kind hinzugefügt bis der Stack leer ist oder nur noch den Wurzelknoten enthält. Der Wurzelknoten wird zurückgegeben.
 
 
 \subsubsection{Zuweisen der Werte aus dem Datenstrom}

@@ -1,4 +1,4 @@
-% !TEX root = ../Projektdokumentation.tex
+c vb% !TEX root = ../Projektdokumentation.tex
 \section{Entwurfsphase} 
 \label{sec:Entwurfsphase}
 
@@ -11,13 +11,13 @@ Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix bisher einge
 
 \subsection{Aufbau der Schemadateien}
 \label{sec:AufbauSchemas}
-Eine Zeile eines 1920Schemas enthält entweder eine Variablendeklaration oder Zusatzinformationen zum Schema. Zusatzinformationen sind für 1920Parser nicht relevant und werden ignoriert.
+Eine Zeile eines 1920Schemas enthält entweder eine Variablendeklaration oder Metainformationen zum Schema. Die Metainformationen sind für 1920Parser nicht relevant und werden ignoriert.
 
-Variablendeklarations-Zeilen haben immer Angaben zu Stufennummer und Variablennamen.
+Variablendeklarations-Zeilen sind gekennzeichnet durch Angaben zu Stufennummer und Variablennamen.
 Eine Variable kann entweder eine Gruppen- oder eine Wertvariable sein.
-Wertvariablen haben Angaben zu Typ (X, N oder P) und eine Längenangabe, wie viele Bytes ihnen zugewiesen werden.
-Gruppenvariablen haben nie einen Typ und nie eine Länge. Sie enthalten weitere Gruppen- oder Wertvariablen als Kinder. Kinder haben immer eine größere Stufennummer als ihre Eltern.
-Sowol Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen (default ist 1); außerdem haben sie eine Redefine-Angabe, ob sie die gleichen Bytes verwenden wie ihr vorhergehender Geschwister\footnote{Geschwister haben die gleichen Stufennummern und die gleiche Elternvariable}.
+Wertvariablen haben einen Typ (C, X, N oder P) und eine Längenangabe, wie viele Bytes ihnen zugewiesen werden.
+Gruppenvariablen haben nie einen Typ und nie eine Länge. Ihnen sind weitere Gruppen- oder Wertvariablen als Kinder untergeordnet. Kinder haben immer eine größere Stufennummer als ihre Eltern.
+Sowol Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen (default ist 1); außerdem haben sie eine Redefine-Angabe, ob sie die gleichen Bytes verwenden wie ihr vorhergehender Geschwister\footnote{Geschwister haben die gleichen Eltern}.
 
 
 \subsection{Architekturdesign}
@@ -32,7 +32,7 @@ Nachdem als Programmiersprache C\# feststand, kamen für die Benutzeroberfläche
 \label{sec:BenutzeroberflaecheZergliedern}
 
 
-Zunächst wurden einfach drei RichTextBoxes zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede diese TextBoxen bekam eine Überschrift . Da die Schemadateien gewöhnlich formatiert sind (gleiche Stufennummern stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Da das Ergebnis für den Benutzer von größerem Interesse ist als Datenstrom und Schema, bekam es die doppelte Größe.
+Zunächst wurden drei TextBoxen zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede dieser TextBoxen bekam als Überschrift ein Label (Datenstrom, Schema und Ergebnis). Da die Schemadateien fast immer formatiert sind (gleiche Eigenschaften stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Das Ergebnis-Textfeld bekam aufgrund seiner Bedeutung die doppelte Größe.
 
 \subsubsection{Zweite Iteration: Schema speichern}
 \label{BenutzeroberflaecheSpeichern}
