@@ -1,25 +1,14 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
-Zuerst legte der Autor ein neues SVN-Repository für sein Programm an.
-Die Implementierung begann mit dem Anlegen eines neuen Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) in SVN und dem Erstellen einer neuen Solution in Microsoft Visual Studio 2010. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
+Die Implementierung begann mit dem Anlegen eines neuen Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) in SVN und dem Erstellen einer neuen Solution in Microsoft Visual Studio Professional 2010 mit einem C\# Winforms Projekt. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
 
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
-Die hierarchische Gliederung der Schemavariablen wird im Programm durch eine Baumstruktur abgebildet. Schemavariablen können Gruppen- oder Wertevariablen sein, Entsprechend gibt es im Programm die Klassen GroupNode und ValueNode. Die  beiden Klassen haben gemeinsamen Attribute und Methoden, unter anderem
-\begin{itemize}
-\item Level
-\item VarName
-\item RepeatCount
-\item RepeatIndex
-\item Comment
-\item AssignValue()
-\item ToString()
-\end{itemize}. Diese wurden in der Klasse AbstractNode definiert und von Group- und ValueNode geerbt.
+Für Gruppen- und Wertevariablen wurden die beiden Klassen GroupNode und ValueNode erstellt. Die gemeinsamen Attribute und Methoden wurden in der Klasse AbstractNode definiert, von der GroupNode und ValueNode erben.
 GroupNodes erhielten ein Attribut children vom Typ List<AbstractNode> und können so wiederum auf weitere GroupNodes verweisen (und diese auch wieder). Dadurch kann eine beliebig tief verschachtelbare Baumstruktur repräsentiert werden. 
 
-
-Die Methode, die das Schema parst, soll den Wurzelknoten als GroupNode zurückgeben. Daher musste die Implementierung mit den Klassen der Baumstruktur (AbstractNode, GroupNode und ValueNode) begonnen werden. Zum Schreiben von Unit-Tests wurde eine Methode zum vergleichen der Ergebnisse benötigt. Dazu wurden die Methoden Equals() und getHashCode() der Klasse object überschrieben. Danach wurde die Baumstruktur gemockt und die Methoden AssignValue() und ToString() implementiert.
+Die Methode zum Parsen eines Schemas passte in keine der bisherigen Klassen, sie kam in die Klasse Schema. Die Methode, die das Schema parst, soll den Wurzelknoten als GroupNode zurückgeben. Daher musste die Implementierung mit den Klassen der Baumstruktur (AbstractNode, GroupNode und ValueNode) begonnen werden. Zum Schreiben von Unit-Tests wurde eine Methode zum vergleichen der Ergebnisse benötigt. Dazu wurden die Methoden Equals() und getHashCode() der Klasse object überschrieben. Danach wurde die Baumstruktur gemockt und die Methoden AssignValue() und ToString() implementiert.
 
 Danach wurde die Methode Parse() der Klasse Schema geschrieben. Hier war ein Problem, dass gleichzeitig 
 
@@ -52,8 +41,6 @@ Eine Schwierigkeit des Algorithmus war, dass zu jedem Zeitpunkt in mehrere Richt
 Hier hat der Autor einige Zeit verbraucht mit rekursiven Ideen.
 
 Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten. x wird mit seinem
-
-
 
 
 

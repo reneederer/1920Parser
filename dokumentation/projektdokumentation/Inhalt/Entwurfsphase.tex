@@ -4,75 +4,77 @@ c vb% !TEX root = ../Projektdokumentation.tex
 
 \subsection{Zielplattform}
 \label{sec:Zielplattform}
-Das Programm soll auf den Entwicklerrechnern der Phoenix laufen. Diese laufen mit  Intel i5 Prozessoren mit 4 GB Arbeitsspeicher und 32bit Versionen von Windows 7.
+Das Programm soll auf den Entwicklerrechnern der Phoenix laufen, auf denen  Windows 7 installiert ist.
+Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix eingesetzten Sprachen COBOL, C++ und C\# eingegrenzt. COBOL schied als Programmiersprache für ein Windows-Tool aus.
 
-
-Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix bisher eingesetzten Sprachen COBOL, C++ und C\# eingegrenzt. COBOL schied als Programmiersprache für ein Windows-Tool aus. Die Wahl fiel auf C\# (Garbage Collection, moderner GUI-Designer, expressiver als C++).
+Das Programm hätte auch in C++ mit Qt geschrieben werden können. Die hohe Performance, die C++ verspricht, wird für 1920Parser aber nicht wirklich benötigt und die Wahl fiel daher auf C\# aufgrund von dessen Garbage Collection, Linq und sehr gutem GUI-Designer.
 
 \subsection{Aufbau der Schemadateien}
 \label{sec:AufbauSchemas}
-Eine Zeile eines 1920Schemas enthält entweder eine Variablendeklaration oder Metainformationen zum Schema. Die Metainformationen sind für 1920Parser nicht relevant und werden ignoriert.
+Zur Analyse des Aufbaus der 1920Schemas fragte der Autor Herrn Kemmer nach den Namen der 10 wichtigsten Schemadateien und ludt diese unter Verwendung von OpenText HostExplorer 2014 vom Mainframe herunter.
 
-Variablendeklarations-Zeilen sind gekennzeichnet durch Angaben zu Stufennummer und Variablennamen.
+Da 1920Schemas zentral für das Projekt sind, wird ihr Aufbau hier kurz dargestellt.
+Eine Zeile eines 1920Schemas enthält entweder eine Variablendeklaration oder Metainformationen zum Schema. Die Metainformationen sind für 1920Parser nicht relevant und werden ignoriert.
+Variablenzeilen haben Angaben zu diesen Feldern:
+\begin{itemize}
+\item Redefiniert diese Variable die gleichen Bytes wie eine frühere
+\item Levelnummer
+\item Variablenname
+\item Typ
+\item Anzahl der definierten Bytes
+\item Wiederholzahl
+\item Kommentar
+\item 
+\end{itemize}
+Alle Felder sind durch Leerzeichen getreent.
+Variablenzeilen haben nicht-leere Angaben zu Levelnummer und Variablenname, alle anderen Felder können leer sein\footnote{das bedeutet, alle Zeilen, die nicht mit einer Zahl, gefolgt von Leerzeichen und Buchstaben beginnen, werden ignoriert}
+Die Variablen von 1920Schemas sind anhand ihrer Levelnummer hierarchisch gegliedert. Eine Schemavariable mit größerer Stufennummer als die vorhergehende ist dessen Kind.
 Eine Variable kann entweder eine Gruppen- oder eine Wertvariable sein.
 Wertvariablen haben einen Typ (C, X, N oder P) und eine Längenangabe, wie viele Bytes ihnen zugewiesen werden.
-Gruppenvariablen haben nie einen Typ und nie eine Länge. Ihnen sind weitere Gruppen- oder Wertvariablen als Kinder untergeordnet. Kinder haben immer eine größere Stufennummer als ihre Eltern.
-Sowol Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen (default ist 1); außerdem haben sie eine Redefine-Angabe, ob sie die gleichen Bytes verwenden wie ihr vorhergehender Geschwister\footnote{Geschwister haben die gleichen Eltern}.
+Gruppenvariablen haben nie einen Typ und nie eine Länge. Ihnen sind weitere Gruppen- oder Wertvariablen als Kinder untergeordnet.
+Sowohl Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen (default ist 1). Wenn sich Gruppenvariablen wiederholen, wiederholt sich auch die gesamte Variablen-Hierarchie unterhalb von ihnen.
 
-Viele Datenströme enthalten in den ersten 4 Bytes Angaben zum Schema, das sie zergliedert.
+Viele Schemas definieren als erste Variable eine Variable für ihren Schemanamen, so dass viele Datenströme mit dem Namen des zu verwendenden Schemas beginnen.
 
+Beim Treffen von Annahmen über den Aufbau der Schemazeilen ergaben sich unerwartet Schwierigkeiten mit dem Feld Kommentar. In der Schemadatei IOVK92 wurde eine Variable gefunden, die keine Wiederholzahl hatte, aber ein Kommentar-Feld, das mit "0" begann. Es musste eine Regel festgelegt werden, damit diese 0 nicht als Wiederholzahl interpretiert wird, sondern als Anfang des Kommentars.
+
+Nach Rücksprache mit Herrn Kemmer wurde auf dessen Vorschlag und nach erneuter Prüfung der Schemadateien festgelegt, dass der Kommentar mit mindestens 2 Leerzeichen vom vorhergehenden Feld getrennt sein muss.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
-GUI und Anwendungslogik wurden getrennt.
+Die Anwendungslogik wurde von der GUI getrennt, indem sie in eigene Klassen kam (Schema, AbstractNode).
 
 
 \subsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
-Nachdem als Programmiersprache C\# feststand, kamen für die Benutzeroberfläche nur  Plattformen aus dem .NET-Framework in Frage. Die Wahl zwischen ASP.NET, WPF und Winforms fiel schließlich auf Winforms. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden (Benutzerverwaltung usw.). WPF bietet mehr Möglichkeiten für Databindings und große Kontrolle über das Design als Winforms, dagegen ist Winforms einfacher. Die Wahl fiel auf Winforms.
+Nachdem als Programmiersprache C\# feststand, kamen für die Benutzeroberfläche nur  Plattformen aus dem .NET-Framework in Frage. Die Wahl zwischen ASP.NET, WPF und Winforms fiel schließlich auf Winforms. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden gewesen, vor allem für die Benutzerverwaltung. WPF und Winforms waren beide gut geeignet, der Autor ist aber erfahrener mit Winforms. Er entschied sich daher für Winforms.
 
 \subsubsection{Erste Iteration: Datenstrom zergliedert anzeigen}
 \label{sec:BenutzeroberflaecheZergliedern}
-Zunächst wurden drei TextBoxen zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede dieser TextBoxen bekam als Überschrift ein Label (Datenstrom, Schema und Ergebnis). Da die Schemadateien fast immer formatiert sind (gleiche Eigenschaften stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Das Ergebnis-Textfeld bekam aufgrund seiner Bedeutung die doppelte Größe.
+Zunächst wurden drei TextBoxen zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede dieser TextBoxen bekam als Überschrift ein Label (Datenstrom, Schema und Ergebnis). Da die Schemadateien fast immer formatiert sind (gleiche Eigenschaften stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Das Ergebnis-Textfeld bekam aufgrund seiner höheren Bedeutung die doppelte Größe.
 
 \subsubsection{Zweite Iteration: Schema speichern}
 \label{BenutzeroberflaecheSpeichern}
-Nachdem der Anwendungsfall "Datenstrom zergliedert anzeigen" erledigt war, wurde ein Bedienkonzept für die Kann-Anwendungsfälle
+Nachdem der Anwendungsfall "Datenstrom zergliedert anzeigen" erledigt war, wurde ein Bedienkonzept für die Anwendungsfälle
 \begin{itemize}
 \item Schema speichern
 \item Datenstrom importieren
 \item Variablen ausblenden
 \item Schema automatisch auswählen
 \end{itemize}
-entwickelt. Um die Benutzeroberfläche übersichtlich zu halten, 
+entwickelt. Im Gegensatz zum Hauptanwendungsfall "Datenstrom zergliedern", wird die Funktionalität dieser Anwendungsfälle seltener gebraucht. Um die Benutzeroberfläche übersichtlich zu halten, entschied sich der Autor, ein Menü anzulegen, mit Einträgen für jeden dieser Anwendungsfälle.
 
-Das Phoenix-Icon wurde als Programm-Icon gewählt und das Firmen-Logo rechts in der Menüleiste eingefügt.
-
-\begin{itemize}
-	\item Entscheidung für die gewählte Benutzeroberfläche (\zB GUI, Webinterface).
-	\item Beschreibung des visuellen Entwurfs der konkreten Oberfläche (\zB Mockups, Menüführung).
-	\item \Ggfs Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
-\end{itemize}kkkkkkkkkkkkkkkkkkk
-
-
-
-\paragraph{Beispiel}
-Beispielentwürfe finden sich im \Anhang{app:Entwuerfe}.
-
+Das Phoenix-Icon wurde als Programmsymbol gewählt und das Firmenlogo von Phoenix rechts in der Menüleiste eingefügt.
 
 \subsection{XML-Datenmodell}
-Zur automatischen Auswahl eines Schemas wurde ein XML-Schema verwendet. Siehe Anhang.
+Um die Informationen zur automatischen Auswahl eines 1920Schemas\footnote{und eventuell einmal zum Ausblenden von Schemavariablen} zu speichern, wurde ein XML-Schema definiert. Mit dem Microsoft-Tool xsd.exe wurde daraus eine C\# Klasse generiert.
 
 \subsection{Geschäftslogik}
 \label{sec:Geschaeftslogik}
-Es wird eine Baumstruktur verwendet, um den hierarchischen Aufbau der Schemadateien im Programm zu repräsentieren.
-Zunächst wird das Schema in eine Baumstruktur überführt.
-Danach werden die Werte aus dem Datenstrom zugewiesen.
-
-
+Die hierarchische Aufbau von 1920Schemas lässt sich gut mit einer rekursiven Baumstruktur im Programm abbilden. Der Programmablauf beim Zergliedern eines Schemas muss dann zunächst das Schema in diese Baumstruktur überführen, danach können die Werte aus dem Datenstrom an die Knoten des Baumes zugewiesen werden.
 
 \paragraph{Beispiel}
-Der hierarchische Aufbau der Schemavariablen wird im Programm durch eine rekursive Baumstruktur repräsentiert. Dazu wurden die abstrakte Klasse AbstractNode erstellt. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode hat ein Attribut List<AbstractNode>, die auf seine KindKnoten verweist. 
+Für die Baumstruktur wurde die abstrakte Klasse AbstractNode erstellt. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode hat ein Attribut children vom Typ List<AbstractNode>, die auf seine KindKnoten verweist. GroupNode ist rekursiv definiert, weil sie wiederum GroupNodes als Kindknoten haben kann.
 
 Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen untereinander darstellt kann im \Anhang{app:Klassendiagramm} eingesehen werden.
 
@@ -87,11 +89,8 @@ Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen unt
 
 \subsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
-Es wurde testgetrieben entwickelt.
-\begin{itemize}
-	\item Welche Maßnahmen werden ergriffen, um die Qualität des Projektergebnisses (siehe Kapitel~\ref{sec:Qualitaetsanforderungen}: \nameref{sec:Qualitaetsanforderungen}) zu sichern (\zB automatische Tests, Anwendertests)?
-	\item \Ggfs Definition von Testfällen und deren Durchführung (durch Programme/Benutzer).
-\end{itemize}
+Das korrekte Parsen des 1920Schemas und die richtige Zergliederung des Datenstroms sind zentral für 1920Parser. Um sicherzugehen, dass dieser Programmteil funktioniert, und weil sich der Autor Zeitersparnis durch schnelle Rückmeldung erhoffte, wurden daher die Methoden der Klassen Schema, Abstract-, Group- und ValuNode testgetrieben entwickelt.
+Die Programmfunktionen zum Speichern von Schemas und zur automatischen Auswahl eines Schemas sind nicht so zentral, diese wurden von Hand getestet.
 
 
 \subsection{Pflichtenheft/Datenverarbeitungskonzept}

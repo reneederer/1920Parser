@@ -39,10 +39,10 @@
 \pdfbookmark[1]{Deckblatt}{deckblatt}
 \input{Deckblatt}
 \cleardoublepage
-
+\def \renePage {IV}
 % Preface --------------------------------------------------------------------
 \phantomsection
-\pagenumbering{arabic}
+\pagenumbering{Roman}
 \pdfbookmark[1]{Inhaltsverzeichnis}{inhalt}
 \tableofcontents
 \cleardoublepage
@@ -68,7 +68,8 @@
 \clearpage
 
 % Inhalt ---------------------------------------------------------------------
-%\pagenumbering{arabic}
+\pagenumbering{arabic}
+\def \renePage {40}
 \input{Inhalt.tex}
 
 % Literatur ------------------------------------------------------------------
@@ -79,9 +80,10 @@
 \input{Erklaerung}
 
 % Anhang ---------------------------------------------------------------------
+\def \renePage {iiix}
 \clearpage
 \appendix
-%\pagenumbering{roman}
+\pagenumbering{roman}
 \input{Anhang}
 
 \end{document}
