@@ -10,3 +10,16 @@ C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bi
 C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.dll
 C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.pdb
 C:\Users\rene.ederer\Desktop\abschlussprojekt\trunk\1920Parser\1920ParserTest\bin\Debug\schemas1.xml
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\phoenix.ico
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\phoenixLogo.png
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\schemas1.xml
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\1920ParserTest.dll
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\1920ParserTest.pdb
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\1920Parser.exe
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\1920Parser.pdb
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\1920Parser_Accessor.exe
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\bin\Debug\1920Parser_Accessor.pdb
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.csprojResolveAssemblyReference.cache
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.dll
+C:\Users\rene\dev\csharp\1920Parser\1920Parser\1920ParserTest\obj\Debug\1920ParserTest.pdb

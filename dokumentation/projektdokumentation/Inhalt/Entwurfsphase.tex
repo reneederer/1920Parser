@@ -19,6 +19,8 @@ Wertvariablen haben einen Typ (C, X, N oder P) und eine Längenangabe, wie viele
 Gruppenvariablen haben nie einen Typ und nie eine Länge. Ihnen sind weitere Gruppen- oder Wertvariablen als Kinder untergeordnet. Kinder haben immer eine größere Stufennummer als ihre Eltern.
 Sowol Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen (default ist 1); außerdem haben sie eine Redefine-Angabe, ob sie die gleichen Bytes verwenden wie ihr vorhergehender Geschwister\footnote{Geschwister haben die gleichen Eltern}.
 
+Viele Datenströme enthalten in den ersten 4 Bytes Angaben zum Schema, das sie zergliedert.
+
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
@@ -28,10 +30,9 @@ GUI und Anwendungslogik wurden getrennt.
 \subsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
 Nachdem als Programmiersprache C\# feststand, kamen für die Benutzeroberfläche nur  Plattformen aus dem .NET-Framework in Frage. Die Wahl zwischen ASP.NET, WPF und Winforms fiel schließlich auf Winforms. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden (Benutzerverwaltung usw.). WPF bietet mehr Möglichkeiten für Databindings und große Kontrolle über das Design als Winforms, dagegen ist Winforms einfacher. Die Wahl fiel auf Winforms.
+
 \subsubsection{Erste Iteration: Datenstrom zergliedert anzeigen}
 \label{sec:BenutzeroberflaecheZergliedern}
-
-
 Zunächst wurden drei TextBoxen zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede dieser TextBoxen bekam als Überschrift ein Label (Datenstrom, Schema und Ergebnis). Da die Schemadateien fast immer formatiert sind (gleiche Eigenschaften stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Das Ergebnis-Textfeld bekam aufgrund seiner Bedeutung die doppelte Größe.
 
 \subsubsection{Zweite Iteration: Schema speichern}
@@ -51,7 +52,7 @@ Das Phoenix-Icon wurde als Programm-Icon gewählt und das Firmen-Logo rechts in 
 	\item Entscheidung für die gewählte Benutzeroberfläche (\zB GUI, Webinterface).
 	\item Beschreibung des visuellen Entwurfs der konkreten Oberfläche (\zB Mockups, Menüführung).
 	\item \Ggfs Erläuterung von angewendeten Richtlinien zur Usability und Verweis auf Corporate Design.
-\end{itemize}
+\end{itemize}kkkkkkkkkkkkkkkkkkk
 
 
 
