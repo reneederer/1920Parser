@@ -1,19 +1,17 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Einleitung}
 \label{sec:Einleitung}
-Ausbildungsbetrieb ist die Phoenix Group IT GmbH.
-
 \subsection{Auftraggeber}
 \label{sec:Auftraggeber}
 Die Phoenix Group IT GmbH ist der IT-Dienstleister des Pharmagroßhändlers Phoenix Pharmahandel GmbH \& Co. KG. Phoenix Pharmahandel ist mit seinen Tochtergesellschaften unter dem Namen ``Phoenix Group'' europaweit tätig mit etwa 30000 Mitarbeitern. Haupttätikeiten der Phoenix Group ist die Belieferung von Apotheken mit Medikamenten.
 
-Ausbildungsbetrieb Autors und Auftraggeber des Projektes ist die Phoenix Group IT GmbH. Sie hat etwa 200 Mitarbeiter und unterstützt Phoenix Pharmahandel durch die Bereitstellung von IT-Dienstleistungen.
+Ausbildungsbetrieb des Autors und Auftraggeber des Projektes ist die Phoenix Group IT GmbH. Sie hat etwa 200 Mitarbeiter und unterstützt Phoenix Pharmahandel durch die Bereitstellung von IT-Dienstleistungen.
 
 \subsection{Projektumfeld} 
 \label{sec:Projektumfeld}
-Phoenix hat für die Datenverarbeitung im Bereich Warehouse ein eigenes Dateiformat entwickelt, im Folgenden 1920Schema genannt. 1920Schemas sind Schnittstellendateien in denen Variablen definiert werden. Anhand von 1920Schemas werden Datenströme zergliedert. 1920Schemas dienen als Vorlage für Copybooks\footnote{COBOL-Datei, in der eine Variablenstruktur definiert wird}, als Schnittstelle zu SSORT\footnote{IBM-Programm, zeigt Copybooks an} und als Schnittstelle um Daten vom Mainframe zum Lagerrechner zu schicken, und dort in Logdateien zu speichern.
+Phoenix verwendet für die Datenverarbeitung im Bereich Lager ein firmeneigenes Dateiformat, im Folgenden 1920Schema genannt. Anhand von 1920Schemas werden Datenströme zergliedert. 1920Schemas dienen als Vorlage für Copybooks\footnote{COBOL-Datei, in der eine Variablenstruktur definiert wird}, als Schnittstelle zu SSORT\footnote{IBM-Programm, zeigt Copybooks an} und um Daten vom Mainframe zum Lagerrechner zu schicken und auf diesem in Logdateien zu speichern.
 
-1920Schemas beschreiben einen Satz hierarchisch gegliederter Variablen, und für jede Variable deren Typ und Größe in Bytes. Datenströme von typischerweise 1920 Bytes\footnote{das Terminal Window ist 24 Zeilen * 80 Spalten groß} werden anhand der Schemas zergliedert und erhalten so eine Bedeutung. Phoenix nutzt Dutzende verschiedene 1920Schemas für die Datenverarbeitung, regelmäßig arbeiten die Entwickler aber nur mit etwa 10.
+1920Schemas beschreiben einen Satz hierarchisch gegliederter Variablen, und für jede Variable deren Typ und Größe in Bytes. Datenströme von typischerweise 1920 Bytes\footnote{das Terminal Window ist 24 Zeilen * 80 Spalten groß und fasst 1920 Zeichen} werden anhand der Schemas zergliedert und erhalten so eine Bedeutung. Phoenix nutzt Dutzende verschiedene 1920Schemas für die Datenverarbeitung, regelmäßig arbeiten die Entwickler aber nur mit etwa 10.
 
 \subsection{Projektziel} 
 \label{sec:Projektziel}

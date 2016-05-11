@@ -1,24 +1,27 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Implementierungsphase} 
 \label{sec:Implementierungsphase}
-Die Implementierung begann mit dem Anlegen eines neuen Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) in SVN und dem Erstellen einer neuen Solution in Microsoft Visual Studio Professional 2010 mit einem C\# Winforms Projekt. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
+Die Implementierung begann mit dem Anlegen eines neuen SVN-Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) und dem Erstellen einer neuen Solution in Microsoft Visual Studio Professional 2010 mit einem C\# Winforms Projekt. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
 
 \subsection{Implementierung der Datenstrukturen}
 \label{sec:ImplementierungDatenstrukturen}
-Für Gruppen- und Wertevariablen wurden die beiden Klassen GroupNode und ValueNode erstellt. Die gemeinsamen Attribute und Methoden wurden in der Klasse AbstractNode definiert, von der GroupNode und ValueNode erben.
-GroupNodes erhielten ein Attribut children vom Typ List<AbstractNode> und können so wiederum auf weitere GroupNodes verweisen (und diese auch wieder). Dadurch kann eine beliebig tief verschachtelbare Baumstruktur repräsentiert werden. 
+Für Gruppen- und Wertevariablen wurden die beiden Klassen GroupNode und ValueNode erstellt. GroupNode soll eine Liste mit Referenzen auf seine Kindknoten (vom Typ GroupNode oder vom Typ ValueNode) bekommen. Damit beide Klassenarten in diese Liste aufgenommen werden können, müssen sie das gleiche Interface implementieren oder von der gleichen Klasse erben. Beide Klassen haben einige Attribute gemeinsam (Level, Variablenname, Kommentar), deshalb erben sie von der abstrakten Oberklasse AbstractNode.
 
-Die Methode zum Parsen eines Schemas passte in keine der bisherigen Klassen, sie kam in die Klasse Schema. Die Methode, die das Schema parst, soll den Wurzelknoten als GroupNode zurückgeben. Daher musste die Implementierung mit den Klassen der Baumstruktur (AbstractNode, GroupNode und ValueNode) begonnen werden. Zum Schreiben von Unit-Tests wurde eine Methode zum vergleichen der Ergebnisse benötigt. Dazu wurden die Methoden Equals() und getHashCode() der Klasse object überschrieben. Danach wurde die Baumstruktur gemockt und die Methoden AssignValue() und ToString() implementiert.
+Diese Klassenstruktur kann einen beliebig tief verschachtelbaren AbstractNode-Baum darstellen, weil die Kindknoten-Liste von GroupNode wiederum GroupNodes enthalten kann (und diese wieder, und deren wieder, und so weiter).
+
+Die Methode zum Parsen eines Schemas passte in keine der Klassen, sie kam in eine eigene Klasse namens Schema. Die Methode, die das Schema parst, soll den Wurzelknoten als GroupNode zurückgeben. Daher musste die Implementierung mit den Klassen der Baumstruktur (AbstractNode, GroupNode und ValueNode) begonnen werden. Zum Schreiben von Unit-Tests wurde eine Methode zum vergleichen der Ergebnisse benötigt. Dazu wurden die Methoden Equals() und getHashCode() der Klasse object überschrieben. Danach wurde die Baumstruktur gemockt und die Methoden AssignValue() und ToString() implementiert.
 
 Danach wurde die Methode Parse() der Klasse Schema geschrieben. Hier war ein Problem, dass gleichzeitig 
 
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:ImplementierungBenutzeroberflaeche}
+Visual Studio erstellte mit Neuanlage des Winform-Projekts automatisch eine Form-Klasse, die ein Fenster darstellt.
 Die \ac{GUI} muss dem Benutzer Funktionalität bereitstellen, damit er Schema und Datenstrom angeben kann und sie muss den zergliederten Datenstrom anzeigen können.
 Um diese Funktionalitäten zu bieten werden 3 Textboxen angezeigt, jeweils mit einem Label als Überschrift. Auf ein Menü wurde zunächst verzichtet.
 
 Die Angaben in den Schemadateien sind formatiert, gleiche Angaben wie Level oder Variablenname stehen untereinander. Damit die Angaben in der GUI auch untereinander stehen, wurde für das Schema-Textfeld ein Monospace-Font verwendet (Courier New). Um das Erscheinungsbild einheitlich zu halten, zeigen auch die Textfelder für Datenstrom und Ergebnis Ihren Inhalt mit diesem Zeichensatz an.
+All das erforderte kein Programmieren, diese Einstellungen konnten durch Klicks und setzen von Attributen im GUI-Designer von Visual Studio gemacht werden.
 \paragraph{Beispiel}
 Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich im \Anhang{Screenshots}.
 
@@ -27,10 +30,15 @@ Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich
 \label{sec:ImplementierungGeschaeftslogik}
 
 \subsubsection{Grundschema der rekursive Methoden von AbstractNode/GroupNode}
-Group- und ValueNode erben von AbstractNode Methoden. GroupNode definiert definiert diese Methoden rekursiv. Alle diese Methoden funktionieren nach dem gleichen Prinzip:
+Group- und ValueNode erben von AbstractNode Methoden. Die Implementierung all dieser Methoden ähnelt sich, sie folgt für Group- und ValueNodes diesem Ablauf:
 
-GroupNode ruft für jedes seiner Kinder die gleiche Methode erneut auf (Rekursion). Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert und dieser zurückgegeben.
-Eine ValueNode hat keine Kinder und kann direkt ein Wert zurückgeben. Bei ValueNodes und GroupNodes ohne Kindern enden die Rekursionen.
+ValueNode macht eine Aktion und gibt danach einen Wert zurück.
+
+GroupNode macht eine Aktion und ruft danach für jedes seiner Kinder die gleiche Methode erneut auf (Rekursion). Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert und dieser zurückgegeben.
+
+Die von einer GroupNode angestoßenen Rekursionen enden bei ValueNodes und GroupNodes ohne Kinderknoten.
+
+Es ist kein Zufall, dass alle Methoden rekursiv sind, denn auch die Klassenstruktur ist rekursiv.
 
 
 
@@ -40,7 +48,9 @@ Da der Baum einen einzigen Wurzelknoten\footnote{Knoten, der Vorfahr von allen a
 Eine Schwierigkeit des Algorithmus war, dass zu jedem Zeitpunkt in mehrere Richtungen gegangen werden muss. Zum einen muss die nächste Zeile des Schemas in einen Knoten verwandelt werden. Ein Knoten kann sich aber wiederholen.
 Hier hat der Autor einige Zeit verbraucht mit rekursiven Ideen.
 
-Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten. x wird mit seinem
+Zur Lösung des Problems führte die Idee, einen Knoten nach dessen Erstellung zu Kopieren.
+
+Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten.
 
 
 

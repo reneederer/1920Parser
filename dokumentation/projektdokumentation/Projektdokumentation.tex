@@ -30,8 +30,8 @@
 
 \phantomsection
 \thispagestyle{empty}
-\pdfbookmark[1]{Eidesstattliche Erklärung}{ihkdeckblatt}
-\includegraphicsKeepAspectRatio{DeckblattIHK}{1}
+%\pdfbookmark[1]{Eidesstattliche Erklärung}{ihkdeckblatt}
+%\includegraphicsKeepAspectRatio{DeckblattIHK}{1}
 \cleardoublepage
 
 \phantomsection
@@ -39,11 +39,12 @@
 \pdfbookmark[1]{Deckblatt}{deckblatt}
 \input{Deckblatt}
 \cleardoublepage
-\def \renePage {IV}
 % Preface --------------------------------------------------------------------
 \phantomsection
 \pagenumbering{Roman}
+\def \renePage {I}
 \pdfbookmark[1]{Inhaltsverzeichnis}{inhalt}
+\addcontentsline{toc}{section}{Inhaltsverzeichnis}
 \tableofcontents
 \cleardoublepage
 
@@ -69,7 +70,7 @@
 
 % Inhalt ---------------------------------------------------------------------
 \pagenumbering{arabic}
-\def \renePage {40}
+\def \renePage {1}
 \input{Inhalt.tex}
 
 % Literatur ------------------------------------------------------------------
@@ -80,10 +81,10 @@
 \input{Erklaerung}
 
 % Anhang ---------------------------------------------------------------------
-\def \renePage {iiix}
 \clearpage
 \appendix
 \pagenumbering{roman}
+\def \renePage {i}
 \input{Anhang}
 
 \end{document}

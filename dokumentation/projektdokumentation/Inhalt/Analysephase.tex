@@ -1,22 +1,19 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Analysephase} 
 \label{sec:Analysephase}
-
+Zur Analyse der gegenwärtigen Situation verabredete der Autor einen Termin mit Herrn Kemmer. Der Autor bereitete eine Liste mit Fragen vor, die er Herrn Kemmer stellte. Hier erfragte der Autor z. B. unter welchen Umständen genau das Programm benötigt wird, woher die Schemas stammen, wofür sie verwendet werden, wie oft sie verwendet werden, von wie vielen, wie hoch er die Zeitersparnis schätzt, wie die Entwickler bisher arbeiten ohne das Programm. Der Autor erfragte genau die Anforderungen und ordnete sie in Muss-, Soll-, und Kann-Kriterien.
 
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
-
-
+Die Entwickler der Phoenix verwenden Schemadateien, in denen Variablen definiert werden, als Schnittstelle zu anderen Programmen. Datenströme werden diesen Schemas entsprechend zergliedert. Die Entwickler müssen bei Kundenreklamationen und Programmänderungen die richtige Anzahl Bytes im Datenstrom abzählen, um ihre Bedeutung herauszufinden.
 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
-Das Projekt verspricht nicht nur eine deutliche Zeitersparnis für die COBOL-Programmierer, sondern auch eine verringerte Fehlerquote.
-
+Durch 1920Parser nimmt den Entwicklern das bisher notwendige Abzählen von Zeichen in Schema und Datenstrom ab. Das Projekt verspricht dadurch nicht nur Zeitersparnis, sondern verhindert auch wirkungsvoll Zählfehler.
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
-Die Anforderungen sind sehr speziell, es ist daher unwahrscheinlich, dass es ein fertiges Programm gibt, das die Anforderungen erfüllt. Das Produkt wird daher selbst erstellt.
-
+Die Anforderungen sind so speziell, dass fast auszuschließen ist, dass es außerhalb von Phoenix ein Programm gibt, das die Anforderungen erfüllt. Zu bemerken ist aber, dass der Mainframe von Phoenix mit Schemadateien arbeitet und vielleicht Ähnliches leistet, was das zu erstellende Programm leisten soll. Der Autor fragte deshalb bei seinem Auftraggeber nach, ob der Mainframe-Quelltext anzusehen ist. Herr Kemmer antwortete, dass das zwar möglich, aber sehr aufwändig sei. Da nicht sicher war, dass die Ansicht des Quelltextes die Programmerstellung erleichtern würde, wurde auf eine weitere Verfolgung dieser Idee verzichtet. Es wurde entschieden, das Programm selbst neu zu schreiben.
 
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
@@ -24,7 +21,7 @@ Im Rahmen des Projektes fallen Kosten für Entwicklung und Abnahmetest an.
 
 \paragraph{Beispielrechnung (verkürzt)}
 Die Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen.
-Der Projektersteller ist Umschüler und erhält von seinem Ausbildungsbetrieb keine Vergütung.
+Der Projektersteller ist Umschüler und erhält deshalb von seinem Ausbildungsbetrieb keine Vergütung.
 
 \begin{eqnarray}
 7,7 \mbox{ h/Tag} \cdot 220 \mbox{ Tage/Jahr} = 1694 \mbox{ h/Jahr}\\
@@ -41,15 +38,10 @@ Eine Aufstellung der Kosten befindet sich in Tabelle~\ref{tab:Kostenaufstellung}
 
 \subsubsection{Amortisationsdauer}
 \label{sec:Amortisationsdauer}
-\begin{itemize}
-	\item Welche monetären Vorteile bietet das Projekt (\zB Einsparung von Lizenzkosten, Arbeitszeitersparnis, bessere Usability, Korrektheit)?
-	\item Wann hat sich das Projekt amortisiert?
-\end{itemize}
-
-\paragraph{Beispielrechnung (verkürzt)}
-Bei einer Zeiteinsparung von 5 Minuten am Tag für jeden der 20 Anwender und 220 Arbeitstagen im Jahr ergibt sich eine gesamte Zeiteinsparung von 
+Es wird davon fausgegangen, dass ausschließlich die Entwickler der Abteilung Lager das Programm nutzen werden. Nach Einschätzung von Herrn Kemmer arbeitet die Hälfte der 20 Entwickler regelmäßig mit Schemadateien. Er schätzte weiter, dass das Programm jedem täglich 10 Minuten einsparen kann.
+Bei einer Einsparung von 10 Minuten am Tag für 10 Entwickler an 220 Arbeitstagen im Jahr ergibt sich eine gesamte Zeiteinsparung von 
 \begin{eqnarray}
-20 \cdot 220 \mbox{ Tage/Jahr} \cdot 5 \mbox{ min/Tag} = 22000 \mbox{ min/Jahr} \approx 366,67 \mbox{ h/Jahr} 
+10 \cdot 220 \mbox{ Tage/Jahr} \cdot 10 \mbox{ min/Tag} = 22000 \mbox{ min/Jahr} \approx 366,67 \mbox{ h/Jahr} 
 \end{eqnarray}
 
 Dadurch ergibt sich eine jährliche Einsparung von 
@@ -57,7 +49,7 @@ Dadurch ergibt sich eine jährliche Einsparung von
 366,67 \mbox{h} \cdot \eur{(23 + 12)}{\mbox{/h}} = \eur{12833,45}
 \end{eqnarray}
 
-Die Amortisationszeit beträgt also $\frac{\eur{1015,00}}{\eur{12833,45}\mbox{/Jahr}} \approx 0,08 \mbox{ Jahre} \approx 1 \mbox{ Monat}$.
+Die Amortisationsdauer beträgt also $\frac{\eur{1015,00}}{\eur{12833,45}\mbox{/Jahr}} \approx 0,08 \mbox{ Jahre} \approx 1 \mbox{ Monat}$.
 
 
 \subsection{Nutzwertanalyse}
@@ -72,17 +64,18 @@ Ein Beispiel für eine Entscheidungsmatrix findet sich in Kapitel~\ref{sec:Archi
 
 \subsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
-
-
-\paragraph{Beispiel}
-Ein Beispiel für ein Use Case-Diagramm findet sich im \Anhang{app:UseCase}.
+Zur Analyse der An
+Hauptanwendungsfall ist die Anzeige das Anzeigen eines anhand eines angegebenen Schemas zergliederten Datenstroms.
+Die Aufnahme der Anforderungen mit Herrn Kemmer ergab einige Wunschkriterien:
+Schemas stammen vom Mainframe oder aus Logdateien.
 
 
 \subsection{Qualitätsanforderungen}
 \label{sec:Qualitaetsanforderungen}
 Schemas müssen frei anggebbar sein und Datenströme richtig zergliedert werden.
-
-Performance ist nicht kritisch. Wünschenswert wäre eine Zergliederung des Datenstroms in unter 5 Sekunden. Die Benutzer sind Profis, es ist deshalb OK, auch mal den Benutzer eine XML-Datei editieren zu lassen.
+Beim Abnahmetest soll dies anhand der 10 wichtigsten Schemadateien überprüft werden.
+Performance ist (fast) egal, das Programm soll aber flüssig benutzbar sein (Zergliederung von Datenstrom und Anzeige in unter 5 Sekunden).
+Die Benutzer sind Profis. Es ist deshalb nicht unbedingt notwendig, für alles eine Eingabemaske bereitzustellen. Es ist genügt auch, wenn der Benutzer eine Einstellung durch Editieren einer Konfigurations-Datei ändern kann.
 
 
 \subsection{Lastenheft/Fachkonzept}
