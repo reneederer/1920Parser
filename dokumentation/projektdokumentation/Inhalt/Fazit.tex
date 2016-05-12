@@ -4,18 +4,10 @@
 
 \subsection{Soll-/Ist-Vergleich}
 \label{sec:SollIstVergleich}
-Die Musskriterien wurden vollständig umgesetzt. Die Projektvorgaben wurden vollständig umgesetzt.
-Zusätzlich wurde Funktionalität implementiert zum Speichern von Schemas und zur automatisierten Auswahl des zum Datenstrom passenden Schemas.
-Für den Anwendungsfall ''Datenstrom importieren`` wurde ein Bedienkonzept entwickelt, aber mit der Umsetzung nicht begonnen. 
-Ausblenden von Schemaknoten ist nicht implementiert.
+Wie gewünscht können im Programm Datenstrom und Schema frei angegeben werden. Das Ergebnis wird richtig angezeigt.
+Die Einschätzung zum Zeitverbrauch war zu pessimistisch. Insbesondere das Zuweisen der Werte aus dem Datenstrom und die Ausgabe des Baumes als String nahmen deutlich weniger Zeit in Anspruch, als ursprünglich geplant. So konnte noch der Anwendungsfall ``Schema speichern'' im Rahmen des Projektes umgesetzt werden.
+Der beim Abnahmetests aufgetretene Fehler wurde noch behoben. Herr Kemmer war mit dem Programm sehr zufrieden.
 
-
-\begin{itemize}
-	\item Wurde das Projektziel erreicht und wenn nein, warum nicht?
-	\item Ist der Auftraggeber mit dem Projektergebnis zufrieden und wenn nein, warum nicht?
-	\item Wurde die Projektplanung (Zeit, Kosten, Personal, Sachmittel) eingehalten oder haben sich Abweichungen ergeben und wenn ja, warum?
-	\item Hinweis: Die Projektplanung muss nicht strikt eingehalten werden. Vielmehr sind Abweichungen sogar als normal anzusehen. Sie müssen nur vernünftig begründet werden (\zB durch Änderungen an den Anforderungen, unter-/überschätzter Aufwand).
-\end{itemize}
 
 \paragraph{Beispiel (verkürzt)}
 Wie in Tabelle~\ref{tab:Vergleich} zu erkennen ist, konnte die Zeitplanung bis auf wenige Ausnahmen eingehalten werden.
@@ -37,6 +29,7 @@ Im Rahmen des Projektes wurden nicht alle Wunschkriterien erfüllt. Der Autor ho
 
 Einige Ideen für Weiterentwicklungen von 1920Parser sind:
 \begin{itemize}
+\item Anzeige von Leerzeichen als Tilde, sieht man einfach besser
 \item Ausblenden von angebbaren Knotenpunkten
 \item Implementierung des Anwendungsfalls ''Datenstrom importieren``
 \item Bei Klick auf eine Zeile im Schema wird zur entsprechenden Zeile im Ergebnis-Textfeld gesprungen.

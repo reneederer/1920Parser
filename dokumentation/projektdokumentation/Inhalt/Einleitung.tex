@@ -3,15 +3,16 @@
 \label{sec:Einleitung}
 \subsection{Auftraggeber}
 \label{sec:Auftraggeber}
-Die Phoenix Group IT GmbH ist der IT-Dienstleister des Pharmagroßhändlers Phoenix Pharmahandel GmbH \& Co. KG. Phoenix Pharmahandel ist mit seinen Tochtergesellschaften unter dem Namen ``Phoenix Group'' europaweit tätig mit etwa 30000 Mitarbeitern. Haupttätikeiten der Phoenix Group ist die Belieferung von Apotheken mit Medikamenten.
+Die Phoenix group IT GmbH ist der IT-Dienstleister des Pharmagroßhändlers Phoenix Pharmahandel GmbH \& Co. KG. Phoenix Pharmahandel ist mit seinen Tochtergesellschaften unter dem Namen ``Phoenix group'' europaweit tätig mit etwa 30000 Mitarbeitern. Haupttätikeit der Phoenix group ist die Belieferung von Apotheken mit Medikamenten.
 
-Ausbildungsbetrieb des Autors und Auftraggeber des Projektes ist die Phoenix Group IT GmbH. Sie hat etwa 200 Mitarbeiter und unterstützt Phoenix Pharmahandel durch die Bereitstellung von IT-Dienstleistungen.
+Ausbildungsbetrieb des Autors und Auftraggeber des Projektes ist die Phoenix group IT GmbH. Sie hat etwa 200 Mitarbeiter und unterstützt Phoenix Pharmahandel durch die Bereitstellung von IT-Dienstleistungen.
 
 \subsection{Projektumfeld} 
 \label{sec:Projektumfeld}
-Phoenix verwendet für die Datenverarbeitung im Bereich Lager ein firmeneigenes Dateiformat, im Folgenden 1920Schema genannt. Anhand von 1920Schemas werden Datenströme zergliedert. 1920Schemas dienen als Vorlage für Copybooks\footnote{COBOL-Datei, in der eine Variablenstruktur definiert wird}, als Schnittstelle zu SSORT\footnote{IBM-Programm, zeigt Copybooks an} und um Daten vom Mainframe zum Lagerrechner zu schicken und auf diesem in Logdateien zu speichern.
+Die Phoenix group IT ist weiter unterteilt in die Abteilungen Wareneingang, Warenausgang und Warenlager. Das Projekt findet in der Abteilung Warenlager statt, die als Programmiersprache überwiegend \ac{COBOL} einsetzt.
 
-1920Schemas beschreiben einen Satz hierarchisch gegliederter Variablen, und für jede Variable deren Typ und Größe in Bytes. Datenströme von typischerweise 1920 Bytes\footnote{das Terminal Window ist 24 Zeilen * 80 Spalten groß und fasst 1920 Zeichen} werden anhand der Schemas zergliedert und erhalten so eine Bedeutung. Phoenix nutzt Dutzende verschiedene 1920Schemas für die Datenverarbeitung, regelmäßig arbeiten die Entwickler aber nur mit etwa 10.
+
+Die Abteilung verwendet zur Datenverarbeitung ein firmeneigenes Dateiformat (1920Schema genannt), anhand dessen Datenströme zergliedert werden können. Die Datenströme erhalten erst dadurch ihre Bedeutung. 1920Schemas dienen als Schnittstelle, um Daten vom Mainframe zum Lagerrechner zu schicken und dort in Logdateien zu speichern, als Vorlage für Copybooks\footnote{COBOL-Datei, in der eine Variablenstruktur definiert wird} und als Schnittstelle zu SSORT\footnote{IBM-Programm, zeigt Copybooks an}.
 
 \subsection{Projektziel} 
 \label{sec:Projektziel}
@@ -28,14 +29,15 @@ Programmierer vor zwei Aufgaben:
 \item Datenstrom-Bytes einer Schemadatei-Variablen zuordnen.
 \end{itemize}
 
-Gegenwärtig zählen die Entwickler die passende Anzahl von Bytes in Schema und Datenstrom ab, einige erfahrene Entwickler erkennen bestimmte Werte in einem Datenstrom und müssen nicht beim ersten Byte anfangen zu zählenzählen.
+Gegenwärtig zählen die Entwickler die passende Anzahl von Bytes in Schema und Datenstrom ab, einige erfahrene Entwickler erkennen bestimmte Werte in einem Datenstrom und müssen nicht beim ersten Byte anfangen zu zählen.
+Das Zählen ist fehleranfällig und kostet die Entwickler Zeit. 
 
 
 \subsection{Projektschnittstellen}
 \label{sec:Projektschnittstellen}
-Benutzer des Projektes sind die Programmierer der Phoenix Group IT GmbH, hauptsächslich die der Abteilung Warehouse.
+Benutzer des Projektes sind die Programmierer der Phoenix Group IT GmbH, hauptsächlich aus der Abteilung Warenlager.
 
-1920Parser interagiert nicht unmittelbar mit anderen Systemen\footnote{der Anwendungsfall Schema vom Mainframe herunterladen wurde im Rahmen des Projektes nicht umgesetzt}. Vorgesehen ist, dass die Benutzer die notwendigen Angaben direkt in eine Eingabemaske hineinkopieren.
+1920Parser soll nicht unmittelbar mit anderen Systemen interagieren. Vorgesehen ist, dass die Benutzer die notwendigen Angaben direkt in eine Eingabemaske hineinkopieren.
 
-Die Projektgenehmigung und die Bereitstellung von Resourcen erfolgt durch die Ausbildende Frau Birgit Günther, die Projektbetreuung und die Abnahme des Programms durch Herrn Marco Kemmer. Herr Kemmer arbeitet in der Abteilung Warehouse als COBOL-Entwickler und wird 1920Parser auch selbst verwenden.
+Die Projektgenehmigung und die Bereitstellung von Resourcen erfolgt durch die Ausbildende Frau Birgit Günther, die Projektbetreuung und die Abnahme des Programms durch Herrn Marco Kemmer. Herr Kemmer arbeitet in der Abteilung Warenlager als COBOL-Entwickler und wird 1920Parser auch selbst verwenden.
 

@@ -28,6 +28,20 @@ Screenshots der Anwendung in der Entwicklungsphase mit Dummy-Daten befinden sich
 
 \subsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
+\subsubsection{Parsen des Schemas in eine Baumstruktur}
+\paragraph{Parsen einer Variablenzeile zu einer AbstractNode}
+Jede Variablenzeile im Schema wird zu einer Group- oder ValueNode. Dazu wurde in der Klasse Schema die Methode ParseLine geschrieben. Die Methode splittet die Angaben einer Variablenzeile mit Hilfe einer \ac{Regex} in ihre Felder auf. Die \ac{Regex} wurde auf \href{https://regex101.com}{https://regex101.com} angepasst und getestet, bis sie richtig funktionierte.
+
+\paragraph{Erstellen des Baumes}
+
+Eine Schwierigkeit des Algorithmus war, dass zu jedem Zeitpunkt in mehrere Richtungen gegangen werden muss. Zum einen muss die nächste Zeile des Schemas in einen Knoten verwandelt werden. Ein Knoten kann sich aber wiederholen.
+Hier hat der Autor einige Zeit verbraucht mit rekursiven Ideen.
+
+Zur Lösung des Problems führte die Idee, einen Knoten nach dessen Erstellung zu Kopieren.
+
+Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten.
+
+
 
 \subsubsection{Grundschema der rekursive Methoden von AbstractNode/GroupNode}
 Group- und ValueNode erben von AbstractNode Methoden. Die Implementierung all dieser Methoden ähnelt sich, sie folgt für Group- und ValueNodes diesem Ablauf:
@@ -39,20 +53,6 @@ GroupNode macht eine Aktion und ruft danach für jedes seiner Kinder die gleiche
 Die von einer GroupNode angestoßenen Rekursionen enden bei ValueNodes und GroupNodes ohne Kinderknoten.
 
 Es ist kein Zufall, dass alle Methoden rekursiv sind, denn auch die Klassenstruktur ist rekursiv.
-
-
-
-\subsubsection{Parsen des Schemas in eine Baumstruktur}
-Da der Baum einen einzigen Wurzelknoten\footnote{Knoten, der Vorfahr von allen anderen Knoten ist} haben soll, Schemas aber nicht zwingend einen haben, erhält der Baum einen künstlichen Wurzelknoten mit der Stufennummer 0. Würde man keinen solchen Knoten einführen, müsste statt mit GroupNode mit List<AbstractNode> als Rückgabewert gearbeitet werden, da es auf höchster Ebene mehrere Geschwister geben kann oder Wertvariablen ohne Eltern.
-
-Eine Schwierigkeit des Algorithmus war, dass zu jedem Zeitpunkt in mehrere Richtungen gegangen werden muss. Zum einen muss die nächste Zeile des Schemas in einen Knoten verwandelt werden. Ein Knoten kann sich aber wiederholen.
-Hier hat der Autor einige Zeit verbraucht mit rekursiven Ideen.
-
-Zur Lösung des Problems führte die Idee, einen Knoten nach dessen Erstellung zu Kopieren.
-
-Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten.
-
-
 
 \subsubsection{Zuweisen der Werte aus dem Datenstrom}
 Die Methode zum Zuweisen eines Wertes an einen Knoten hat den Prototypen 

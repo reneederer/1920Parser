@@ -1,15 +1,17 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Analysephase} 
 \label{sec:Analysephase}
-Zur Analyse der gegenwärtigen Situation verabredete der Autor einen Termin mit Herrn Kemmer. Der Autor bereitete eine Liste mit Fragen vor, die er Herrn Kemmer stellte. Hier erfragte der Autor z. B. unter welchen Umständen genau das Programm benötigt wird, woher die Schemas stammen, wofür sie verwendet werden, wie oft sie verwendet werden, von wie vielen, wie hoch er die Zeitersparnis schätzt, wie die Entwickler bisher arbeiten ohne das Programm. Der Autor erfragte genau die Anforderungen und ordnete sie in Muss-, Soll-, und Kann-Kriterien.
 
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
-Die Entwickler der Phoenix verwenden Schemadateien, in denen Variablen definiert werden, als Schnittstelle zu anderen Programmen. Datenströme werden diesen Schemas entsprechend zergliedert. Die Entwickler müssen bei Kundenreklamationen und Programmänderungen die richtige Anzahl Bytes im Datenstrom abzählen, um ihre Bedeutung herauszufinden.
+Die Ist-Analyse fand als Befragung von Herrn Kemmer statt. Herr Kemmer ist sowohl Projektbetreuer als auch potentieller Benutzer und Auftraggeber des Projektes. Der Autor bereitete eine Liste mit Fragen vor.
+
+Bei der Befragung stellte sich heraus, dass die Entwickler der Abteilung Lager bei Kundenreklamationen und Programmänderungen oft Logdateien analysieren müssen.welchen Umständen genau das Programm benötigt wird, woher die Schemas stamim Datenstrom verbringen men, wofür sie verwendet werden, wie oft sie verwendet werden, von wie vielen, wie hoch er die Zeitersparnis schätzt, wie die Entwickler bisher arbeiten ohne das Programm. Der Autor erfragte genau die Anforderungen und ordnete sie in Muss-, Soll-, und Kann-Kriterien.
+
 
 \subsection{Wirtschaftlichkeitsanalyse}
 \label{sec:Wirtschaftlichkeitsanalyse}
-Durch 1920Parser nimmt den Entwicklern das bisher notwendige Abzählen von Zeichen in Schema und Datenstrom ab. Das Projekt verspricht dadurch nicht nur Zeitersparnis, sondern verhindert auch wirkungsvoll Zählfehler.
+Das Programm soll den Entwicklern das bisher notwendige, fehleranfällige Abzählen von Zeichen in Schema und Datenstrom abnehmen. Das Projekt verspricht dadurch nicht nur, den Entwicklern Zeit zu sparen, sondern auch Zählfehler wirkungsvoll zu verhindern.
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
@@ -64,18 +66,16 @@ Ein Beispiel für eine Entscheidungsmatrix findet sich in Kapitel~\ref{sec:Archi
 
 \subsection{Anwendungsfälle}
 \label{sec:Anwendungsfaelle}
-Zur Analyse der An
-Hauptanwendungsfall ist die Anzeige das Anzeigen eines anhand eines angegebenen Schemas zergliederten Datenstroms.
-Die Aufnahme der Anforderungen mit Herrn Kemmer ergab einige Wunschkriterien:
-Schemas stammen vom Mainframe oder aus Logdateien.
+Der mit Abstand wichtigste Anwendungsfall ist, dass das Programm nach Angabe von Datenstrom und Schema den Datenstrom entsprechend dem Schema zergliedert anzeigt.
+Der Kunde nannte noch einige Wünsche zur Funktionalität. Ein Usecase-Diagramm ist im Anhang beigefügt.
 
 
 \subsection{Qualitätsanforderungen}
 \label{sec:Qualitaetsanforderungen}
-Schemas müssen frei anggebbar sein und Datenströme richtig zergliedert werden.
-Beim Abnahmetest soll dies anhand der 10 wichtigsten Schemadateien überprüft werden.
-Performance ist (fast) egal, das Programm soll aber flüssig benutzbar sein (Zergliederung von Datenstrom und Anzeige in unter 5 Sekunden).
-Die Benutzer sind Profis. Es ist deshalb nicht unbedingt notwendig, für alles eine Eingabemaske bereitzustellen. Es ist genügt auch, wenn der Benutzer eine Einstellung durch Editieren einer Konfigurations-Datei ändern kann.
+Schemas müssen frei angebbar sein und Datenströme richtig zergliedert werden.
+Beim Abnahmetest soll dies anhand der 5 wichtigsten Schemadateien überprüft werden.
+Performance ist ziemlich egal, das Programm soll aber flüssig benutzbar sein (Zergliederung von Datenstrom und Anzeige in unter 5 Sekunden).
+Weil die Benutzer Profis sind, ist es nicht unbedingt notwendig, für alles eine Eingabemaske bereitzustellen. Es genügt auch, wenn eine Einstellung durch Editieren einer Konfigurations-Datei geändert werden kann.
 
 
 \subsection{Lastenheft/Fachkonzept}

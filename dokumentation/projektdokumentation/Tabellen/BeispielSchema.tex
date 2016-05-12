@@ -1,0 +1,12 @@
+\begin{tabularx}{\textwidth}{llllll}
+\textbf{Level}  & \textbf{Name} & \textbf{Typ} & \textbf{Bytezahl} & \textbf{Wiederholzahl} & \textbf{Kommentar} \\
+01 & Daten & & & & Level gibt die Hierarchiestufe an\\
+\ \ \ 03 & Personendaten & & & & beliebig tief verschachtelt\\
+\ \ \ \ \ \ 05 & Vorname & C & 5 & & fünf Bytes vom Typ char\\
+\ \ \ \ \ \ 05 & Nachname & C & 4 & & vier Byte langer Nachname\\
+\ R03 & Gesamter-Name & C & 9 & & redefiniert Personendaten\\
+\ \ \ 03 & Bestellungen & & & 2 & Ein ``Array'', Länge 2\\
+\ \ \ \ \ \ 05 & Artikelnr & N & 4 & & vier Byte lange Artikelnummer\\
+\end{tabularx}
+     
+     
