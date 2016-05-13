@@ -1,0 +1,15 @@
+
+% !TEX root = ../Projektdokumentation.tex
+\section{Entwurfsphase - Schema speichern und automatisch auswählen} 
+\label{sec:Entwurfsphase1}
+
+
+\subsection{Entwurf eines Bedienkonzeptes}
+\label{sec:EntwurfBedienkonzept123}
+Um die GUI übersichtlich zu halten, und weil in Zukunft eventuell noch Auswahlmöglichkeiten für andere Anwendungsfälle notwendig werden könnten, wurde entschieden, ein Menü zu erstellen. Bei Auswahl des Menüpunktes ``Schema speichern'' soll sich ein Dialog öffnen, in dem der Name des Schemas und ein Textfeld zur Angabe eines Datenstrom-Identifikationstextes\footnote{z. B. der Datenstrom enthält an Stelle 3 den Text abc} eingegeben werden. Beim Klicken auf den Button ``Schema speichern'' wird ein neuer Eintrag in die XML-Datei vorgenommen und eine Textdatei mit dem Inhalt des Schema-Textfeldes im Programm-Unterordner "schemas" gespeichert.
+Neben der Überschrift des Schema-Textfeldes soll eine Combobox eingefügt werden, die die Dateien des schemas-Ordners anzeigt, und über die ein Schema ausgewählt werden kann.
+
+\subsection{Entwurf des XML-Schemas}
+\label{sec:EntwurfXMLSCHEMA}
+Es gibt ein Microsoft-Tool namens xsd.exe, das aus XSD-Schemas C\#-Klassen generieren kann. Um das auszunutzen wurde entschieden, die Einstellungen, die notwendigen Einstellungen als XML-Datei vorzunehmen. Das hatte außerdem den Vorteil, dass die Benutzer die Einstellungen direkt editieren können.
+

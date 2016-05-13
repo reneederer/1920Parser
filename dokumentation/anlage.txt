@@ -1,0 +1,13 @@
+Quelltext
+Screenshot
+Klassendiagramm
+Usecase-Diagramm
+Objektdiagramm
+1920Schema
+XML-Schema
+Auszüge aus Lasten- und Pflichtenheft
+Gantt-Diagramm
+Unit-Tests
+Zeitplanung
+
+

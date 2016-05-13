@@ -5,41 +5,18 @@
 \subsection{Soll-/Ist-Vergleich}
 \label{sec:SollIstVergleich}
 Wie gewünscht können im Programm Datenstrom und Schema frei angegeben werden. Das Ergebnis wird richtig angezeigt.
-Die Einschätzung zum Zeitverbrauch war zu pessimistisch. Insbesondere das Zuweisen der Werte aus dem Datenstrom und die Ausgabe des Baumes als String nahmen deutlich weniger Zeit in Anspruch, als ursprünglich geplant. So konnte noch der Anwendungsfall ``Schema speichern'' im Rahmen des Projektes umgesetzt werden.
-Der beim Abnahmetests aufgetretene Fehler wurde noch behoben. Herr Kemmer war mit dem Programm sehr zufrieden.
-
-
-\paragraph{Beispiel (verkürzt)}
-Wie in Tabelle~\ref{tab:Vergleich} zu erkennen ist, konnte die Zeitplanung bis auf wenige Ausnahmen eingehalten werden.
+Insbesondere das Zuweisen der Werte aus dem Datenstrom und die Ausgabe des Baumes als String nahmen deutlich weniger Zeit in Anspruch, als ursprünglich geplant. So konnte noch der Anwendungsfall ``Schema speichern'' im Rahmen des Projektes umgesetzt werden.
+Herr Kemmer ist mit dem Programm sehr zufrieden.
 \tabelle{Soll-/Ist-Vergleich}{tab:Vergleich}{Zeitnachher.tex}
-
-
 \subsection{Lessons Learned}
 \label{sec:LessonsLearned}
 RichTextBox ist besser als TextBox.
 Interessant war, wie sich der Projektumfang erweitert hatte (ursprünglich war der Vorschlag, dass nur ein bestimmtes Schema zergliedert werden soll)
 Rekursion ist nicht gut darstellbar mit UML. Für Polymorphie gilt das selbe. Stacks sind super. Rekursion vereinfacht manche Aufgaben enorm. Bemerkenswert, wie sehr sich die Anforderungen ausgeweitet haben.
 Bemerkenswert war, dass sich der Projektumfang stark erhöhte (ursprünglich wurde mir der Projektvorschlag gemacht, nur die Schemadatei VK60 zu zergliedern).
-
-
-
 \subsection{Ausblick}
 \label{sec:Ausblick}
-Im Rahmen des Projektes wurden nicht alle Wunschkriterien erfüllt. Der Autor hofft aber, dass diese Aufgabe vielleicht an nachfolgende Auszubildende übergeben wird und sich 1920Parser noch weiterentwickelt.
-
-Einige Ideen für Weiterentwicklungen von 1920Parser sind:
-\begin{itemize}
-\item Anzeige von Leerzeichen als Tilde, sieht man einfach besser
-\item Ausblenden von angebbaren Knotenpunkten
-\item Implementierung des Anwendungsfalls ''Datenstrom importieren``
-\item Bei Klick auf eine Zeile im Schema wird zur entsprechenden Zeile im Ergebnis-Textfeld gesprungen.
-\item Bei Klick ins Datenstrom-Textfeld wird zur entsprechenden Zeile im Ergebnis-Datenfeld gesprungen
-\item Erweiterung der Eingabemaske für Schema speichern, so dass mehrere Angaben zur automatischen Auswahl getroffen werden können.
-\item Automatisches Herunterladen von Schemas vom Mainframe
-\item 
-\end{itemize}
-1920Parser könnte eine nette Spielwiese für einen zukünftigen Auszubildenden werden.
-
+Im Rahmen des Projektes wurden nicht alle Wunschkriterien erfüllt. Der Autor hofft aber, dass diese Aufgabe vielleicht an nachfolgende Auszubildende übergeben wird und sich 1920Parser noch weiterentwickelt. Vielleicht wird einmal die Größe der Datenströme geändert, dann könnte der Algorithmus von 1920Parser verwendet werden.
 
 
 

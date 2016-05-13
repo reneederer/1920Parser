@@ -18,6 +18,7 @@
 \newcommand{\usw}{usw.\xspace}
 \newcommand{\Vgl}{Vgl.\xspace}
 \newcommand{\zB}{\mbox{z.\,B.}\xspace}
+\usepackage{float}
 
 % Befehle für häufig anfallende Aufgaben
 \newcommand{\Abbildung}[1]{\autoref{fig:#1}}
@@ -32,6 +33,16 @@
 {\begin{table}[htbp]
 \centering
 \singlespacing
+\input{Tabellen/#3}
+\caption{#1}
+\label{#2}
+\end{table}}
+
+
+
+% fügt Tabellen aus einer TEX-Datei ein
+\newcommand{\tabelleLinks}[3] % Parameter: caption, label, file
+{\begin{table}[H]
 \input{Tabellen/#3}
 \caption{#1}
 \label{#2}

@@ -1,0 +1,10 @@
+% !TEX root = Projektdokumentation.tex
+\section{Implementierung - Schema speichern}
+\label{sec:ImplementierungSchemaSpeicherun}
+Die Implementierung dieses Anwendungsfalls war eher Routine.
+\subsection{Erstellung des XSD-Datei}
+\label{sec:XSDDATEIERstellung}
+Es wurde eine xml-Datei (schemaConfig.xml) mit den benötigten Angaben und der gewünschten Struktur erstellt. Mit xsd.exe wurde daraus eine XSD-Datei erzeugt, und mit erneutem Aufruf von xsd.exe aus dieser die C\#-Klasse SchemaConfig.
+Diese wird verwendet um die der Xml-Datei zu deserialisieren.
+
+

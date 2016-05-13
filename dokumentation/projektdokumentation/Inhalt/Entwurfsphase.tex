@@ -1,80 +1,47 @@
-c vb% !TEX root = ../Projektdokumentation.tex
-\section{Entwurfsphase} 
+% !TEX root = ../Projektdokumentation.tex
+\section{Entwurfsphase - Zergliedern des Datenstroms} 
 \label{sec:Entwurfsphase}
 
 \subsection{Zielplattform}
 \label{sec:Zielplattform}
-Das Programm soll auf den Entwicklerrechnern der Phoenix laufen, auf denen  Windows 7 installiert ist.
-Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix eingesetzten Sprachen COBOL, C++ und C\# eingegrenzt. COBOL schied als Programmiersprache für ein Windows-Tool aus,  aber C++ mit Qt und C\# waren beide geeignet. Die hohe Performance, die C++ verspricht, wurde für 1920Parser aber nicht wirklich benötigt, die Wahl fiel auf C\# aufgrund von dessen Garbage Collection, Linq und gutem GUI-Designer.
+Das Programm soll auf den Entwicklerrechnern der Phoenix unter Windows 7 laufen. 
+Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix eingesetzten Sprachen COBOL, C++ und C\# eingegrenzt. COBOL schied als Programmiersprache für ein Windows-Tool aus,  aber C++ mit Qt und C\# waren beide geeignet. Die hohe Performance, die C++ verspricht, wurde für 1920Parser aber nicht wirklich benötigt. Die Wahl fiel auf C\# aufgrund von dessen Garbage Collection, Linq und gutem GUI-Designer.
 
 \subsection{Aufbau der Schemadateien}
 \label{sec:AufbauSchemas}
 Zur Analyse des Aufbaus der 1920Schemas fragte der Autor Herrn Kemmer nach den Namen der 10 wichtigsten Schemadateien und ludt diese unter Verwendung von OpenText HostExplorer 2014 vom Mainframe herunter.
 
-Da 1920Schemas zentral für das Projekt sind, wird ihr Aufbau hier ausführlich dargestellt.
-
- Ein 1920Schema kann zum Beispiel so aussehen:
+Ein 1920Schema kann zum Beispiel so aussehen:
 
      \tabelle{Beispiel für ein Schema}{tab:Beispiel für ein Schema}{BeispielSchema.tex}
 
      % Verweis im Text mittels \ref{tbl:beispieltabelle}
 
-Alle Felder sind durch Leerzeichen getrennt. Level und Name sind Pflichtangaben, alle anderen Felder dürfen leer sein. Typ und Byteanzahl treten nur zusammen auf, solche Variablen sind Wertvariablen (sie definieren Bytes aus dem Datenstrom). Variablen ohne Typ und Bytezahl sind Gruppenvariablen.
-Die Variablen von 1920Schemas sind anhand ihrer Levelnummer hierarchisch gegliedert. Eine Schemavariable mit größerer Stufennummer als die vorhergehende ist dessen Kind. Nur Gruppenvariablen haben Kinder.
-Eine Variable kann entweder eine Gruppen- oder eine Wertvariable sein.
-Sowohl Gruppen- als auch Wertvariablen können eine Angabe haben, wie oft sie sich wiederholen. Wenn sich Gruppenvariablen wiederholen, wiederholt sich auch die gesamte Kind-Hierarchie unterhalb von ihnen.
-
-Viele Schemas definieren als erste Variable eine Variable für ihren Schemanamen, so dass viele Datenströme mit dem Namen des zu verwendenden Schemas beginnen.
-
+Level und Name sind Pflichtangaben, alle anderen Felder dürfen leer sein. Typ und Byteanzahl treten nur zusammen auf, solche Variablen sind Wertvariablen (sie definieren Bytes aus dem Datenstrom). Variablen ohne Typ und Bytezahl sind Gruppenvariablen.
 Zusätzlich zu diesen Variablenzeilen enthalten 1920Schemas Zeilen mit Metainformationen zum Schema. Die Metainformationen sind für 1920Parser nicht relevant und werden ignoriert.
 
-Einige Schemas enthielt eine Variable mit Typ 'H' und eine Levelnummer, auf die unmittelbar ein 'v' folgte. Die Nachfrage beim Auftraggeber ergab, dass diese Zeilen ignoriert werden sollen, weil sie den Datenstrom nicht verschieben.
-
-Beim Treffen von Annahmen über den Aufbau der Schemazeilen ergaben sich unerwartet Schwierigkeiten mit dem Feld Kommentar. In der Schemadatei IOVK92 gab es eine Variable, die keine Wiederholzahl hatte, aber ein Kommentar-Feld, das mit "0" begann. Es musste eine Regel festgelegt werden, damit diese 0 nicht als Wiederholzahl interpretiert wird, sondern als Anfang des Kommentars. Der Autor hatte einige Ideen, zum Beispiel 0 als Wiederholzahl zu verbieten oder die untereinander-stehende Anordnung der Variablenfelder auszunutzen. Falsche Annahmen hätten zu Fehlfunktion des Programms geführt. Es war deshalb Rücksprache mit dem Auftraggeber notwendig. Auf Herrn Kemmers Vorschlag und nach erneuter Prüfung der Schemadateien wurde entschieden, dass der Kommentar mit mindestens 2 Leerzeichen vom vorhergehenden Feld getrennt sein muss.
+Es ergaben sich unerwartet Schwierigkeiten beim Feld Kommentar. In der Schemadatei IOVK92 gab es eine Variable, deren Kommentar-Feld mit "0" begann. Es musste eine Regel festgelegt werden, damit diese 0 nicht als Wiederholzahl interpretiert wird, sondern als Kommentar-Beginn. Es gab Ideen, 0 als Wiederholzahl zu verbieten oder die untereinander-stehende Anordnung der Variablenfelder auszunutzen. Falsche Annahmen hätten zu Fehlfunktion des Programms geführt, es war deshalb nötig, Rücksprache mit dem Auftraggeber zu halten. Auf Herrn Kemmers Vorschlag und nach erneuter Prüfung der Schemadateien wurde festgelegt, dass ein Kommentar mit mindestens 2 Leerzeichen vom vorhergehenden Feld getrennt sein muss.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
-Ein Architekturdesign wurde nicht von Anfang an geplant. Allerdings wurde während der Projekterstellung auf Kohärenz der Klassen geachtet und gegebenenfalls refaktorisiert (zum Beispiel stand die Funktionalität zum Lesen und Schreiben der XML-Config ursprünglich auch in der Klasse Schema, wurde später aber in die neu erschaffene Klasse SchemaManager ausgelagert). Im Projektverlauf entstand eine 3-Schichten-Architektur mit den Klassen 1920ParserView und SaveSchemaView als Teil der Präsentationsschicht, den Klassen AbstractNode, GroupNode, ValueNode und Schema auf Logikschicht und SchemaManager und SchemaConfig als Teil der Datenhaltungsschicht. Präsentationsschicht und Datenhaltungsschicht kennen sich nicht und kommunizieren auch nicht miteinander.
+Während der Projekterstellung wurde auf Kohärenz der Klassen geachtet und gegebenenfalls refaktorisiert (zum Beispiel stand die Funktionalität zum Lesen und Schreiben der XML-Config ursprünglich auch in der Klasse Schema, wurde später aber in die neu erschaffene Klasse SchemaManager ausgelagert). Im Projektverlauf entstand eine 3-Schichten-Architektur mit den Klassen 1920ParserView und SaveSchemaView als Teil der Präsentationsschicht, den Klassen AbstractNode, GroupNode, ValueNode und Schema auf Logikschicht und SchemaManager und SchemaConfig als Teil der Datenhaltungsschicht. Klassen der Präsentationsschicht und Klassen Datenhaltungsschicht kennen sich nicht und deren Objekte kommunizieren auch nicht direkt miteinander.
 
 \subsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
-Der Kunde hatte keine Bedingungen gestellt, was die Benutzeroberfläche anging.
-Nachdem als Programmiersprache C\# feststand, kamen für die Benutzeroberfläche nur  Plattformen aus dem .NET-Framework in Frage. Die Wahl zwischen ASP.NET, WPF und Winforms fiel schließlich auf Winforms. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden gewesen, vor allem für die Benutzerverwaltung und eventuell eine Datenbank. WPF und Winforms waren beide gut geeignet, der Autor entschied sich für Winforms, weil er damit mehr Erfahrung hatte.
-
-\subsubsection{Erste Iteration: Datenstrom zergliedert anzeigen}
-\label{sec:BenutzeroberflaecheZergliedern}
-Zunächst wurden drei TextBoxen zur Eingabe von Datenstrom, Schema und zur Anzeige des Ergebnisses erstellt. Jede dieser TextBoxen bekam als Überschrift ein Label (Datenstrom, Schema und Ergebnis). Da die Schemadateien fast immer formatiert sind (gleiche Eigenschaften stehen untereinander) wurde ein Monospace-Font (Courier New) gewählt, um diese Formatierung beizubehalten. Das Ergebnis-Textfeld bekam aufgrund seiner höheren Bedeutung die doppelte Größe.
-
-\subsubsection{Zweite Iteration: Schema speichern}
-\label{BenutzeroberflaecheSpeichern}
-Nachdem der Anwendungsfall "Datenstrom zergliedert anzeigen" erledigt war, wurde ein Bedienkonzept für die Anwendungsfälle
-\begin{itemize}
-\item Schema speichern
-\item Datenstrom importieren
-\item Variablen ausblenden
-\item Schema automatisch auswählen
-\end{itemize}
-entwickelt. Im Gegensatz zum Hauptanwendungsfall "Datenstrom zergliedern", wird die Funktionalität dieser Anwendungsfälle seltener gebraucht. Um die Benutzeroberfläche übersichtlich zu halten, entschied sich der Autor, ein Menü anzulegen, mit Einträgen für jeden dieser Anwendungsfälle.
-
-Das Phoenix-Icon wurde als Programmsymbol gewählt und das Firmenlogo von Phoenix rechts in der Menüleiste eingefügt.
-
-\subsection{XSD-Schema}
-Um die Informationen zur automatischen Auswahl eines 1920Schemas\footnote{und eventuell einmal zum Ausblenden von Schemavariablen} zu speichern, wurde ein XML-Schema definiert. Mit dem Microsoft-Tool xsd.exe wurde daraus die C\#-Klasse Config.cs generiert.
+Der Kunde hatte keine Vorgaben bezüglich der Benutzeroberfläche gemacht. 
+Nachdem als Programmiersprache C\# feststand, kamen für die \ac{GUI} nur  Plattformen aus dem .NET-Framework in Betracht. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden gewesen (Benutzerverwaltung/Datenbank). \ac{WPF} und Winforms waren beide geeignet, der Autor entschied sich für Winforms, weil er damit mehr Erfahrung hatte.
 
 \subsection{Geschäftslogik}
 \label{sec:Geschaeftslogik}
-Die hierarchische Aufbau von 1920Schemas lässt sich gut mit einer rekursiven Baumstruktur im Programm abbilden. Der Programmablauf beim Zergliedern eines Schemas muss dann zunächst das Schema in diese Baumstruktur überführen, danach können die Werte aus dem Datenstrom an die Knoten des Baumes zugewiesen werden.
-
-\paragraph{Beispiel}
-Für die Baumstruktur wurde die abstrakte Klasse AbstractNode erstellt. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode hat ein Attribut children vom Typ List<AbstractNode>, die auf seine KindKnoten verweist. GroupNode ist rekursiv definiert, weil sie wiederum GroupNodes als Kindknoten haben kann.
+Die hierarchische Aufbau von 1920Schemas lässt sich gut mit einer rekursiven Baumstruktur im Programm abbilden. 
+Für die Baumstruktur wurde die abstrakte Klasse AbstractNode entworfen. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode soll ein Attribut children vom Typ List<AbstractNode> erhalten, mit dem es auf seine KindKnoten verweist. GroupNodes erlauben durch ihre rekursive Definition eine beliebig tiefe Verschachtelung von AbstractNodes.
 
 Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen untereinander darstellt kann im \Anhang{app:Klassendiagramm} eingesehen werden.
 
 
 \subsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
-Das korrekte Parsen von 1920Schemas und die richtige Zergliederung des Datenstroms sind zentral für 1920Parser. Um sicherzugehen, dass dieser Programmteil funktioniert, und weil sich der Autor Zeitersparnis erhoffte, wurden daher die Methoden der Klassen Schema, Abstract-, Group- und ValueNode  testgetrieben entwickelt.
-Die Programmfunktionen zum Speichern von Schemas und zur automatischen Auswahl eines Schemas sind nicht so zentral, diese wurden nur von Hand getestet.
+Das korrekte Parsen von 1920Schemas und die richtige Zergliederung des Datenstroms sind zentral für 1920Parser. Um sicherzugehen, dass dieser Programmteil funktioniert,  wurden daher die Methoden der Klassen Schema, Abstract-, Group- und ValueNode  testgetrieben entwickelt.
 
 \subsection{Pflichtenheft/Datenverarbeitungskonzept}
 \label{sec:Pflichtenheft}
