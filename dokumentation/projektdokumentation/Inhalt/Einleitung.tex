@@ -11,25 +11,27 @@ Auftraggeber des Projektes ist die Phoenix group IT GmbH. Sie hat etwa 200 Mitar
 \label{sec:Projektumfeld}
 Die Phoenix group IT ist weiter unterteilt in die Abteilungen Inbound, Outbound und Warehouse. Das Projekt findet in der Abteilung Warehouse statt, in der überwiegend mit COBOL gearbeitet wird.
 
-Warehouse verwendet ein firmeneigenes Dateiformat als Schnittstelle zu verschiedenen Programmen und Diensten. Es wird im Folgenden 1920Schema genannt und spielt eine wichtige Rolle für das Projekt.
+Phoenix verwendet ein firmeneigenes Dateiformat als Schnittstelle zu verschiedenen Programmen und Diensten. Es wird im Folgenden 1920Schema genannt und spielt eine zentrale Rolle für das Projekt.
 
 \subsubsection{1920Schemas}
-1920Schemas sind Textdateien, die einen Satz hierarchisch gegliederter Variablen beschreiben. Phoenix verwendet diese Schemas unter anderem als Schnittstelle, um Daten vom Mainframe zum Lagerrechner zu schicken, als Vorlage für Copybooks\footnote{COBOL-Datei, in der eine Variablenstruktur definiert wird} und als Schnittstelle zu SSORT\footnote{IBM-Programm, zeigt Copybooks an}.
+1920Schemas sind Textdateien, die einen Satz hierarchisch gegliederter Variablen beschreiben. Phoenix nutzt diese Schemas unter anderem als Schnittstelle, um Daten vom Mainframe zum Lagerrechner zu schicken, als Vorlage für Copybooks\footnote{COBOL-Datei, in der eine Variablenstruktur definiert wird} und als Schnittstelle zu SSORT\footnote{IBM-Programm, zeigt Copybooks an}.
 
 \textbf{Beispiel für ein 1920Schema}
 \tabelleLinks{Beispiel für ein 1920Schema}{tab:Beispiel für ein 1920Schema}{BeispielSchema.tex}
 
 \subsubsection{Datenströme}
-Anhand von 1920Schemas werden Datenströme zergliedert und erhalten dadurch eine Bedeutung. Datenströme können prinzipiell beliebige Zeichen\footnote{Ein Byte entspricht einem Zeichen. Die Angaben in 1920Schemas haben die Einheit Byte, im Zusammenhang mit dem Datenstrom ist der Begriff Zeichen aber manchmal anschaulicher. Eine Unterscheidung der beiden Begriffe ist für das Projekt unwesentlich.} enthalten, es muss nur die Anzahl der Bytes des Datenstroms mit der Beschreibung im Schema zusammenpassen. Das Schema aus Tabelle 1 beschreibt einen 17 Byte langen Datenstrom (5+4+2*4), der so aussehen könnte:
+Anhand von 1920Schemas werden Datenströme zergliedert und erhalten dadurch eine Bedeutung. Datenströme können prinzipiell beliebige Zeichen\footnote{Ein Byte entspricht einem Zeichen. Die Angaben in 1920Schemas haben die Einheit Byte, im Zusammenhang mit dem Datenstrom ist der Begriff Zeichen aber manchmal anschaulicher. Eine Unterscheidung der beiden Begriffe ist für das Projekt unwesentlich.} enthalten, nur die Anzahl muss ausreichen, um jeder Schema-Variablen einen Wert zuzuweisen. Das Schema aus Tabelle 1 beschreibt einen 17 Byte langen Datenstrom (5+4+2*4), der so aussehen könnte:
 
 \textbf{Beispiel für einen Datenstrom}
 
 VN\textasciitilde \textasciitilde \textasciitilde NN\textasciitilde\textasciitilde12345678
 
+Datenströme sind fast immer 1920 Bytes lang, das ist die Größe des Terminal-Emulators.
+
 
 \subsection{Projektziel}
 \label{sec:Projektziel}
-Ziel des Projektes ist es, ein Programm (1920Parser) zu schreiben, in dem ein Datenstrom und ein 1920Schema angegeben werden, und das den Datenstrom anhand des Schemas zergliedert anzeigt.
+Es soll ein Programm geschrieben werden, das nach Eingabe von Datenstrom und 1920Schema den Datenstrom dem Schema entsprechend zergliedert und anzeigt. Das Programm wird im Folgenden 1920Parser genannt.
 
 \textbf{Gewünschte Ausgabe} (mit den Beispielwerten der Abschnitte 1.2.1 und 1.2.2)
 
@@ -60,7 +62,11 @@ Gegenwärtig zählen die Programmierer die passende Anzahl von Bytes in Schema u
 \subsection{Projektschnittstellen}
 \label{sec:Projektschnittstellen}
 Benutzer des Programms sind die Programmierer der Phoenix Group IT GmbH, hauptsächlich die aus der Abteilung Warehouse.
-1920Parser soll nicht unmittelbar mit anderen Systemen interagieren. Vorgesehen ist, dass die Benutzer die notwendigen Angaben in eine Eingabeaske hineinkopieren.
 
-Projektgenehmigung und die Bereitstellung von Resourcen erfolgt durch die Ausbildende Frau Birgit Günther, die Projektbetreuung und die Abnahme des Programms durch Herrn Marco Kemmer. Herr Kemmer arbeitet in der Abteilung Warehouse als COBOL-Entwickler, er kommuniziert die Kundenwünsche und will das Programm in Zukunft auch selbst nutzen.
+1920Parser soll nicht unmittelbar mit anderen Systemen interagieren. Vorgesehen ist, dass die Benutzer die notwendigen Angaben in eine Eingabemaske hineinkopieren.
+
+Projektgenehmigung und die Bereitstellung von Ressourcen erfolgt durch die Ausbildende Frau Birgit Günther, die Projektbetreuung und die Abnahme des Programms durch Herrn Marco Kemmer. Herr Kemmer arbeitet in der Abteilung Warehouse als COBOL-Entwickler, er kommuniziert die Kundenwünsche und will das Programm in Zukunft auch selbst nutzen.
+
+
+
 
