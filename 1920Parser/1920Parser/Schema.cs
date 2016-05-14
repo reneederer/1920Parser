@@ -16,6 +16,11 @@ namespace _1920Parser
         private string schemaStr = "";
         private string pattern = @"^\s*(?<redefines>R?)(?<level>\d+)\s+(?<varName>\S+)((\s+(?<type>[xcnphvXCNPHV])\s+((?<length>\d+))(\,(?<decimalPlaces>\d+))?)?(\s+(?<repeatCount>\d+))?)?(\s{2,}(?<comment>.*))?$";
 
+        /// <summary>
+        /// ist nur ein test setSchemaFile
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         public string setSchemaFile(string file)
         {
             try
