@@ -1,27 +1,34 @@
 % !TEX root = ../Projektdokumentation.tex
 \section{Implementierungsphase - Zergliedern des Datenstroms} 
 \label{sec:ImplementierungsphaseDatenstromZergliedern}
-
-
-Die Implementierung begann mit dem Anlegen eines neuen SVN-Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) und dem Erstellen einer neuen Solution in Microsoft Visual Studio Professional 2010 mit einem C\# Winforms Projekt. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
+Die Implementierung begann mit dem Anlegen eines neuen \ac{SVN}-Repositories mit der vorgegebenen Verzeichnisstruktur (branch, tag, trunk) und dem Erstellen einer neuen Solution in Microsoft Visual Studio Professional 2010 mit einem C\# Winforms Projekt. Der Solution wurde ein NUnit-Testprojekt für die Unit-Tests hinzugefügt.
 
 \subsection{Implementierung der Benutzeroberfläche}
 \label{sec:ImplementierungBenutzeroberflaeche}
-Visual Studio erstellte mit Neuanlage des Winform-Projekts automatisch eine Form-Klasse, die ein Fenster darstellt.
-Die GUI wurde so einfach wie möglich gehalten: 3 Textfelder mit Überschrift, jeweils für Datenstrom, Schema und Ergebnis. Es wurde noch ein Button zum Starten der Verarbeitung eingefügt. Dieser wurde im Laufe der Implementierung  entfernt und die Verarbeitung bei jeder Eingabe in Schema- oder Datenstrom-Textfeld gestartet.
-
+Visual Studio erstellte mit Neuanlage des Winform-Projekts automatisch eine Form-Klasse. Mit dem GUI-Editor von Winforms wurden dieser Klasse drei Textfelder hinzugefügt, jeweils eines für Datenstrom, Schema und Ergebnis. Es wurde noch ein Button zum Starten der Verarbeitung eingefügt. Dieser wurde im Laufe der Implementierung  entfernt und die Verarbeitung bei jeder Eingabe in Schema- oder Datenstrom-Textfeld gestartet.
 
 \subsection{Implementierung der Geschäftslogik}
 \label{sec:ImplementierungGeschaeftslogik}
 \subsubsection{Parsen des Schemas in eine Baumstruktur}
 \label{sec:ParsenSchema}
 \paragraph{Parsen einer Variablenzeile zu einer AbstractNode}
-Jede Variablenzeile im Schema wird zu einer Group- oder ValueNode. Dazu wurde in der Klasse Schema die Methode ParseLine geschrieben. Die Methode splittet die Angaben einer Variablenzeile mit Hilfe einer \ac{Regex} in ihre Felder auf. Die \ac{Regex} wurde auf \href{https://regex101.com}{https://regex101.com} angepasst und getestet, bis sie richtig funktionierte.
 
-Eine Schwierigkeit des Algorithmus war, dass zu jedem Zeitpunkt in mehrere Richtungen gegangen werden muss. Zum einen muss die nächste Zeile des Schemas in einen Knoten verwandelt werden. Ein Knoten kann sich aber wiederholen.
-Hier hat der Autor einige Zeit verbraucht mit rekursiven Ideen.
+Aus jeder Variablenzeile im Schema wird eine Group- oder ValueNode erstellt. Um dies Umzusetzen wurde in der Klasse Schema die Methode ParseLine geschrieben. Die Methode splittet die Angaben einer Variablenzeile mit Hilfe einer \ac{Regex} in ihre Felder auf. Die \ac{Regex} wurde auf \href{https://regex101.com}{https://regex101.com} angepasst und getestet, bis sie richtig funktionierte.
 
-Zur Lösung des Problems führte die Idee, einen Knoten nach dessen Erstellung zu Kopieren.
+\paragraph{Erstellen einer Baumstruktur aus den Variablenzeilen}
+
+Dies war die schwierigste Aufgabe des Projektes. Die Schemazeilen mussten durchlaufen werden, aus ihnen AbstractNodes erstellt und diese in eine Baumstruktur gebracht werden.
+Schwierig war, dass mit jeder neuen Zeile ein Kindknoten, ein Geschwisterknoten, oder ein Geschwisterknoten von einem früheren Vorfahrens auftauchen konnte. In jedem dieser Fälle konnte unterhalb des Knotens erneut eine Hierarchie von Knoten sein. Es musste diese Hierarchie, falls vorhanden, erstellt werden, danach musste die Verarbeitung mit der richtigen Schemazeile und dem richtigen Elternknoten weitergehen.
+
+Schwierig war insbesondere, dass eine Schemazeile zu mehreren AbstractNodes werden konnte, abhängig von ihrer Wiederholzahl. In dieser Hinsicht waren besonders GroupNodes problematisch, da sich bei GroupNodes mit der Wiederholzahl der gesamte Baum unterhalb von ihnen wiederholt. Außerdem konnten Wiederholzahlen auch bei mehreren Vorfahren-Knoten vorkommen, so dass sich die Wiederholungen verschachtelten.
+
+Zunächst wurde versucht, innerhalb einer Schleife, die die Schemazeilen durchlief, für jeden Kindknoten die Methode rekursiv erneut aufzurufen und der Methode die Schemazeilenliste mitzugeben (in der ein oder anderen Form, per Value, per Referenz, eine Kopie per Referenz...). Dies führte nicht zum Erfolg, vor allem war es problematisch, dem Lauf des Algorithmus zu folgen, der gleichzeitig iterativ die Schemazeilen durchlief, Levelnummern verglich und in einer weiteren Schleife der Wiederholungszahl entsprechend rekursive aufrufe machte.
+
+Schließlich führte eine Kombination aus zwei Ideen zum Erfolg:
+\begin{enumerate}
+\item statt Rekursion einen Stack zu verwenden
+\item nicht zu versuchen eine AbstractNode mehrfach zu erstellen, sondern die Node erst fertigzustellen samt eventuellem Unterbaum und danach eine tiefe Kopie zu erzeugen. 
+\end{enumerate}
 
 Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu jedem Zeitpunkt die Vorfahren des gerade bearbeiteten Knotens, mit seinem Elternknoten oben und dem Wurzelknoten unten.
 
@@ -29,6 +36,15 @@ Der Algorithmus zum Parsen des Schemas nutzt einen Stack. Der Stack enthält zu 
 
 \subsubsection{Grundschema der Methoden von AbstractNode}
 \label{sec:RekursiveMethoden}
+\begin{tabularx}{0px}{l|l|l}
+Methodenname & Rückgabewert ValueNode & Rückgabewert GroupNode\\
+Equals & bool, ob alle Attribute übereinstimmen & bool, ob alle Attribute übereinstimmen und alle Kinder übereinstimmen\\%
+ToString & String mit Level, Namen und Wert & String aus Level, Name und den Rückgabewerte der Kinder\\
+\end{tabularx}
+
+
+
+
 Group- und ValueNode erben von AbstractNode Methoden. Die Implementierung all dieser Methoden ähnelt sich, sie folgt für Group- und ValueNodes immer diesem Prinzip:
 ValueNode macht eine Aktion und gibt danach einen Wert zurück.
 GroupNode macht eine Aktion und ruft danach für jedes seiner Kinder die gleiche Methode erneut auf (Rekursion). Aus den Rückgabewerten der Kinder wird ein Wert akkumuliert und dieser zurückgegeben.

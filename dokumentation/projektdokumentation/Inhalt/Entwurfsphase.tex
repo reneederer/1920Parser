@@ -11,16 +11,10 @@ Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix eingesetzten
 \label{sec:AufbauSchemas}
 Zur Analyse des Aufbaus der 1920Schemas fragte der Autor Herrn Kemmer nach den Namen der 10 wichtigsten Schemadateien und ludt diese unter Verwendung von OpenText HostExplorer 2014 vom Mainframe herunter.
 
-Ein 1920Schema kann zum Beispiel so aussehen:
-
-     \tabelle{Beispiel für ein Schema}{tab:Beispiel für ein Schema}{BeispielSchema.tex}
-
-     % Verweis im Text mittels \ref{tbl:beispieltabelle}
-
 Level und Name sind Pflichtangaben, alle anderen Felder dürfen leer sein. Typ und Byteanzahl treten nur zusammen auf, solche Variablen sind Wertvariablen (sie definieren Bytes aus dem Datenstrom). Variablen ohne Typ und Bytezahl sind Gruppenvariablen.
 Zusätzlich zu diesen Variablenzeilen enthalten 1920Schemas Zeilen mit Metainformationen zum Schema. Die Metainformationen sind für 1920Parser nicht relevant und werden ignoriert.
 
-Es ergaben sich unerwartet Schwierigkeiten beim Feld Kommentar. In der Schemadatei IOVK92 gab es eine Variable, deren Kommentar-Feld mit "0" begann. Es musste eine Regel festgelegt werden, damit diese 0 nicht als Wiederholzahl interpretiert wird, sondern als Kommentar-Beginn. Es gab Ideen, 0 als Wiederholzahl zu verbieten oder die untereinander-stehende Anordnung der Variablenfelder auszunutzen. Falsche Annahmen hätten zu Fehlfunktion des Programms geführt, es war deshalb nötig, Rücksprache mit dem Auftraggeber zu halten. Auf Herrn Kemmers Vorschlag und nach erneuter Prüfung der Schemadateien wurde festgelegt, dass ein Kommentar mit mindestens 2 Leerzeichen vom vorhergehenden Feld getrennt sein muss.
+Es ergaben sich unerwartet Schwierigkeiten beim Feld Kommentar. In der Schemadatei IOVK92 gab es eine Variable, deren Kommentar-Feld mit "0" begann. Es musste eine Regel festgelegt werden, damit diese 0 nicht als Wiederholzahl interpretiert wird, sondern als Kommentar-Beginn. Es gab die Möglichkeiten, 0 als Wiederholzahl zu verbieten oder die untereinander-stehende Anordnung der Variablenfelder auszunutzen. Falsche Annahmen hätten zu Fehlfunktion des Programms geführt; es war deshalb nötig, Rücksprache mit dem Auftraggeber zu halten. Auf dessen Vorschlag und nach erneuter Prüfung der Schemadateien wurde festgelegt, dass ein Kommentar mit mindestens 2 Leerzeichen vom vorhergehenden Feld getrennt sein muss.
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
@@ -29,7 +23,7 @@ Während der Projekterstellung wurde auf Kohärenz der Klassen geachtet und gege
 \subsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}
 Der Kunde hatte keine Vorgaben bezüglich der Benutzeroberfläche gemacht. 
-Nachdem als Programmiersprache C\# feststand, kamen für die \ac{GUI} nur  Plattformen aus dem .NET-Framework in Betracht. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden gewesen (Benutzerverwaltung/Datenbank). \ac{WPF} und Winforms waren beide geeignet, der Autor entschied sich für Winforms, weil er damit mehr Erfahrung hatte.
+Nachdem als Programmiersprache C\# feststand, kamen für die \ac{GUI} nur  Plattformen aus dem .NET-Framework in Betracht. Da Benutzer Schemas speichern können sollen, wäre ein Webinterface (ASP.NET) mit zusätzlichem Aufwand verbunden gewesen (Benutzerverwaltung/Datenbank). \ac{WPF} und Winforms waren beide geeignet. Der Autor entschied sich für Winforms, weil er damit mehr Erfahrung hatte.
 
 \subsection{Geschäftslogik}
 \label{sec:Geschaeftslogik}
@@ -45,12 +39,7 @@ Das korrekte Parsen von 1920Schemas und die richtige Zergliederung des Datenstro
 
 \subsection{Pflichtenheft/Datenverarbeitungskonzept}
 \label{sec:Pflichtenheft}
-\begin{itemize}
-	\item Auszüge aus dem Pflichtenheft/Datenverarbeitungskonzept, wenn es im Rahmen des Projekts erstellt wurde.
-\end{itemize}
-
-\paragraph{Beispiel}
-Ein Beispiel für das auf dem Lastenheft (siehe Kapitel~\ref{sec:Lastenheft}: \nameref{sec:Lastenheft}) aufbauende Pflichtenheft ist im \Anhang{app:Pflichtenheft} zu finden.
+Ein Auszug aus dem Pflichtenheft ist im \Anhang{app:Pflichtenheft} zu finden.
 
 
 \Zwischenstand{Entwurfsphase}{Entwurf}

@@ -4,9 +4,9 @@
 
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
-Die Ist-Analyse fand durch Befragung von Herrn Kemmer statt. Herr Kemmer ist sowohl Projektbetreuer als auch potentieller Benutzer und Auftraggeber des Projektes. Der Autor bereitete eine Liste mit Fragen vor.
-
-Bei der Befragung stellte sich heraus, dass die Entwickler der Abteilung Lager bei Kundenreklamationen und Programmänderungen oft Logdateien analysieren müssen.welchen Umständen genau das Programm benötigt wird, woher die Schemas stamim Datenstrom verbringen men, wofür sie verwendet werden, wie oft sie verwendet werden, von wie vielen, wie hoch er die Zeitersparnis schätzt, wie die Entwickler bisher arbeiten ohne das Programm. Der Autor erfragte genau die Anforderungen und ordnete sie in Muss-, Soll-, und Kann-Kriterien.
+Die Ist-Analyse fand durch Befragung von Herrn Kemmer statt. 
+Die Entwickler der Abteilung Warehouse müssen bei Kundenreklamationen, Programmänderungen und Neuentwicklungen oft Datenströme analysieren. Diese stammen entweder aus Logdateien oder aus der Eingabemaske des OpenText Hostexplorers. Gegenwärtig zählen die Entwickler die richtige Anzahl Bytes in Datenstrom und Schema ab um die Bedeutung von Datenstrom-Bytes oder den Wert einer Schemavariable herauszufinden., einige erfahrenere kennen die wichtigsten Schemadateien auch zum Teil auswendig.
+Im Warehouse arbeiten etwa 20 Entwickler, etwa 10 davon haben regelmäßig mit solchen Datenströmen zu tun. Es werden Dutzende verschiedene 1920Schemas für verschiedenste Zwecke verwendet, aber mit nur etwa 10 arbeiten die Entwickler regelmäßig.
 
 
 \subsection{Wirtschaftlichkeitsanalyse}
@@ -15,13 +15,10 @@ Das Programm soll den Entwicklern das bisher notwendige, fehleranfällige Abzäh
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
-Die Anforderungen sind so speziell, dass fast auszuschließen ist, dass es außerhalb von Phoenix ein Programm gibt, das die Anforderungen erfüllt. Zu bemerken ist aber, dass der Mainframe von Phoenix mit Schemadateien arbeitet und vielleicht Ähnliches leistet, was das zu erstellende Programm leisten soll. Der Autor fragte deshalb bei seinem Auftraggeber nach, ob der Mainframe-Quelltext anzusehen ist. Herr Kemmer antwortete, dass das zwar möglich, aber sehr aufwändig sei. Da nicht sicher war, dass die Ansicht des Quelltextes die Programmerstellung erleichtern würde, wurde auf eine weitere Verfolgung dieser Idee verzichtet. Es wurde entschieden, das Programm selbst neu zu schreiben.
+Die Anforderungen sind so speziell, dass fast auszuschließen ist, dass es außerhalb von Phoenix ein Programm gibt, das die Anforderungen erfüllt. Zu bemerken ist aber, dass viele Programme bei Phoenix mit Schemadateien arbeiten. Der Autor fragte deshalb nach, ob es eventuell schon ein Programm geben könnte, das die Anforderungen erfüllt. Der Auftraggeber antwortete, dass die Datenströme aus so unterschiedlichen Umgebungen stammen (Unix-Lagerrechner, Mainframe, Email), dass die COBOL-Programme nur eingeschränkt eingesetzt werden können. Es wurde entschieden, das Programm selbst neu zu schreiben.
 
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}
-Im Rahmen des Projektes fallen Kosten für Entwicklung und Abnahmetest an.
-
-\paragraph{Beispielrechnung (verkürzt)}
 Die Kosten für die Durchführung des Projekts setzen sich sowohl aus Personal-, als auch aus Ressourcenkosten zusammen.
 Der Projektersteller ist Umschüler und erhält deshalb von seinem Ausbildungsbetrieb keine Vergütung.
 
@@ -64,19 +61,9 @@ Der Kunde nannte noch einige Wünsche zur Funktionalität. Ein Usecase-Diagramm 
 \label{sec:Qualitaetsanforderungen}
 Schemas müssen frei angebbar sein und Datenströme richtig zergliedert werden.
 Beim Abnahmetest soll dies anhand der 5 wichtigsten Schemadateien überprüft werden.
-Performance ist ziemlich egal, das Programm soll aber flüssig benutzbar sein (Zergliederung von Datenstrom und Anzeige in unter 5 Sekunden).
+Die Performance des Programmes ist ziemlich egal, es soll aber flüssig benutzbar sein (Zergliederung von Datenstrom und Anzeige in unter 5 Sekunden).
 Weil die Benutzer Profis sind, ist es nicht unbedingt notwendig, für alles eine Eingabemaske bereitzustellen. Es genügt auch, wenn eine Einstellung durch Editieren einer Konfigurations-Datei geändert werden kann.
 
-
-\subsection{Lastenheft/Fachkonzept}
-\label{sec:Lastenheft}
-\begin{itemize}
-	\item Auszüge aus dem Lastenheft/Fachkonzept, wenn es im Rahmen des Projekts erstellt wurde.
-	\item Mögliche Inhalte: Funktionen des Programms (Muss/Soll/Wunsch), User Stories, Benutzerrollen
-\end{itemize}
-
-\paragraph{Beispiel}
-Ein Beispiel für ein Lastenheft findet sich im \Anhang{app:Lastenheft}. 
 
 \Zwischenstand{Analysephase}{Analyse}
 

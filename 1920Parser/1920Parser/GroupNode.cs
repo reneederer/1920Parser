@@ -5,6 +5,9 @@ using System.Text;
 
 namespace _1920Parser
 {
+    /// <summary>
+    /// GroupNode represents an internal node.
+    /// </summary>
     class GroupNode : AbstractNode
     {
         private List<AbstractNode> children = new List<AbstractNode>();
@@ -12,6 +15,11 @@ namespace _1920Parser
             : base(redefines, level, varName, repeatCount, repeatIndex, comment)
         {}
 
+        /// <summary>
+        /// Assigns substrings of data to its children. The begin of a substring shifts with each assignment to a child.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public override int AssignValue(string data)
         {
             int currentShift = 0;
@@ -32,6 +40,14 @@ namespace _1920Parser
 
         }
 
+        /// <summary>
+        /// Returns a string representing this GroupNode and its children.
+        /// </summary>
+        /// <param name="tabCount">indicates how much the string is indented.
+        /// It is used to increase the indentation of child nodes.
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString(int tabCount)
         {
             StringBuilder strBuilder = new StringBuilder();
@@ -51,6 +67,11 @@ namespace _1920Parser
             return strBuilder.ToString();
         }
 
+        /// <summary>
+        /// Creates a deep copy of this GroupNode and sets its RepeatIndex to the value of the parameter.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
         public override AbstractNode CreateCopyWithIndex(int index)
         {
             GroupNode g = new GroupNode(Redefines, Level, VarName, RepeatCount, index, Comment);
@@ -61,16 +82,27 @@ namespace _1920Parser
             return g;
         }
 
+        /// <summary>
+        /// Adds a child node. The child could be another GroupNode.
+        /// </summary>
         public override void AddChild(AbstractNode child)
         {
             children.Add(child);
         }
 
+        /// <summary>
+        /// Returns the Hashcode of this class.
+        /// This method is not supposed to be called directly, it was overwritten in conjunction with Equals().
+        /// </summary>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Compares two GroupNodes. GroupNodes are equal if all their attributes are equal
+        /// and the attributes of all their children are equal.
+        ///</summary>
         public override bool Equals(object obj)
         {
             GroupNode other = null;
@@ -92,7 +124,6 @@ namespace _1920Parser
             {
                 return false;
             }
-
 
             for(int i = 0; i < children.Count; ++i)
             {

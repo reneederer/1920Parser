@@ -1,0 +1,10 @@
+quelltext
+klassendiagramm
+objektdiagramm
+lastenheft
+pflichtenheft
+benutzerdokumentation
+entwicklerdokumentation
+sequenzdiagramm
+usecasediagramm
+screenshot

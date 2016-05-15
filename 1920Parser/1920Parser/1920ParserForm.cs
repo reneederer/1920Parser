@@ -12,9 +12,10 @@ using System.Threading;
 
 namespace _1920Parser
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    ///<summary>
+    ///asdfjkalaega
+    ///sadfjkl asdfhsa sadfha
+    ///</summary>
     public partial class _1920ParserForm : Form
     {
 

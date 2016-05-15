@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>1920Parser</name>
+    </assembly>
+    <members>
+        <member name="T:_1920Parser.AbstractNode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:_1920Parser.AbstractNode.Redefines">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:_1920Parser.AbstractNode"/> is redefines.
+            </summary>
+            <value>
+              <c>true</c> if redefines; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:_1920Parser.AbstractNode.Level">
+            <summary>
+            Gets or sets the level.
+            </summary>
+            <value>
+            The level.
+            </value>
+        </member>
+        <member name="P:_1920Parser.AbstractNode.VarName">
+            <summary>
+            Gets or sets the name of the variable.
+            </summary>
+            <value>
+            The name of the variable.
+            </value>
+        </member>
+        <member name="T:_1920Parser._1920ParserForm">
+            <summary>
+            asdfjkalaega
+            sadfjkl asdfhsa sadfha
+            </summary>
+        </member>
+        <member name="F:_1920Parser._1920ParserForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:_1920Parser._1920ParserForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:_1920Parser._1920ParserForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:_1920Parser.GroupNode">
+            <summary>
+            GroupNode represents an internal node.
+            </summary>
+        </member>
+        <member name="M:_1920Parser.GroupNode.AssignValue(System.String)">
+            <summary>
+            Assigns substrings of data to its children. The begin of a substring shifts with each assignment to a child.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <!-- Ungültiger XML-Kommentar wurde für den Member "M:_1920Parser.GroupNode.ToString(System.Int32)" ignoriert -->
+        <member name="M:_1920Parser.GroupNode.CreateCopyWithIndex(System.Int32)">
+            <summary>
+            Creates a deep copy of this GroupNode and sets its RepeatIndex to the value of the parameter.
+            </summary>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:_1920Parser.GroupNode.AddChild(_1920Parser.AbstractNode)">
+            <summary>
+            Adds a child node. The child could be another GroupNode.
+            </summary>
+        </member>
+        <member name="M:_1920Parser.GroupNode.GetHashCode">
+            <summary>
+            Returns the Hashcode of this class.
+            This method is not supposed to be called directly, it was overwritten in conjunction with Equals().
+            </summary>
+        </member>
+        <member name="M:_1920Parser.GroupNode.Equals(System.Object)">
+             <summary>
+             Compares two GroupNodes. GroupNodes are equal if all their attributes are equal
+             and the attributes of all their children are equal.
+            </summary>
+        </member>
+        <member name="F:_1920Parser.SaveSchemaForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:_1920Parser.SaveSchemaForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:_1920Parser.SaveSchemaForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:_1920Parser.Schema.setSchemaFile(System.String)">
+            <summary>
+            ist nur ein test setSchemaFile
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:_1920Parser.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:_1920Parser.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:_1920Parser.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:schemas">
+            <remarks/>
+        </member>
+        <member name="P:schemas.schema">
+            <remarks/>
+        </member>
+        <member name="T:schemasSchema">
+            <remarks/>
+        </member>
+        <member name="P:schemasSchema.name">
+            <remarks/>
+        </member>
+        <member name="P:schemasSchema.identifiers">
+            <remarks/>
+        </member>
+        <member name="T:schemasSchemaIdentifier">
+            <remarks/>
+        </member>
+        <member name="P:schemasSchemaIdentifier.value">
+            <remarks/>
+        </member>
+        <member name="P:schemasSchemaIdentifier.start">
+            <remarks/>
+        </member>
+    </members>
+</doc>
