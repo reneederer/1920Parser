@@ -110,12 +110,87 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:_1920Parser.Schema.setSchemaFile(System.String)">
+        <member name="F:_1920Parser.Schema.pattern">
             <summary>
-            ist nur ein test setSchemaFile
+            The pattern to parse a schema line
             </summary>
-            <param name="file"></param>
+        </member>
+        <member name="F:_1920Parser.Schema.schemaStr">
+            <summary>
+            The schema string
+            </summary>
+        </member>
+        <member name="M:_1920Parser.Schema.ParseLine(System.String)">
+            <summary>
+            Parses a line from the schema into an AbstractNode
+            </summary>
+            <param name="line">The line of the schema.</param>
+            <returns>Returns the node</returns>
+        </member>
+        <member name="M:_1920Parser.Schema.Parse">
+            <summary>
+            Creates a tree of AbstractNodes from the current schema
+            </summary>
+            <returns>Returns the root node</returns>
+        </member>
+        <member name="F:_1920Parser.SchemaManager.schemaDirectory">
+            <summary>
+            The schema directory
+            </summary>
+        </member>
+        <member name="F:_1920Parser.SchemaManager.schemaConfig">
+            <summary>
+            The schema configuration
+            </summary>
+        </member>
+        <member name="F:_1920Parser.SchemaManager.schemaStr">
+            <summary>
+            The schema string
+            </summary>
+        </member>
+        <member name="M:_1920Parser.SchemaManager.setSchemaFile(System.String)">
+            <summary>
+            The pattern
+            </summary>
+            <summary>
+            Sets the schema file.
+            </summary>
+            <param name="file">The file.</param>
             <returns></returns>
+        </member>
+        <member name="M:_1920Parser.SchemaManager.getSchemaFileNames">
+            <summary>
+            Gets the schema file names.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:_1920Parser.SchemaManager.findSchema(System.String)">
+            <summary>
+            Finds the schema.
+            </summary>
+            <param name="dataStream">The data stream.</param>
+            <returns></returns>
+        </member>
+        <member name="M:_1920Parser.SchemaManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:_1920Parser.Schema"/> class.
+            </summary>
+        </member>
+        <member name="M:_1920Parser.SchemaManager.setSchemaConfig(System.String)">
+            <summary>
+            Sets the schema configuration.
+            </summary>
+            <param name="configFile">The configuration file.</param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:_1920Parser.SchemaManager.addSchema(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            Adds the schema.
+            </summary>
+            <param name="schema">The schema.</param>
+            <param name="name">The name.</param>
+            <param name="identifierStart">The identifier start.</param>
+            <param name="value">The value.</param>
         </member>
         <member name="T:_1920Parser.Properties.Resources">
             <summary>

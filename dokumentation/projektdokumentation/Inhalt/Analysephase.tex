@@ -5,7 +5,7 @@
 \subsection{Ist-Analyse} 
 \label{sec:IstAnalyse}
 Die Ist-Analyse fand durch Befragung von Herrn Kemmer statt. 
-Die Entwickler der Abteilung Warehouse müssen bei Kundenreklamationen, Programmänderungen und Neuentwicklungen oft Datenströme analysieren. Diese stammen entweder aus Logdateien oder aus der Eingabemaske des OpenText Hostexplorers. Gegenwärtig zählen die Entwickler die richtige Anzahl Bytes in Datenstrom und Schema ab um die Bedeutung von Datenstrom-Bytes oder den Wert einer Schemavariable herauszufinden., einige erfahrenere kennen die wichtigsten Schemadateien auch zum Teil auswendig.
+Die Entwickler der Abteilung Warehouse müssen bei Kundenreklamationen, Programmänderungen und Neuentwicklungen die Werte in den beschriebenen Datenströme analysieren. Diese stammen aus den Logdateien des zentralen Lagerrechners, aus der Eingabemaske des Mainframes oder auch aus erhaltenen Email-Anhängen. Um die Bedeutung der Werte im Datenstrom herauszufinden, zählen die Entwickler gegenwärtig die Bytes in Schema und Datenstrom ab, einige erfahrenere kennen die wichtigsten Schemadateien auch zum Teil auswendig.
 Im Warehouse arbeiten etwa 20 Entwickler, etwa 10 davon haben regelmäßig mit solchen Datenströmen zu tun. Es werden Dutzende verschiedene 1920Schemas für verschiedenste Zwecke verwendet, aber mit nur etwa 10 arbeiten die Entwickler regelmäßig.
 
 
@@ -15,7 +15,7 @@ Das Programm soll den Entwicklern das bisher notwendige, fehleranfällige Abzäh
 
 \subsubsection{\gqq{Make or Buy}-Entscheidung}
 \label{sec:MakeOrBuyEntscheidung}
-Die Anforderungen sind so speziell, dass fast auszuschließen ist, dass es außerhalb von Phoenix ein Programm gibt, das die Anforderungen erfüllt. Zu bemerken ist aber, dass viele Programme bei Phoenix mit Schemadateien arbeiten. Der Autor fragte deshalb nach, ob es eventuell schon ein Programm geben könnte, das die Anforderungen erfüllt. Der Auftraggeber antwortete, dass die Datenströme aus so unterschiedlichen Umgebungen stammen (Unix-Lagerrechner, Mainframe, Email), dass die COBOL-Programme nur eingeschränkt eingesetzt werden können. Es wurde entschieden, das Programm selbst neu zu schreiben.
+Die Anforderungen sind so speziell, dass fast auszuschließen ist, dass es außerhalb von Phoenix ein Programm gibt, das die Anforderungen erfüllt. Zu bemerken ist aber, dass viele Programme bei Phoenix mit Schemadateien arbeiten. Der Autor fragte deshalb nach, ob Phoenix eventuell schon ein Programm hat, das die Anforderungen erfüllt. Der Auftraggeber antwortete, dass die Datenströme aus so unterschiedlichen Umgebungen stammen (Unix-Lagerrechner, Mainframe, Email), dass die COBOL-Programme, die sie verarbeiten, nur eingeschränkt eingesetzt werden können. Es wurde entschieden, das Programm selbst neu zu schreiben.
 
 \subsubsection{Projektkosten}
 \label{sec:Projektkosten}

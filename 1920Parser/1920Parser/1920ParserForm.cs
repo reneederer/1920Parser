@@ -37,7 +37,7 @@ namespace _1920Parser
             schema = new Schema();
             try
             {
-                schema.setSchemaConfig("schemas.xml");
+                //schema.setSchemaConfig("schemas.xml");
             }
             catch (Exception e)
             {
@@ -52,8 +52,8 @@ namespace _1920Parser
 
   
             tbData.Text = @"Jetzt,daichbereitsGroßvaterbin,fühleichmichverpflichtet,einGeheimniszuverraten,dasichbisherhinterdemunauffälligenBenehmeneinesnüchternen,brillentragendenIntellektuellenverborgenhabe.IchbinindenletztenJahreneinemLasterverfallen.Ichwettegegenmichselbst.Undzwarwetteich,obeinebestimmteAngelegenheitgutausgehenwirdodernicht.WennmeinGedächtnismichnichttrügt,undwarumsolltees,sinddieerstenSymptomedieserWettleidenschaftbereitsimAltervonneunJahrenbeimiraufgetreten.IchbenutzteaufdemSchulwegimmerdenRanddesGehsteigsundkamdabeiauffolgendeWette:Wennesmirgelingt,mitnormalgroßenSchrittenkeineQuerlinieaufdenRandsteinenzuberühren,wirdmirderLehrernichtdraufkommen,dassichdieHausaufgabeimRechnenvergessenhabe.Umeskurzzumachen,dieQuerlinienbliebenunberührt,undderLehrerwarkrank.Sofingesan.Mit14,alsoaneinemWendepunktmeinerBiographie,gingicheinmaldievierStockwerkevonunsererWohnunghinunterundsetzteallesaufeineKarte.WenndieletzteStufedesTreppenhausesaufeineungeradeZahlfällt,dann,sowetteteichmitmir,wirddasZielmeinerSehnsucht,dasblondeMädchenausdergegenüberliegendenWäscherei,sichHalsüberKopfinmichverlieben.BisheuteerinnereichmichandieseletzteStufe.SiefielaufdieZahl112.IchhabemichnichtinJolankasNähegewagt,undunserehoffnungsvolleLiebeendete,vomTreppenhauszumTodeverurteilt.ManchmalwurdemeineBesessenheitfastunerträglich,besonderswährenddesZweitenWeltkriegs.EinesregnerischenNachmittags,amBudapesterDonaukai,wehtemirderSturmdenHutvomKopf,undwährendichlosrannte,schlossicheineWetteab:WennichdenHuterwische,bevorerinsWasserfällt,wirdAdolfdenKriegverlieren.IcherwischtedenHut,bevorerinsWasserfiel.DerRestistGeschichte.Dassollnichtheißen,dassichdasSchicksaldesDrittenReichsbesiegelthabe.Aberimmerhin...NachdemKriegentspanntesichdieSituationeinwenig.Nurnochgelegentlichwetteteichgegenmich,etwadassichmitgeschlossenenAugenundohneanzustoßendurchdienächsteTüregelangenmüsste,umdasGelingeneinesPlansherbeizuführen.PromptstießichmitdemKopfgegend";
-            schema.setSchema(tbSchema.Text);
-            cmbSchema.Items.AddRange(schema.getSchemaFileNames());
+            //schema.setSchema(tbSchema.Text);
+            //cmbSchema.Items.AddRange(schema.getSchemaFileNames());
             if (cmbSchema.Items.Count >= 1)
             {
                 cmbSchema.SelectedIndex = 0;
@@ -96,7 +96,7 @@ namespace _1920Parser
                 tbData.ScrollBars = RichTextBoxScrollBars.None;
                 tbData.ScrollBars = RichTextBoxScrollBars.Both;
             }
-            var s = schema.findSchema(tbData.Text);
+            var s = "";// schema.findSchema(tbData.Text);
             if (!string.IsNullOrEmpty(s))
             {
                 cmbSchema.SelectedItem = s;
@@ -115,7 +115,7 @@ namespace _1920Parser
 
         private void schemaChanged(object sender=null, EventArgs e=null)
         {
-            schema.setSchema(tbSchema.Text);
+            //schema.setSchema(tbSchema.Text);
             currentRoot = schema.Parse();
             try
             {
@@ -138,7 +138,7 @@ namespace _1920Parser
             var s = saveForm.tbSchemaName.Text;
             try
             {
-                schema.addSchema(tbSchema.Text, saveForm.tbSchemaName.Text, int.Parse(saveForm.nudDataIdentifierPosition.Text), saveForm.tbDataIdentifier.Text);
+                //schema.addSchema(tbSchema.Text, saveForm.tbSchemaName.Text, int.Parse(saveForm.nudDataIdentifierPosition.Text), saveForm.tbDataIdentifier.Text);
                 var val = cmbSchema.Items.Cast<string>().FirstOrDefault(x => x.ToUpper() == saveForm.tbSchemaName.Text.ToUpper());
                 cmbSchema.Items.Remove(val);
                 cmbSchema.Items.Add(saveForm.tbSchemaName.Text);
@@ -152,7 +152,7 @@ namespace _1920Parser
 
         private void cmbSchema_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbSchema.Text = schema.setSchemaFile(cmbSchema.SelectedItem.ToString());
+            //tbSchema.Text = schema.setSchemaFile(cmbSchema.SelectedItem.ToString());
             schemaChanged();
         }
 

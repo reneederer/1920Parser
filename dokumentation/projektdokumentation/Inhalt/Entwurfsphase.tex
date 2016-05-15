@@ -11,8 +11,10 @@ Die Wahl der Programmiersprache wurde zunächst auf die bei Phoenix eingesetzten
 \label{sec:AufbauSchemas}
 Zur Analyse des Aufbaus der 1920Schemas fragte der Autor Herrn Kemmer nach den Namen der 10 wichtigsten Schemadateien und ludt diese unter Verwendung von OpenText HostExplorer 2014 vom Mainframe herunter.
 
-Level und Name sind Pflichtangaben, alle anderen Felder dürfen leer sein. Typ und Byteanzahl treten nur zusammen auf, solche Variablen sind Wertvariablen (sie definieren Bytes aus dem Datenstrom). Variablen ohne Typ und Bytezahl sind Gruppenvariablen.
+Level und Name sind Pflichtangaben, alle anderen Felder dürfen leer sein. Typ und Byteanzahl treten nur zusammen auf, solche Variablen sind Wertvariablen (sie definieren Bytes aus dem Datenstrom).
+Variablen ohne Typ und Bytezahl sind Gruppenvariablen.
 Zusätzlich zu diesen Variablenzeilen enthalten 1920Schemas Zeilen mit Metainformationen zum Schema. Die Metainformationen sind für 1920Parser nicht relevant und werden ignoriert.
+Die Angabe zur Byte-Anzahl kann auch die Form ``AnzahlGesamtstellen,AnzahlNachkommastellen'' haben.
 
 Es ergaben sich unerwartet Schwierigkeiten beim Feld Kommentar. In der Schemadatei IOVK92 gab es eine Variable, deren Kommentar-Feld mit "0" begann. Es musste eine Regel festgelegt werden, damit diese 0 nicht als Wiederholzahl interpretiert wird, sondern als Kommentar-Beginn. Es gab die Möglichkeiten, 0 als Wiederholzahl zu verbieten oder die untereinander-stehende Anordnung der Variablenfelder auszunutzen. Falsche Annahmen hätten zu Fehlfunktion des Programms geführt; es war deshalb nötig, Rücksprache mit dem Auftraggeber zu halten. Auf dessen Vorschlag und nach erneuter Prüfung der Schemadateien wurde festgelegt, dass ein Kommentar mit mindestens 2 Leerzeichen vom vorhergehenden Feld getrennt sein muss.
 
@@ -28,14 +30,14 @@ Nachdem als Programmiersprache C\# feststand, kamen für die \ac{GUI} nur  Platt
 \subsection{Geschäftslogik}
 \label{sec:Geschaeftslogik}
 Die hierarchische Aufbau von 1920Schemas lässt sich gut mit einer rekursiven Baumstruktur im Programm abbilden. 
-Für die Baumstruktur wurde die abstrakte Klasse AbstractNode entworfen. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode soll ein Attribut children vom Typ List<AbstractNode> erhalten, mit dem es auf seine KindKnoten verweist. GroupNodes erlauben durch ihre rekursive Definition eine beliebig tiefe Verschachtelung von AbstractNodes.
+Für die Baumstruktur wurde die abstrakte Klasse AbstractNode entworfen. Von dieser Klasse erben die Klassen GroupNode und ValuNode, die Gruppen- und WerteVariablen darstellen. GroupNode erhielt ein Attribut children vom Typ List<AbstractNode>, mit dem es auf seine Kind-Knoten verweisen kann. GroupNodes erlauben durch ihre rekursive Definition eine beliebig tiefe Verschachtelung von AbstractNodes.
 
 Ein Klassendiagramm, welches die Klassen der Anwendung und deren Beziehungen untereinander darstellt kann im \Anhang{app:Klassendiagramm} eingesehen werden.
 
 
 \subsection{Maßnahmen zur Qualitätssicherung}
 \label{sec:Qualitaetssicherung}
-Das korrekte Parsen von 1920Schemas und die richtige Zergliederung des Datenstroms sind zentral für 1920Parser. Um sicherzugehen, dass dieser Programmteil funktioniert,  wurden daher die Methoden der Klassen Schema, Abstract-, Group- und ValueNode  testgetrieben entwickelt.
+Das korrekte Parsen von 1920Schemas und die richtige Zergliederung des Datenstroms sind zentral für 1920Parser. Um sicherzugehen, dass dieser Programmteil funktioniert,  wurden die Methoden der Klassen Schema, Abstract-, Group- und ValueNode  testgetrieben entwickelt.
 
 \subsection{Pflichtenheft/Datenverarbeitungskonzept}
 \label{sec:Pflichtenheft}

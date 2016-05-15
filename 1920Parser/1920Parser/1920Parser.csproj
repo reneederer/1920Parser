@@ -82,6 +82,7 @@
       <DependentUpon>SaveSchemaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Schema.cs" />
+    <Compile Include="SchemaManager.cs" />
     <Compile Include="schemas.cs">
       <DependentUpon>schemas.xsd</DependentUpon>
     </Compile>
