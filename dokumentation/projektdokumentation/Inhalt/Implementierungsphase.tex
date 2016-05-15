@@ -16,6 +16,7 @@ Visual Studio erstellte mit Neuanlage des Winform-Projekts automatisch eine Form
 Aus jeder Variablenzeile im Schema wird eine Group- oder ValueNode erstellt. Um dies Umzusetzen wurde in der Klasse Schema die Methode ParseLine geschrieben. Die Methode splittet die Angaben einer Variablenzeile mit Hilfe einer \ac{Regex} in ihre Felder auf. Die \ac{Regex} wurde auf \href{https://regex101.com}{https://regex101.com} angepasst und getestet, bis sie richtig funktionierte.
 
 \paragraph{Erstellen einer Baumstruktur aus den Variablenzeilen}
+\Anhang{app:ObjDiagramsdiagrammSchemaParsen} zeigt ein Objektdiagramm mit der Struktur, die nach dem Erstellen des Baumes hergestellt sein soll.
 Dies war die schwierigste Aufgabe des Projektes. Die Schemazeilen mussten durchlaufen werden, aus ihnen AbstractNodes erstellt und diese in eine Baumstruktur gebracht werden.
 Schwierig war, dass mit jeder neuen  Zeile ein Kindknoten, ein Geschwisterknoten, oder ein Geschwisterknoten eines früheren Vorfahrens auftauchen konnte. In jedem dieser Fälle konnte unterhalb des Knotens erneut eine Hierarchie von Knoten sein. Es musste diese Hierarchie, falls vorhanden, erstellt werden, danach musste die Verarbeitung mit der richtigen Schemazeile und dem richtigen Elternknoten weitergehen.
 Schwierig war insbesondere auch, dass eine Schemazeile zu mehreren AbstractNodes werden konnte, abhängig von ihrer Wiederholzahl. In dieser Hinsicht waren besonders GroupNodes problematisch, da sich bei GroupNodes mit der Wiederholzahl der gesamte Baum unterhalb von ihnen mit-wiederholt. Außerdem konnten Wiederholzahlen auch bei mehreren Vorfahren-Knoten vorkommen, so dass sich die Wiederholungen verschachtelten.
@@ -23,6 +24,9 @@ Schwierig war insbesondere auch, dass eine Schemazeile zu mehreren AbstractNodes
 Nach vielen vergeblichen Versuchen, mit Rekursion und verschachtelten Schleifen (zum Durchlaufen der Schemazeilen und Erstellen der Wiederholungen von Nodes) zu arbeiten, führten schließlich zwei Ideen zur Lösung des Problems. Die erste war, nicht mit Rekursion zu arbeiten sondern explizit mit einem Stack. Damit wurde es einfacher den Verlauf des Algorithmus  nachzufolgen und vorherzusehen. Die zweite und entscheidende Idee war, Nodes mit Wiederholzahl nicht sofort zu kopieren, sondern sie erst einmal fertigzustellen und danach zu kopieren. Hierzu wurden die Node-Klassen um die Methode CreateCopyWithIndex(: int) erweitert.
 
 Etwas ärgerlich war, dass die Methode zuerst nur so aussah, als würde sie funktionieren. Es waren nur flache Kopien der Nodes erzeugt worden, ohne Kopien der Kindknoten zu erzeugen. Dadurch erhielten alle Nodes von Wiederholgruppen beim Zuweisen die gleichen Werte. Der Fehler war durch Unittests nicht entdeckt worden. Zur Behebung des Fehlers musste CreateCopyWithIndex() seine Kind-Nodes rekursiv kopieren.
+
+
+\Anhang{app:SchemaSrc}, \Anhang{app:GroupNodeSrc} und \Anhang{app:ValueNodeSrc} zeigen Quelltextausschnitte.
 
 
 \subsubsection{Grundschema der Methoden von AbstractNode}

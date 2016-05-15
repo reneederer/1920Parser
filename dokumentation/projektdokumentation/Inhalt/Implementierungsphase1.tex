@@ -11,9 +11,12 @@
 
 \section{Implementierungsphase - Schemas speichern und gespeicherte Schemas auswählen}
 \label{sec:Implementierungsphase23e}
-Da die Funktionalität zuDie Combobox wurde zur GUI hinzugefügt. Der Konstruktor von 1920ParserWindow wurde so angepasst, dass er die Methode getSchemas() der Klasse SchemaManager aufruft und die Combobox die zurückgegebenen Dateinamen als Einträge erhält.
+Da die Funktionalität zum Lesen der ``schemas''-Ordners in keine der vorhandenen Klassen passte, wurde die neue Klasse SchemaManager erstellt.
+
+Es wurde eine Combobox zur GUI hinzugefügt. Der Konstruktor von 1920ParserWindow wurde so angepasst, dass er die Methode getSchemas() der Klasse SchemaManager aufruft und die Combobox die zurückgegebenen Dateinamen als Einträge erhält.
 
 Zur Auswahl eines Schemas wurde über den \ac{VS} GUI-Designer die Methode cmbSchemas\_SelectedIndexChanged() erstellt, die die Methode getFileContent() Klasse SchemaManager bei jeder Combobox-Indexänderung aufruft und den Dateiinhalt als string zurückgegeben bekommt. Das Schema-Textfeld zeigt diesen string an.
 
-m Lesen des ``schemas''-Verzeichnisses in keine der vorhandenen Klassen passte, wurde eine neue Klasse SchemaManager erstellt.
+\Zwischenstand{Implementierung des Anwendungsfalls Schemas speichern}{Implementierung1}
+
 
