@@ -110,29 +110,6 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:_1920Parser.Schema.pattern">
-            <summary>
-            The pattern to parse a schema line
-            </summary>
-        </member>
-        <member name="F:_1920Parser.Schema.schemaStr">
-            <summary>
-            The schema string
-            </summary>
-        </member>
-        <member name="M:_1920Parser.Schema.ParseLine(System.String)">
-            <summary>
-            Parses a line from the schema into an AbstractNode
-            </summary>
-            <param name="line">The line of the schema.</param>
-            <returns>Returns the node</returns>
-        </member>
-        <member name="M:_1920Parser.Schema.Parse">
-            <summary>
-            Creates a tree of AbstractNodes from the current schema
-            </summary>
-            <returns>Returns the root node</returns>
-        </member>
         <member name="F:_1920Parser.SchemaManager.schemaDirectory">
             <summary>
             The schema directory

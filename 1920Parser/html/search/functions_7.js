@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['schemaconstructortest',['SchemaConstructorTest',['../class__1920_parser_test_1_1_schema_test.html#a942c4483675402b61174b44993515deb',1,'_1920ParserTest::SchemaTest']]],
-  ['setschemafile',['setSchemaFile',['../class__1920_parser_1_1_schema.html#abd7eba55dee6bec1ccfaa6e046ff401a',1,'_1920Parser::Schema']]]
+  ['tostring',['ToString',['../class__1920_parser_1_1_group_node.html#a9d5c05eabdd12c9c4ca306cc369d8523',1,'_1920Parser::GroupNode']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['valuenodeswithdifferentattributevaluesarenotequal',['ValueNodesWithDifferentAttributeValuesAreNotEqual',['../class__1920_parser_test_1_1_value_node_test.html#af7c5889f21a4113c8103c3acdfef291b',1,'_1920ParserTest::ValueNodeTest']]],
-  ['valuenodeswithsamaeattributevaluesareequal',['ValueNodesWithSamAeattributeValuesAreEqual',['../class__1920_parser_test_1_1_value_node_test.html#a3241f6e4d162f00c3a4dccb1290efffc',1,'_1920ParserTest::ValueNodeTest']]]
+  ['tostring',['ToString',['../class__1920_parser_1_1_group_node.html#a9d5c05eabdd12c9c4ca306cc369d8523',1,'_1920Parser::GroupNode']]],
+  ['tostringtest',['ToStringTest',['../class__1920_parser_test_1_1_value_node_test.html#a0c4864257368d8dff33254966a7a98ef',1,'_1920ParserTest::ValueNodeTest']]],
+  ['tostringtest1',['ToStringTest1',['../class__1920_parser_test_1_1_value_node_test.html#a99c88a4e50cdb9851954619658fe6211',1,'_1920ParserTest::ValueNodeTest']]]
 ];

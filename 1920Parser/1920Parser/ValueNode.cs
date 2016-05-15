@@ -7,9 +7,9 @@ namespace _1920Parser
 {
     class ValueNode : AbstractNode
     {
-        public string Type { get; private set; }
-        public int Length { get; private set; }
-        public string Value { get; private set; }
+        protected string Type { get; private set; }
+        protected int Length { get; private set; }
+        protected string Value { get; private set; }
 
         public ValueNode(bool redefines, int level, string varName, string type, int length, int repeatCount, int repeatIndex, string comment)
             : base(redefines, level, varName, repeatCount, repeatIndex, comment)
@@ -43,6 +43,10 @@ namespace _1920Parser
                 (RepeatCount > 1) ? ("(" + RepeatIndex + ")") : "",
                 Value);
         }
+
+
+
+
 
         public override void AddChild(AbstractNode child)
         {

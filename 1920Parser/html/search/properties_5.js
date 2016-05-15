@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['testcontext',['TestContext',['../class__1920_parser_test_1_1_group_node_test.html#abc5b4617a242e194056eaf7d5a2d28f8',1,'_1920ParserTest.GroupNodeTest.TestContext()'],['../class__1920_parser_test_1_1_schema_test.html#a2f92a3308526a2f070a7dd74dc2433e6',1,'_1920ParserTest.SchemaTest.TestContext()']]]
+  ['value',['value',['../classschemas_schema_identifier.html#a0dcd51bb1fb87d49765cf031b4425a46',1,'schemasSchemaIdentifier']]],
+  ['varname',['VarName',['../class__1920_parser_1_1_abstract_node.html#ae4a8076d5cf940c9fa0b1a7fecdd4a6a',1,'_1920Parser::AbstractNode']]]
 ];

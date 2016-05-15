@@ -5,12 +5,10 @@
 \hyperlink{class__1920_parser_1_1_group_node}{Group\+Node} represents an internal node.  
 
 
-Inheritance diagram for \+\_\+1920\+Parser.\+Group\+Node\+:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{class__1920_parser_1_1_group_node}
-\end{center}
-\end{figure}
+
+
+Inherits \hyperlink{class__1920_parser_1_1_abstract_node}{\+\_\+1920\+Parser.\+Abstract\+Node}.
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -27,9 +25,8 @@ override void \hyperlink{class__1920_parser_1_1_group_node_a037839ecea0ec7326c6a
 \begin{DoxyCompactList}\small\item\em Adds a child node. The child could be another \hyperlink{class__1920_parser_1_1_group_node}{Group\+Node}. \end{DoxyCompactList}\item 
 override int \hyperlink{class__1920_parser_1_1_group_node_a314c8fb4d4f71b11916df9c822b9442d}{Get\+Hash\+Code} ()
 \begin{DoxyCompactList}\small\item\em Returns the Hashcode of this class. This method is not supposed to be called directly, it was overwritten in conjunction with \hyperlink{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}{Equals()}. \end{DoxyCompactList}\item 
-override bool \hyperlink{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}{Equals} (object obj)\hypertarget{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}{}\label{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}
-
-\begin{DoxyCompactList}\small\item\em Compares two Group\+Nodes. Group\+Nodes are equal if all their attributes are equal and the attributes of all their children are equal. /summary$>$ \end{DoxyCompactList}\end{DoxyCompactItemize}
+override bool \hyperlink{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}{Equals} (object obj)
+\begin{DoxyCompactList}\small\item\em Compares two Group\+Nodes. Group\+Nodes are equal if all their attributes are equal and the attributes of all their children are equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
@@ -100,6 +97,17 @@ Creates a deep copy of this \hyperlink{class__1920_parser_1_1_group_node}{Group\
 
 Implements \hyperlink{class__1920_parser_1_1_abstract_node}{\+\_\+1920\+Parser.\+Abstract\+Node}.
 
+\index{\+\_\+1920\+Parser\+::\+Group\+Node@{\+\_\+1920\+Parser\+::\+Group\+Node}!Equals@{Equals}}
+\index{Equals@{Equals}!\+\_\+1920\+Parser\+::\+Group\+Node@{\+\_\+1920\+Parser\+::\+Group\+Node}}
+\subsubsection[{\texorpdfstring{Equals(object obj)}{Equals(object obj)}}]{\setlength{\rightskip}{0pt plus 5cm}override bool \+\_\+1920\+Parser.\+Group\+Node.\+Equals (
+\begin{DoxyParamCaption}
+\item[{object}]{obj}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}{}\label{class__1920_parser_1_1_group_node_a944b36a0063df009c7f554522f7e38fc}
+
+
+Compares two Group\+Nodes. Group\+Nodes are equal if all their attributes are equal and the attributes of all their children are equal. 
+
 \index{\+\_\+1920\+Parser\+::\+Group\+Node@{\+\_\+1920\+Parser\+::\+Group\+Node}!Get\+Hash\+Code@{Get\+Hash\+Code}}
 \index{Get\+Hash\+Code@{Get\+Hash\+Code}!\+\_\+1920\+Parser\+::\+Group\+Node@{\+\_\+1920\+Parser\+::\+Group\+Node}}
 \subsubsection[{\texorpdfstring{Get\+Hash\+Code()}{GetHashCode()}}]{\setlength{\rightskip}{0pt plus 5cm}override int \+\_\+1920\+Parser.\+Group\+Node.\+Get\+Hash\+Code (
@@ -124,7 +132,7 @@ Returns a string representing this \hyperlink{class__1920_parser_1_1_group_node}
 
 
 \begin{DoxyParams}{Parameters}
-{\em tab\+Count} & tab\+Count indicates how much the string is indented. \begin{DoxyReturn}{Returns}
+{\em tab\+Count} & indicates how much the string is indented. \begin{DoxyReturn}{Returns}
 A System.\+String that represents this instance. 
 \end{DoxyReturn}
 \\
