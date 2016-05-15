@@ -20,7 +20,7 @@ Es ergaben sich unerwartet Schwierigkeiten beim Feld Kommentar. In der Schemadat
 
 \subsection{Architekturdesign}
 \label{sec:Architekturdesign}
-Während der Projekterstellung wurde auf Kohärenz der Klassen geachtet und gegebenenfalls refaktorisiert (zum Beispiel stand die Funktionalität zum Lesen und Schreiben der XML-Config ursprünglich auch in der Klasse Schema, wurde später aber in die neu erschaffene Klasse SchemaManager ausgelagert). Im Projektverlauf entstand eine 3-Schichten-Architektur mit den Klassen 1920ParserView und SaveSchemaView als Teil der Präsentationsschicht, den Klassen AbstractNode, GroupNode, ValueNode und Schema auf Logikschicht und SchemaManager und SchemaConfig als Teil der Datenhaltungsschicht. Klassen der Präsentationsschicht und Klassen Datenhaltungsschicht kennen sich nicht und deren Objekte kommunizieren auch nicht direkt miteinander.
+Während der Projekterstellung wurde auf Kohärenz der Klassen geachtet und gegebenenfalls refaktorisiert. Auf ein explizites Design der Architektur wurde verzichtet.
 
 \subsection{Entwurf der Benutzeroberfläche}
 \label{sec:Benutzeroberflaeche}

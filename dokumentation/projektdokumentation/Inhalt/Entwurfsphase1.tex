@@ -1,15 +1,5 @@
-
-% !TEX root = ../Projektdokumentation.tex
-\section{Entwurfsphase - Schema speichern und automatisch auswählen} 
+%!TEX root = ../Projektdokumentation.tex
+\section{Entwurfsphase - Schemas speichern und gespeicherte Schemas auswählen} 
 \label{sec:Entwurfsphase1}
-
-
-\subsection{Entwurf eines Bedienkonzeptes}
-\label{sec:EntwurfBedienkonzept123}
-Um die GUI übersichtlich zu halten, und weil in Zukunft eventuell noch Auswahlmöglichkeiten für andere Anwendungsfälle notwendig werden könnten, wurde entschieden, ein Menü zu erstellen. Bei Auswahl des Menüpunktes ``Schema speichern'' soll sich ein Dialog öffnen, in dem der Name des Schemas und ein Textfeld zur Angabe eines Datenstrom-Identifikationstextes\footnote{z. B. der Datenstrom enthält an Stelle 3 den Text abc} eingegeben werden. Beim Klicken auf den Button ``Schema speichern'' wird ein neuer Eintrag in die XML-Datei vorgenommen und eine Textdatei mit dem Inhalt des Schema-Textfeldes im Programm-Unterordner "schemas" gespeichert.
-Neben der Überschrift des Schema-Textfeldes soll eine Combobox eingefügt werden, die die Dateien des schemas-Ordners anzeigt, und über die ein Schema ausgewählt werden kann.
-
-\subsection{Entwurf des XML-Schemas}
-\label{sec:EntwurfXMLSCHEMA}
-Es gibt ein Microsoft-Tool namens xsd.exe, das aus XSD-Schemas C\#-Klassen generieren kann. Um das auszunutzen wurde entschieden, die Einstellungen, die notwendigen Einstellungen als XML-Datei vorzunehmen. Das hatte außerdem den Vorteil, dass die Benutzer die Einstellungen direkt editieren können.
-
+Um Schemas zu speichern, wurde entschieden, einen Unterordner namens Schemas zu erstellen. Der Benutzer kann in diesen Schemas als Textdateien hineinkopieren.
+Diese sollen in der GUI angezeigt werden, indem neben Die Überschrift für das Schema-Textfeld eine Combobox eingerichtet wird, die die Namen der Dateien in diesem Ordner anzeigt. Wenn sich der Index der ComboBox ändert, soll die Datei mit dem Namen des ComboBox-Eintrags gelesen werden und das Schematextfeld mit dem Dateiinhalt gefüllt werden.
